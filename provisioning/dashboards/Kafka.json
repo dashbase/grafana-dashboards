@@ -71,7 +71,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_messagesin_total{job=\"dashbase-kafka\",topic=~\"${topic:pipe}\",deploy=\"$deploy\"}[5m]))",
+          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_messagesin_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{topic}}",
@@ -162,7 +162,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_bytesin_total{job=\"dashbase-kafka\",topic=~\"${topic:pipe}\",deploy=\"$deploy\"}[5m]))",
+          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_bytesin_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{topic}}",
@@ -253,7 +253,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_bytesout_total{job=\"dashbase-kafka\",topic=~\"${topic:pipe}\",deploy=\"$deploy\"}[5m]))",
+          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_bytesout_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{topic}}",
@@ -344,7 +344,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_bytesrejected_total{job=\"dashbase-kafka\",topic=~\"${topic:pipe}\",deploy=\"$deploy\"}[5m]))",
+          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_bytesrejected_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{topic}}",
@@ -435,14 +435,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_totalproducerequests_total{job=\"dashbase-kafka\",topic=~\"${topic:pipe}\",deploy=\"$deploy\"}[5m]))",
+          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_totalproducerequests_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "produce - {{topic}}",
           "refId": "C"
         },
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_totalfetchrequests_total{job=\"dashbase-kafka\",topic=~\"${topic:pipe}\",deploy=\"$deploy\"}[5m]))",
+          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_totalfetchrequests_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "fetch - {{topic}}",
@@ -451,7 +451,7 @@
           "step": 4
         },
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_failedfetchrequests_total{job=\"dashbase-kafka\",topic=~\"${topic:pipe}\",deploy=\"$deploy\"}[5m]))",
+          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_failedfetchrequests_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m]))",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 1,
@@ -459,7 +459,7 @@
           "refId": "B"
         },
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_failedproducerequests_total{job=\"dashbase-kafka\",topic=~\"${topic:pipe}\",deploy=\"$deploy\"}[5m]))",
+          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_failedproducerequests_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m]))",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 1,
@@ -549,14 +549,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(kafka_network_requestchannel_requestqueuesize{job=\"dashbase-kafka\",deploy=\"$deploy\"})",
+          "expr": "sum(kafka_network_requestchannel_requestqueuesize{component=\"kafka\",app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "request",
           "refId": "C"
         },
         {
-          "expr": "sum(kafka_network_requestchannel_requestqueuesize{job=\"dashbase-kafka\",deploy=\"$deploy\"})",
+          "expr": "sum(kafka_network_requestchannel_requestqueuesize{component=\"kafka\",app='$app'})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "response ",
@@ -662,7 +662,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(irate(process_cpu_seconds_total{job=\"dashbase-kafka\",deploy=\"$deploy\"}[1m]))",
+          "expr": "avg(irate(process_cpu_seconds_total{component=\"kafka\",app='$app'}[1m]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -762,7 +762,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(jvm_memory_bytes_used{area='heap',job=\"dashbase-kafka\",deploy=\"$deploy\"})",
+          "expr": "avg(jvm_memory_bytes_used{area='heap',component=\"kafka\",app='$app'})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "used",
@@ -771,7 +771,7 @@
           "step": 4
         },
         {
-          "expr": "avg(jvm_memory_bytes_max{area='heap',job=\"dashbase-kafka\",deploy=\"$deploy\"})",
+          "expr": "avg(jvm_memory_bytes_max{area='heap',component=\"kafka\",app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "max",
@@ -862,7 +862,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(jvm_gc_collection_seconds_sum{job=\"dashbase-kafka\",deploy=\"$deploy\"}[5m]))",
+          "expr": "sum(rate(jvm_gc_collection_seconds_sum{component=\"kafka\",app='$app'}[5m]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "time spent in GC",
@@ -930,9 +930,9 @@
         "includeAll": false,
         "label": null,
         "multi": false,
-        "name": "deploy",
+        "name": "app",
         "options": [],
-        "query": "label_values(dashbase_table_info,deploy)",
+        "query": "label_values(dashbase_table_info,app)",
         "refresh": 1,
         "regex": "",
         "sort": 0,
@@ -955,7 +955,7 @@
         "multi": true,
         "name": "topic",
         "options": [],
-        "query": "label_values(kafka_server_brokertopicmetrics_messagesin_total{deploy='$deploy'},topic)",
+        "query": "label_values(kafka_server_brokertopicmetrics_messagesin_total{app='$app'},topic)",
         "refresh": 1,
         "regex": "",
         "sort": 0,

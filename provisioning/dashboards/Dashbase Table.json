@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1535657888318,
+  "iteration": 1536194423897,
   "links": [],
   "panels": [
     {
@@ -75,14 +75,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(dashbase_ingestion_events_total[5m]) * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(rate(dashbase_ingestion_events_total[1m]) * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "events - {{table_name}} - {{table_partition}}",
           "refId": "C"
         },
         {
-          "expr": "avg(rate(dashbase_ingestion_event_bytes_total[5m]) * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(rate(dashbase_ingestion_event_bytes_total[1m]) * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": " bytes - {{table_name}} - {{table_partition}}",
@@ -168,14 +168,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "min(dashbase_indexer_delayInSec * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "min(dashbase_indexer_delayInSec * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "ingestion - {{table_name}} - {{table_partition}}",
           "refId": "A"
         },
         {
-          "expr": "min(dashbase_search_reader_delayInSec * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "min(dashbase_search_reader_delayInSec * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "indexing - {{table_name}} - {{table_partition}}",
@@ -261,14 +261,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(dashbase_ingestion_parse_error_total[5m]) * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(rate(dashbase_ingestion_parse_error_total[1m]) * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "parse error - {{table_name}} - {{table_partition}}",
           "refId": "A"
         },
         {
-          "expr": "avg(rate(dashbase_ingestion_parse_skipped_total[5m]) * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(rate(dashbase_ingestion_parse_skipped_total[1m]) * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "skipped - {{table_name}} - {{table_partition}}",
@@ -354,14 +354,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_indexed_full_index_duration{quantile='0.5'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(dashbase_indexed_full_index_duration{quantile='0.5'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p50 - {{table_name}} - {{table_partition}}",
           "refId": "A"
         },
         {
-          "expr": "avg(dashbase_indexed_full_index_duration{quantile='0.99'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(dashbase_indexed_full_index_duration{quantile='0.99'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p99 - {{table_name}} - {{table_partition}}",
@@ -460,7 +460,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_firehose_kafka_consumer_fetch_manager_metrics_records_lag_max * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(dashbase_firehose_kafka_consumer_fetch_manager_metrics_records_lag_max * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{table_name}} - {{table_partition}}",
@@ -551,14 +551,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_firehose_kafka_consumer_fetch_manager_metrics_records_consumed_rate * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(dashbase_firehose_kafka_consumer_fetch_manager_metrics_records_consumed_rate * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "records - {{table_name}} - {{table_partition}}",
           "refId": "A"
         },
         {
-          "expr": "avg(dashbase_firehose_kafka_consumer_fetch_manager_metrics_bytes_consumed_rate * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(dashbase_firehose_kafka_consumer_fetch_manager_metrics_bytes_consumed_rate * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "bytes - {{table_name}} - {{table_partition}}",
@@ -657,14 +657,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_search_query_latency_count[5m]) * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "sum(rate(dashbase_search_query_latency_count[1m]) * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "total - {{table_name}} - {{table_partition}}",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(dashbase_search_slow_query_total[5m]) * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "sum(rate(dashbase_search_slow_query_total[1m]) * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "slow query - {{table_name}} - {{table_partition}}",
@@ -750,14 +750,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_search_query_latency{quantile='0.5'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(dashbase_search_query_latency{quantile='0.5'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p50 - {{table_name}} - {{table_partition}}",
           "refId": "A"
         },
         {
-          "expr": "avg(dashbase_search_query_latency{quantile='0.99'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(dashbase_search_query_latency{quantile='0.99'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p99 - {{table_name}} - {{table_partition}}",
@@ -856,14 +856,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_index_timeslice_count * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(dashbase_index_timeslice_count * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "timeslice (total) - {{table_name}} - {{table_partition}}",
           "refId": "B"
         },
         {
-          "expr": "avg(dashbase_search_reader_cache_count * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(dashbase_search_reader_cache_count * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "reader (cached) - {{table_name}} - {{table_partition}}",
@@ -949,14 +949,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_search_wait_latency{quantile='0.5'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition  )",
+          "expr": "avg(dashbase_search_wait_latency{quantile='0.5'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition  )",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p50 - {{table_name}} - {{table_partition}}",
           "refId": "A"
         },
         {
-          "expr": "avg(dashbase_search_wait_latency{quantile='0.99'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition  )",
+          "expr": "avg(dashbase_search_wait_latency{quantile='0.99'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition  )",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p99 - {{table_name}} - {{table_partition}}",
@@ -1055,7 +1055,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(jvm_cpu_usage_percent{job='dashbase-table'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(jvm_cpu_usage_percent{component='table'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{table_name}} - {{table_partition}}",
@@ -1147,14 +1147,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(jvm_memory_heap_used{job='dashbase-table'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(jvm_memory_heap_used{component='table'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{table_name}} - {{table_partition}}",
           "refId": "A"
         },
         {
-          "expr": "avg(jvm_memory_heap_max{job='dashbase-table'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(jvm_memory_heap_max{component='table'} * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "max - {{table_name}} - {{table_partition}}",
@@ -1245,14 +1245,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_total_payload_bytes * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(dashbase_total_payload_bytes * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "raw bytes - {{table_name}} - {{table_partition}}",
           "refId": "B"
         },
         {
-          "expr": "avg(dashbase_total_index_bytes / dashbase_disk_total_bytes * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',deploy='$deploy'}) by (table_name,table_partition)",
+          "expr": "avg(dashbase_total_index_bytes / dashbase_disk_total_bytes * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "% used - {{table_name}} - {{table_partition}}",
@@ -1309,17 +1309,17 @@
       {
         "allValue": null,
         "current": {
-          "text": "staging",
-          "value": "staging"
+          "text": "elk",
+          "value": "elk"
         },
         "datasource": "Prometheus",
         "hide": 0,
         "includeAll": false,
         "label": null,
         "multi": false,
-        "name": "deploy",
+        "name": "app",
         "options": [],
-        "query": "label_values(dashbase_table_info,deploy)",
+        "query": "label_values(dashbase_table_info,app)",
         "refresh": 1,
         "regex": "",
         "sort": 0,
@@ -1342,7 +1342,7 @@
         "multi": true,
         "name": "table",
         "options": [],
-        "query": "label_values(dashbase_table_info{deploy='$deploy'}, table_name)",
+        "query": "label_values(dashbase_table_info{app='$app'}, table_name)",
         "refresh": 1,
         "regex": "",
         "sort": 0,
@@ -1386,5 +1386,5 @@
   "timezone": "",
   "title": "Dashbase Table",
   "uid": "YhMqAJtmk",
-  "version": 5
+  "version": 1
 }

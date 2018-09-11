@@ -83,7 +83,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "count(container_last_seen{image=~\"dashbase.*\",deploy=\"$deploy\"})",
+          "expr": "count(container_last_seen{image=~\"dashbase.*\",app='$app'})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "",
@@ -171,7 +171,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(container_memory_usage_bytes{image=~\"dashbase.*\",deploy=\"$deploy\"})",
+          "expr": "sum(container_memory_usage_bytes{image=~\"dashbase.*\",app='$app'})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "",
@@ -259,7 +259,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(rate(container_cpu_user_seconds_total{image=~\"dashbase.*\",deploy=\"$deploy\"}[5m]) * 100)",
+          "expr": "sum(rate(container_cpu_user_seconds_total{image=~\"dashbase.*\",app='$app'}[5m]) * 100)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "",
@@ -326,7 +326,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(container_cpu_user_seconds_total{image=~\"dashbase.*\",deploy=\"$deploy\"}[5m]) * 100",
+          "expr": "rate(container_cpu_user_seconds_total{image=~\"dashbase.*\",app='$app'}[5m]) * 100",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{name}}",
@@ -421,7 +421,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "container_memory_usage_bytes{image=~\"dashbase.*\",deploy=\"$deploy\"}",
+          "expr": "container_memory_usage_bytes{image=~\"dashbase.*\",app='$app'}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -512,14 +512,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(container_fs_usage_bytes{image=~\"dashbase.*\",deploy=\"$deploy\"}) by (name, device)",
+          "expr": "sum(container_fs_usage_bytes{image=~\"dashbase.*\",app='$app'}) by (name, device)",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 1,
           "refId": "A"
         },
         {
-          "expr": "avg(container_fs_usage_bytes{image=~\"dashbase.*\",deploy=\"$deploy\"} / container_fs_limit_bytes{image=~\"dashbase.*\",deploy=\"$deploy\"}) by (name, device)",
+          "expr": "avg(container_fs_usage_bytes{image=~\"dashbase.*\",app='$app'} / container_fs_limit_bytes{image=~\"dashbase.*\",app='$app'}) by (name, device)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{device}} on {{name}}",
@@ -607,7 +607,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(container_network_receive_bytes_total{image=~\"dashbase.*\",deploy=\"$deploy\"}[5m])",
+          "expr": "irate(container_network_receive_bytes_total{image=~\"dashbase.*\",app='$app'}[5m])",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{name}}",
@@ -698,7 +698,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(container_network_transmit_bytes_total{image=~\"dashbase.*\",deploy=\"$deploy\"}[5m])",
+          "expr": "irate(container_network_transmit_bytes_total{image=~\"dashbase.*\",app='$app'}[5m])",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{name}}",
@@ -767,9 +767,9 @@
         "includeAll": false,
         "label": null,
         "multi": false,
-        "name": "deploy",
+        "name": "app",
         "options": [],
-        "query": "label_values(container_last_seen,deploy)",
+        "query": "label_values(container_last_seen,app)",
         "refresh": 1,
         "regex": "",
         "sort": 0,

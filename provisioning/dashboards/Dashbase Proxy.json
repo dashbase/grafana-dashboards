@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1535657679984,
+  "iteration": 1536194330691,
   "links": [],
   "panels": [
     {
@@ -71,7 +71,8 @@
         },
         {
           "alias": "/events/",
-          "fill": 0
+          "fill": 0,
+          "points": true
         }
       ],
       "spaceLength": 10,
@@ -79,14 +80,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_proxy_events_received{topic=~'${kafka_topic:pipe}',deploy='$deploy'}[5m])) by (topic)",
+          "expr": "sum(rate(dashbase_proxy_events_received{topic=~'${kafka_topic:pipe}',app='$app'}[1m])) by (topic)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "events received - {{topic}}",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(dashbase_proxy_bytes_received{topic=~'${kafka_topic:pipe}',deploy='$deploy'}[5m])) by (topic)",
+          "expr": "sum(rate(dashbase_proxy_bytes_received{topic=~'${kafka_topic:pipe}',app='$app'}[1m])) by (topic)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "bytes received - {{topic}}",
@@ -173,7 +174,8 @@
         },
         {
           "alias": "/events/",
-          "fill": 0
+          "fill": 0,
+          "points": true
         }
       ],
       "spaceLength": 10,
@@ -181,14 +183,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_proxy_events_sent{topic=~'${kafka_topic:pipe}',deploy='$deploy'}[5m])) by (topic)",
+          "expr": "sum(rate(dashbase_proxy_events_sent{topic=~'${kafka_topic:pipe}',app='$app'}[1m])) by (topic)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "events sent - {{topic}}",
           "refId": "C"
         },
         {
-          "expr": "sum(rate(dashbase_proxy_bytes_sent{topic=~'${kafka_topic:pipe}',deploy='$deploy'}[5m])) by (topic)",
+          "expr": "sum(rate(dashbase_proxy_bytes_sent{topic=~'${kafka_topic:pipe}',app='$app'}[1m])) by (topic)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "bytes sent - {{topic}}",
@@ -279,7 +281,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(io_dashbase_esproxy_api_IndexAPI_bulk_count{deploy='$deploy'}[5m]))",
+          "expr": "sum(rate(io_dashbase_esproxy_api_IndexAPI_bulk_count{app='$app'}[1m]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -287,7 +289,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum(rate(io_dashbase_esproxy_api_IndexAPI_bulk_exceptions_total{deploy='$deploy'}[5m]))",
+          "expr": "sum(rate(io_dashbase_esproxy_api_IndexAPI_bulk_exceptions_total{app='$app'}[1m]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -295,21 +297,21 @@
           "refId": "B"
         },
         {
-          "expr": "avg(io_dashbase_esproxy_api_IndexAPI_bulk{quantile='0.5',deploy='$deploy'})",
+          "expr": "avg(io_dashbase_esproxy_api_IndexAPI_bulk{quantile='0.5',app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "latency (p50)",
           "refId": "C"
         },
         {
-          "expr": "avg(io_dashbase_esproxy_api_IndexAPI_bulk{quantile='0.95',deploy='$deploy'})",
+          "expr": "avg(io_dashbase_esproxy_api_IndexAPI_bulk{quantile='0.95',app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "latency (p95)",
           "refId": "D"
         },
         {
-          "expr": "avg(io_dashbase_esproxy_api_IndexAPI_bulk{quantile='0.99',deploy='$deploy'})",
+          "expr": "avg(io_dashbase_esproxy_api_IndexAPI_bulk{quantile='0.99',app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "latency (p99)",
@@ -393,7 +395,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_proxy_events_parse_error{deploy='$deploy'}[5m])) by (topic)",
+          "expr": "sum(rate(dashbase_proxy_events_parse_error{app='$app'}[1m])) by (topic)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -401,14 +403,14 @@
           "refId": "A"
         },
         {
-          "expr": "sum(rate(dashbase_proxy_events_parse_error_total{deploy='$deploy'}[5m]))",
+          "expr": "rate(dashbase_proxy_events_parse_error_total{app='$app'}[1m])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "parse error - total",
           "refId": "B"
         },
         {
-          "expr": "sum(rate(dashbase_kafka_failure{deploy='$deploy'}[5m]))",
+          "expr": "sum(rate(dashbase_kafka_failure{app='$app'}[1m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "kafka error - total",
@@ -505,7 +507,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(jvm_cpu_usage_percent{job='dashbase-proxy',deploy='$deploy'})",
+          "expr": "avg(jvm_cpu_usage_percent{component='proxy',app='$app'})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -596,14 +598,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(jvm_memory_heap_used{job='dashbase-proxy',deploy='$deploy'})",
+          "expr": "jvm_memory_heap_used{component='proxy',app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "used",
           "refId": "A"
         },
         {
-          "expr": "avg(jvm_memory_heap_max{job='dashbase-proxy',deploy='$deploy'})",
+          "expr": "jvm_memory_heap_max{component='proxy',app='$app'}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -661,17 +663,17 @@
       {
         "allValue": null,
         "current": {
-          "text": "staging",
-          "value": "staging"
+          "text": "elk",
+          "value": "elk"
         },
         "datasource": "Prometheus",
         "hide": 0,
         "includeAll": false,
         "label": null,
         "multi": false,
-        "name": "deploy",
+        "name": "app",
         "options": [],
-        "query": "label_values(dashbase_table_info,deploy)",
+        "query": "label_values(dashbase_table_info,app)",
         "refresh": 1,
         "regex": "",
         "sort": 0,
@@ -696,7 +698,7 @@
         "multi": true,
         "name": "kafka_topic",
         "options": [],
-        "query": "label_values(dashbase_proxy_events_received{deploy='$deploy'},topic)",
+        "query": "label_values(dashbase_proxy_events_received{app='$app'},topic)",
         "refresh": 1,
         "regex": "",
         "sort": 0,
@@ -740,5 +742,5 @@
   "timezone": "",
   "title": "Dashbase Proxy",
   "uid": "WBh5iVpiz",
-  "version": 4
+  "version": 1
 }
