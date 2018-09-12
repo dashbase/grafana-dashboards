@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1
+    steps:
+      - checkout
+      - setup_remote_docker
+      - deploy:
+          name: build and push image
+          command: |
+            # Build and push only on master branch or tag is added
+            if [ "${CIRCLE_TAG}" != "" -o "${CIRCLE_BRANCH}" == "master" ]; then
+              [ "${CIRCLE_TAG}" != "" ] && TAG=${CIRCLE_TAG} || TAG=nightly
+              docker build -t dashbase/grafana:$TAG .
+              docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+              docker push dashbase/grafana:$TAG
+            fi
