@@ -16,10 +16,11 @@
   "editable": true,
   "gnetId": 721,
   "graphTooltip": 0,
-  "iteration": 1535658070407,
+  "iteration": 1537013309973,
   "links": [],
   "panels": [
     {
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -27,6 +28,7 @@
         "y": 0
       },
       "id": 10,
+      "panels": [],
       "title": "Input / Output",
       "type": "row"
     },
@@ -44,97 +46,6 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 1
-      },
-      "id": 4,
-      "isNew": true,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "connected",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_messagesin_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m]))",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "{{topic}}",
-          "metric": "kafka_server_brokertopicmetrics_messagesin_total",
-          "refId": "A",
-          "step": 4
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Messages In Per Topic",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 0,
-        "value_type": "cumulative"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": "Messages/s",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "editable": true,
-      "error": false,
-      "fill": 1,
-      "grid": {},
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 8,
         "y": 1
       },
       "id": 5,
@@ -225,7 +136,7 @@
       "gridPos": {
         "h": 7,
         "w": 8,
-        "x": 16,
+        "x": 8,
         "y": 1
       },
       "id": 6,
@@ -284,6 +195,104 @@
         {
           "format": "Bps",
           "label": "Bytes/s",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "editable": true,
+      "error": false,
+      "fill": 1,
+      "grid": {},
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 1
+      },
+      "id": 13,
+      "isNew": true,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(kafka_network_requestchannel_requestqueuesize{component=\"kafka\",app='$app'})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "request",
+          "refId": "C"
+        },
+        {
+          "expr": "sum(kafka_network_requestchannel_requestqueuesize{component=\"kafka\",app='$app'})",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "response ",
+          "metric": "kafka_server_brokertopicmetrics_bytesin_total",
+          "refId": "A",
+          "step": 4
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Queue Size",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 0,
+        "value_type": "cumulative"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -410,6 +419,97 @@
         "x": 8,
         "y": 8
       },
+      "id": 4,
+      "isNew": true,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_messagesin_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m]))",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{topic}}",
+          "metric": "kafka_server_brokertopicmetrics_messagesin_total",
+          "refId": "A",
+          "step": 4
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Messages In Per Topic",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 0,
+        "value_type": "cumulative"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "Messages/s",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "editable": true,
+      "error": false,
+      "fill": 1,
+      "grid": {},
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 8
+      },
       "id": 12,
       "isNew": true,
       "legend": {
@@ -509,36 +609,49 @@
       }
     },
     {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 15
+      },
+      "id": 17,
+      "panels": [],
+      "title": "Log Size",
+      "type": "row"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
-      "editable": true,
-      "error": false,
+      "datasource": null,
       "fill": 1,
-      "grid": {},
       "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 8
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 16
       },
-      "id": 13,
-      "isNew": true,
+      "id": 15,
       "legend": {
+        "alignAsTable": true,
         "avg": false,
-        "current": false,
+        "current": true,
         "max": false,
         "min": false,
+        "rightSide": true,
         "show": true,
+        "sort": "current",
+        "sortDesc": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
-      "linewidth": 2,
+      "linewidth": 1,
       "links": [],
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -549,31 +662,21 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(kafka_network_requestchannel_requestqueuesize{component=\"kafka\",app='$app'})",
+          "expr": "sum(kafka_log_log_size{app=\"$app\"}) by (topic)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "request",
-          "refId": "C"
-        },
-        {
-          "expr": "sum(kafka_network_requestchannel_requestqueuesize{component=\"kafka\",app='$app'})",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "response ",
-          "metric": "kafka_server_brokertopicmetrics_bytesin_total",
-          "refId": "A",
-          "step": 4
+          "legendFormat": "{{topic}}",
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Queue Size",
+      "title": "log size by topic",
       "tooltip": {
-        "msResolution": false,
         "shared": true,
         "sort": 0,
-        "value_type": "cumulative"
+        "value_type": "individual"
       },
       "type": "graph",
       "xaxis": {
@@ -585,8 +688,94 @@
       },
       "yaxes": [
         {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
           "format": "short",
-          "label": "",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "id": 18,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(kafka_log_log_size) by (instance)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "log size by broker",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
@@ -612,7 +801,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 25
       },
       "id": 8,
       "panels": [],
@@ -635,7 +824,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 16
+        "y": 26
       },
       "id": 1,
       "isNew": true,
@@ -729,7 +918,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 16
+        "y": 26
       },
       "id": 2,
       "isNew": true,
@@ -835,7 +1024,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 16
+        "y": 26
       },
       "id": 3,
       "isNew": true,
@@ -932,7 +1121,7 @@
         "multi": false,
         "name": "app",
         "options": [],
-        "query": "label_values(dashbase_table_info,app)",
+        "query": "label_values(app)",
         "refresh": 1,
         "regex": "",
         "sort": 0,

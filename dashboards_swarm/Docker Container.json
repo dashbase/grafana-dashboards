@@ -16,6 +16,7 @@
   "editable": true,
   "gnetId": 193,
   "graphTooltip": 1,
+  "iteration": 1536870519223,
   "links": [],
   "panels": [
     {
@@ -83,7 +84,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "count(container_last_seen{image=~\"dashbase.*\",app='$app'})",
+          "expr": "count(container_last_seen{container_label_dashbase_io=\"true\",app='$app'})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "",
@@ -171,7 +172,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(container_memory_usage_bytes{image=~\"dashbase.*\",app='$app'})",
+          "expr": "sum(container_memory_usage_bytes{container_label_dashbase_io=\"true\",app='$app'})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "",
@@ -259,7 +260,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(rate(container_cpu_user_seconds_total{image=~\"dashbase.*\",app='$app'}[5m]) * 100)",
+          "expr": "sum(rate(container_cpu_user_seconds_total{container_label_dashbase_io=\"true\",app='$app'}[5m]) * 100)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "",
@@ -326,10 +327,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(container_cpu_user_seconds_total{image=~\"dashbase.*\",app='$app'}[5m]) * 100",
+          "expr": "avg(rate(container_cpu_user_seconds_total{app='$app',container_label_dashbase_io=\"true\"}[5m]) * 100) by (container_label_io_kubernetes_pod_name)",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{container_label_io_kubernetes_pod_name}}",
           "metric": "cpu",
           "refId": "A",
           "step": 10
@@ -421,11 +422,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "container_memory_usage_bytes{image=~\"dashbase.*\",app='$app'}",
+          "expr": "avg(container_memory_usage_bytes{app='$app',container_label_dashbase_io=\"true\"}) by (container_label_io_kubernetes_pod_name)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{container_label_io_kubernetes_pod_name}}",
           "metric": "container_memory_usage_bytes",
           "refId": "A",
           "step": 10
@@ -512,17 +513,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(container_fs_usage_bytes{image=~\"dashbase.*\",app='$app'}) by (name, device)",
+          "expr": "sum(container_fs_usage_bytes{app='$app',container_label_dashbase_io=\"true\"}) by (container_label_io_kubernetes_pod_name, device)",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 1,
           "refId": "A"
         },
         {
-          "expr": "avg(container_fs_usage_bytes{image=~\"dashbase.*\",app='$app'} / container_fs_limit_bytes{image=~\"dashbase.*\",app='$app'}) by (name, device)",
+          "expr": "avg(container_fs_usage_bytes{app='$app',container_label_dashbase_io=\"true\"} / container_fs_limit_bytes{app='$app',container_label_dashbase_io=\"true\"}) by (container_label_io_kubernetes_pod_name, device)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{device}} on {{name}}",
+          "legendFormat": "{{device}} on {{container_label_io_kubernetes_pod_name}}",
           "refId": "B"
         }
       ],
@@ -607,10 +608,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(container_network_receive_bytes_total{image=~\"dashbase.*\",app='$app'}[5m])",
+          "expr": "avg(irate(container_network_receive_bytes_total{app='$app',container_label_annotation_dashbase_io_scrape=\"true\"}[5m])) by (container_label_io_kubernetes_pod_name)",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{container_label_io_kubernetes_pod_name}}",
           "metric": "container_network_receive_bytes_total",
           "refId": "A",
           "step": 20
@@ -698,10 +699,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(container_network_transmit_bytes_total{image=~\"dashbase.*\",app='$app'}[5m])",
+          "expr": "avg(irate(container_network_transmit_bytes_total{container_label_annotation_dashbase_io_scrape=\"true\",app='$app'}[5m])) by (container_label_io_kubernetes_pod_name)",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{container_label_io_kubernetes_pod_name}}",
           "refId": "A",
           "step": 20
         }
@@ -759,8 +760,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "elk",
-          "value": "elk"
+          "text": "dashbase",
+          "value": "dashbase"
         },
         "datasource": "Prometheus",
         "hide": 0,
