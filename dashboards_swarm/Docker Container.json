@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": 193,
   "graphTooltip": 1,
-  "iteration": 1536870519223,
+  "iteration": 1537222075550,
   "links": [],
   "panels": [
     {
@@ -84,7 +84,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "count(container_last_seen{container_label_dashbase_io=\"true\",app='$app'})",
+          "expr": "count(container_last_seen{image=~\"dashbase.*\",app='$app'})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "",
@@ -119,94 +119,6 @@
       "datasource": "Prometheus",
       "editable": true,
       "error": false,
-      "format": "bytes",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 8,
-        "x": 8,
-        "y": 0
-      },
-      "height": "20",
-      "id": 5,
-      "interval": null,
-      "isNew": true,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "sum(container_memory_usage_bytes{container_label_dashbase_io=\"true\",app='$app'})",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "",
-          "metric": "container_memory_usage_bytes",
-          "refId": "A",
-          "step": 240
-        }
-      ],
-      "thresholds": "",
-      "title": "Total Memory Usage",
-      "transparent": true,
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
-      ],
-      "datasource": "Prometheus",
-      "editable": true,
-      "error": false,
       "format": "percent",
       "gauge": {
         "maxValue": 100,
@@ -218,7 +130,7 @@
       "gridPos": {
         "h": 3,
         "w": 8,
-        "x": 16,
+        "x": 8,
         "y": 0
       },
       "height": "20",
@@ -260,7 +172,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(rate(container_cpu_user_seconds_total{container_label_dashbase_io=\"true\",app='$app'}[5m]) * 100)",
+          "expr": "sum(rate(container_cpu_user_seconds_total{image=~\"dashbase.*\",app='$app'}[5m]) * 100)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "",
@@ -271,6 +183,94 @@
       ],
       "thresholds": "",
       "title": "Total CPU Usage",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "Prometheus",
+      "editable": true,
+      "error": false,
+      "format": "bytes",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 8,
+        "x": 16,
+        "y": 0
+      },
+      "height": "20",
+      "id": 5,
+      "interval": null,
+      "isNew": true,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "sum(container_memory_working_set_bytes{image=~\"dashbase.*\",app='$app'})",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "",
+          "metric": "container_memory_usage_bytes",
+          "refId": "A",
+          "step": 240
+        }
+      ],
+      "thresholds": "",
+      "title": "Total Memory Usage",
       "transparent": true,
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -327,10 +327,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(container_cpu_user_seconds_total{app='$app',container_label_dashbase_io=\"true\"}[5m]) * 100) by (container_label_io_kubernetes_pod_name)",
+          "expr": "rate(container_cpu_user_seconds_total{image=~\"dashbase.*\",app='$app'}[5m]) * 100",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "{{container_label_io_kubernetes_pod_name}}",
+          "legendFormat": "{{name}}",
           "metric": "cpu",
           "refId": "A",
           "step": 10
@@ -422,11 +422,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(container_memory_usage_bytes{app='$app',container_label_dashbase_io=\"true\"}) by (container_label_io_kubernetes_pod_name)",
+          "expr": "sum(container_memory_working_set_bytes{image=~\"dashbase.*\",app='$app'}) by (name)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
-          "legendFormat": "{{container_label_io_kubernetes_pod_name}}",
+          "legendFormat": "{{name}}",
           "metric": "container_memory_usage_bytes",
           "refId": "A",
           "step": 10
@@ -513,17 +513,19 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(container_fs_usage_bytes{app='$app',container_label_dashbase_io=\"true\"}) by (container_label_io_kubernetes_pod_name, device)",
+          "expr": "sum(container_fs_usage_bytes{image=~\"dashbase.*\",app='$app'}) by (name, device)",
           "format": "time_series",
-          "hide": true,
+          "hide": false,
           "intervalFactor": 1,
+          "legendFormat": "{{device}} on {{name}}",
           "refId": "A"
         },
         {
-          "expr": "avg(container_fs_usage_bytes{app='$app',container_label_dashbase_io=\"true\"} / container_fs_limit_bytes{app='$app',container_label_dashbase_io=\"true\"}) by (container_label_io_kubernetes_pod_name, device)",
+          "expr": "avg(container_fs_usage_bytes{image=~\"dashbase.*\",app='$app'} / container_fs_limit_bytes{image=~\"dashbase.*\",app='$app'}) by (name, device)",
           "format": "time_series",
+          "hide": true,
           "intervalFactor": 1,
-          "legendFormat": "{{device}} on {{container_label_io_kubernetes_pod_name}}",
+          "legendFormat": "{{device}} on {{name}}",
           "refId": "B"
         }
       ],
@@ -546,7 +548,7 @@
       },
       "yaxes": [
         {
-          "format": "percentunit",
+          "format": "bytes",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -608,10 +610,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(irate(container_network_receive_bytes_total{app='$app',container_label_annotation_dashbase_io_scrape=\"true\"}[5m])) by (container_label_io_kubernetes_pod_name)",
+          "expr": "sum(irate(container_network_receive_bytes_total{image=~\"dashbase.*\",app='$app'}[5m])) by (name)",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "{{container_label_io_kubernetes_pod_name}}",
+          "legendFormat": "{{name}}",
           "metric": "container_network_receive_bytes_total",
           "refId": "A",
           "step": 20
@@ -699,10 +701,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(irate(container_network_transmit_bytes_total{container_label_annotation_dashbase_io_scrape=\"true\",app='$app'}[5m])) by (container_label_io_kubernetes_pod_name)",
+          "expr": "sum(irate(container_network_transmit_bytes_total{image=~\"dashbase.*\",app='$app'}[5m])) by (name)",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "{{container_label_io_kubernetes_pod_name}}",
+          "legendFormat": "{{name}}",
           "refId": "A",
           "step": 20
         }
@@ -760,8 +762,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "dashbase",
-          "value": "dashbase"
+          "text": "elk",
+          "value": "elk"
         },
         "datasource": "Prometheus",
         "hide": 0,
@@ -770,7 +772,7 @@
         "multi": false,
         "name": "app",
         "options": [],
-        "query": "label_values(container_last_seen,app)",
+        "query": "label_values(app)",
         "refresh": 1,
         "regex": "",
         "sort": 0,
@@ -814,5 +816,5 @@
   "timezone": "browser",
   "title": "Docker Container Monitoring",
   "uid": "apD5M42mz",
-  "version": 1
+  "version": 3
 }
