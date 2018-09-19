@@ -526,7 +526,7 @@
         "multi": false,
         "name": "app",
         "options": [],
-        "query": "label_values(app)",
+        "query": "label_values(dashbase_table_info, app)",
         "refresh": 1,
         "regex": "",
         "sort": 0,
