@@ -403,7 +403,7 @@
           "refId": "A"
         },
         {
-          "expr": "rate(dashbase_proxy_events_parse_error_total{app='$app'}[1m])",
+          "expr": "sum(rate(dashbase_proxy_events_parse_error_total{app='$app'}[1m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "parse error - total",
