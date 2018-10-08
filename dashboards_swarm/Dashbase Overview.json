@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1536193904939,
+  "iteration": 1539025807220,
   "links": [],
   "panels": [
     {
@@ -159,14 +159,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(avg(rate(dashbase_ingestion_events_total{component='table',app='$app'}[1m]) * on(instance) group_left(table_partition,table_name) dashbase_table_info) by (table_partition,table_name)) by (table_name)",
+          "expr": "sum(avg(rate(dashbase_ingestion_events_total{component='table',app='$app'}[$duration]) * on(instance) group_left(table_partition,table_name) dashbase_table_info) by (table_partition,table_name)) by (table_name)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "# events - {{table_name}}",
           "refId": "A"
         },
         {
-          "expr": "sum(avg(rate(dashbase_ingestion_event_bytes_total{component='table',app='$app'}[1m]) * on(instance) group_left(table_partition,table_name) dashbase_table_info) by (table_partition,table_name)) by (table_name)",
+          "expr": "sum(avg(rate(dashbase_ingestion_event_bytes_total{component='table',app='$app'}[$duration]) * on(instance) group_left(table_partition,table_name) dashbase_table_info) by (table_partition,table_name)) by (table_name)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "# bytes - {{table_name}}",
@@ -259,7 +259,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(dashbase_dashbase_api_query_latency_count{app='$app'}[1m])",
+          "expr": "rate(dashbase_dashbase_api_query_latency_count{app='$app'}[$duration])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "QPS",
@@ -516,8 +516,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "elk",
-          "value": "elk"
+          "text": "staging",
+          "value": "staging"
         },
         "datasource": "Prometheus",
         "hide": 0,
@@ -535,6 +535,38 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "1m",
+          "value": "1m"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "duration",
+        "options": [
+          {
+            "selected": true,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
+          },
+          {
+            "selected": false,
+            "text": "15m",
+            "value": "15m"
+          }
+        ],
+        "query": "1m,5m,15m",
+        "type": "custom"
       }
     ]
   },
