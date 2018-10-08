@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1536194330691,
+  "iteration": 1539025650677,
   "links": [],
   "panels": [
     {
@@ -80,14 +80,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_proxy_events_received{topic=~'${kafka_topic:pipe}',app='$app'}[1m])) by (topic)",
+          "expr": "sum(rate(dashbase_proxy_events_received{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "events received - {{topic}}",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(dashbase_proxy_bytes_received{topic=~'${kafka_topic:pipe}',app='$app'}[1m])) by (topic)",
+          "expr": "sum(rate(dashbase_proxy_bytes_received{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "bytes received - {{topic}}",
@@ -183,14 +183,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_proxy_events_sent{topic=~'${kafka_topic:pipe}',app='$app'}[1m])) by (topic)",
+          "expr": "sum(rate(dashbase_proxy_events_sent{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "events sent - {{topic}}",
           "refId": "C"
         },
         {
-          "expr": "sum(rate(dashbase_proxy_bytes_sent{topic=~'${kafka_topic:pipe}',app='$app'}[1m])) by (topic)",
+          "expr": "sum(rate(dashbase_proxy_bytes_sent{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "bytes sent - {{topic}}",
@@ -281,7 +281,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(io_dashbase_esproxy_api_IndexAPI_bulk_count{app='$app'}[1m]))",
+          "expr": "sum(rate(io_dashbase_esproxy_api_IndexAPI_bulk_count{app='$app'}[$duration]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -289,7 +289,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum(rate(io_dashbase_esproxy_api_IndexAPI_bulk_exceptions_total{app='$app'}[1m]))",
+          "expr": "sum(rate(io_dashbase_esproxy_api_IndexAPI_bulk_exceptions_total{app='$app'}[$duration]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -395,7 +395,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_proxy_events_parse_error{app='$app'}[1m])) by (topic)",
+          "expr": "sum(rate(dashbase_proxy_events_parse_error{app='$app'}[$duration])) by (topic)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -403,14 +403,14 @@
           "refId": "A"
         },
         {
-          "expr": "sum(rate(dashbase_proxy_events_parse_error_total{app='$app'}[1m]))",
+          "expr": "sum(rate(dashbase_proxy_events_parse_error_total{app='$app'}[$duration]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "parse error - total",
           "refId": "B"
         },
         {
-          "expr": "sum(rate(dashbase_kafka_failure{app='$app'}[1m]))",
+          "expr": "sum(rate(dashbase_kafka_failure{app='$app'}[$duration]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "kafka error - total",
@@ -663,8 +663,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "elk",
-          "value": "elk"
+          "text": "staging",
+          "value": "staging"
         },
         "datasource": "Prometheus",
         "hide": 0,
@@ -707,6 +707,38 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "1m",
+          "value": "1m"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "duration",
+        "options": [
+          {
+            "selected": true,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
+          },
+          {
+            "selected": false,
+            "text": "15m",
+            "value": "15m"
+          }
+        ],
+        "query": "1m,5m,15m",
+        "type": "custom"
       }
     ]
   },
@@ -742,5 +774,5 @@
   "timezone": "",
   "title": "Dashbase Proxy",
   "uid": "WBh5iVpiz",
-  "version": 1
+  "version": 2
 }
