@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1539025136729,
+  "iteration": 1539475434037,
   "links": [],
   "panels": [
     {
@@ -1245,10 +1245,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_total_payload_bytes * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
+          "expr": "avg(dashbase_total_index_bytes * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "raw bytes - {{table_name}} - {{table_partition}}",
+          "legendFormat": "index bytes - {{table_name}} - {{table_partition}}",
           "refId": "B"
         },
         {
@@ -1298,6 +1298,111 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 59
+      },
+      "id": 36,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/bytes/",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(dashbase_total_index_bytes * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "total index bytes - {{table_name}} - {{table_partition}}",
+          "refId": "B"
+        },
+        {
+          "expr": "avg(dashbase_total_payload_bytes / dashbase_total_index_bytes * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "% payload - {{table_name}} - {{table_partition}}",
+          "refId": "A"
+        },
+        {
+          "expr": "avg(dashbase_total_payload_bytes * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "total index bytes - {{table_name}} - {{table_partition}}",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Index Disk Breakdown",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
   "refresh": "10s",
@@ -1309,9 +1414,8 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
-          "text": "staging",
-          "value": "staging"
+          "text": "dashbase",
+          "value": "dashbase"
         },
         "datasource": "Prometheus",
         "hide": 0,
@@ -1333,9 +1437,11 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": true,
-          "text": "All",
-          "value": "$__all"
+          "tags": [],
+          "text": "arcticwolf",
+          "value": [
+            "arcticwolf"
+          ]
         },
         "datasource": "Prometheus",
         "hide": 0,
@@ -1358,8 +1464,8 @@
         "allValue": null,
         "current": {
           "tags": [],
-          "text": "1m",
-          "value": "1m"
+          "text": "5m",
+          "value": "5m"
         },
         "hide": 0,
         "includeAll": false,
@@ -1389,7 +1495,7 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
