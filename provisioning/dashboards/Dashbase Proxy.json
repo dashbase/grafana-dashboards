@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1539025650677,
+  "iteration": 1539818306105,
   "links": [],
   "panels": [
     {
@@ -281,7 +281,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(io_dashbase_esproxy_api_IndexAPI_bulk_count{app='$app'}[$duration]))",
+          "expr": "sum(rate(io_dashbase_esproxy_api_IndexAPI_bulkPost_count{app='$app'}[$duration]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -289,7 +289,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum(rate(io_dashbase_esproxy_api_IndexAPI_bulk_exceptions_total{app='$app'}[$duration]))",
+          "expr": "sum(rate(io_dashbase_esproxy_api_IndexAPI_bulkPost_exceptions_total{app='$app'}[$duration]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -297,21 +297,21 @@
           "refId": "B"
         },
         {
-          "expr": "avg(io_dashbase_esproxy_api_IndexAPI_bulk{quantile='0.5',app='$app'})",
+          "expr": "avg(io_dashbase_esproxy_api_IndexAPI_bulkPost{quantile='0.5',app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "latency (p50)",
           "refId": "C"
         },
         {
-          "expr": "avg(io_dashbase_esproxy_api_IndexAPI_bulk{quantile='0.95',app='$app'})",
+          "expr": "avg(io_dashbase_esproxy_api_IndexAPI_bulkPost{quantile='0.95',app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "latency (p95)",
           "refId": "D"
         },
         {
-          "expr": "avg(io_dashbase_esproxy_api_IndexAPI_bulk{quantile='0.99',app='$app'})",
+          "expr": "avg(io_dashbase_esproxy_api_IndexAPI_bulkPost{quantile='0.99',app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "latency (p99)",
@@ -321,7 +321,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Input - _bulk endpoint",
+      "title": "Input - _bulk POST endpoint",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -663,8 +663,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "staging",
-          "value": "staging"
+          "text": "dashbase",
+          "value": "dashbase"
         },
         "datasource": "Prometheus",
         "hide": 0,
@@ -774,5 +774,5 @@
   "timezone": "",
   "title": "Dashbase Proxy",
   "uid": "WBh5iVpiz",
-  "version": 2
+  "version": 1
 }
