@@ -395,7 +395,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "max(dashbase_proxy_delayInSec) by (topic)",
+          "expr": "max(dashbase_proxy_delayInSec{app='$app'}) by (topic)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
