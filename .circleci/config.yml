@@ -10,9 +10,15 @@ jobs:
           name: build and push image
           command: |
             # Build and push only on master branch or tag is added
+
             if [ "${CIRCLE_TAG}" != "" -o "${CIRCLE_BRANCH}" == "master" ]; then
-              [ "${CIRCLE_TAG}" != "" ] && TAG=${CIRCLE_TAG} || TAG=nightly
+              [ "${CIRCLE_TAG}" != "" ] && export TAG=${CIRCLE_TAG} || export TAG=nightly
               docker build -t dashbase/grafana:$TAG .
               docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
               docker push dashbase/grafana:$TAG
+
+              docker build -t dashbase/grafana:$TAG-${CIRCLE_SHA1::6} .
+              docker push dashbase/grafana:$TAG-${CIRCLE_SHA1::6}
+
+              .circleci/update.sh
             fi
