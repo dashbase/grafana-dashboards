@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1539475434037,
+  "iteration": 1540981016999,
   "links": [],
   "panels": [
     {
@@ -1024,10 +1024,96 @@
       "datasource": "Prometheus",
       "fill": 1,
       "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 50
+      },
+      "id": 37,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "max(jvm_attribute_uptime{component='table',table=~'${table:pipe}',app='$app'}) by (table,partition)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{table}} - {{partition}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Uptime",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fill": 1,
+      "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 50
+        "y": 58
       },
       "id": 2,
       "legend": {
@@ -1113,7 +1199,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 50
+        "y": 58
       },
       "id": 4,
       "legend": {
@@ -1212,7 +1298,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 59
+        "y": 67
       },
       "id": 6,
       "legend": {
@@ -1245,14 +1331,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_total_index_bytes * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
+          "expr": "avg((dashbase_total_index_bytes{table_name=~'${table:pipe}',app='$app'} + dashbase_total_payload_bytes{table_name=~'${table:pipe}',app='$app'})) by (table,partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "index bytes - {{table_name}} - {{table_partition}}",
           "refId": "B"
         },
         {
-          "expr": "avg(dashbase_total_index_bytes{table=~'${table:pipe}',app='$app'} / dashbase_disk_total_bytes{table=~'${table:pipe}',app='$app'}) by (table,partition)",
+          "expr": "avg((dashbase_total_index_bytes{table=~'${table:pipe}',app='$app'} + dashbase_total_payload_bytes{table=~'${table:pipe}',app='$app'}) / dashbase_disk_total_bytes{table=~'${table:pipe}',app='$app'}) by (table,partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "% used - {{table}} - {{partition}}",
@@ -1310,7 +1396,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 59
+        "y": 67
       },
       "id": 36,
       "legend": {
@@ -1350,7 +1436,7 @@
           "refId": "B"
         },
         {
-          "expr": "avg(dashbase_total_payload_bytes / dashbase_total_index_bytes * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
+          "expr": "avg((dashbase_total_payload_bytes{table_name=~'${table:pipe}',app='$app'} / (dashbase_total_index_bytes{table_name=~'${table:pipe}',app='$app'} + dashbase_total_payload_bytes{table_name=~'${table:pipe}',app='$app'})) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "% payload - {{table_name}} - {{table_partition}}",
@@ -1414,8 +1500,9 @@
       {
         "allValue": null,
         "current": {
-          "text": "dashbase",
-          "value": "dashbase"
+          "tags": [],
+          "text": "staging",
+          "value": "staging"
         },
         "datasource": "Prometheus",
         "hide": 0,
@@ -1437,10 +1524,9 @@
       {
         "allValue": ".*",
         "current": {
-          "tags": [],
-          "text": "arcticwolf",
+          "text": "All",
           "value": [
-            "arcticwolf"
+            "$__all"
           ]
         },
         "datasource": "Prometheus",
