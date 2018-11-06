@@ -1331,7 +1331,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg((dashbase_total_index_bytes + dashbase_total_payload_bytes) * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
+          "expr": "avg((dashbase_total_index_bytes{table_name=~'${table:pipe}',app='$app'} + dashbase_total_payload_bytes{table_name=~'${table:pipe}',app='$app'})) by (table,partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "index bytes - {{table_name}} - {{table_partition}}",
@@ -1436,7 +1436,7 @@
           "refId": "B"
         },
         {
-          "expr": "avg(dashbase_total_payload_bytes / (dashbase_total_index_bytes + dashbase_total_payload_bytes) * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
+          "expr": "avg((dashbase_total_payload_bytes{table_name=~'${table:pipe}',app='$app'} / (dashbase_total_index_bytes{table_name=~'${table:pipe}',app='$app'} + dashbase_total_payload_bytes{table_name=~'${table:pipe}',app='$app'})) by (table_name,table_partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "% payload - {{table_name}} - {{table_partition}}",
