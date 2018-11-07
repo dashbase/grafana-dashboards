@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1539025807220,
+  "iteration": 1541573852313,
   "links": [],
   "panels": [
     {
@@ -36,8 +36,8 @@
       "scroll": true,
       "showHeader": true,
       "sort": {
-        "col": null,
-        "desc": false
+        "col": 1,
+        "desc": true
       },
       "styles": [
         {
@@ -64,7 +64,7 @@
           "unit": "short"
         },
         {
-          "alias": "# replicas",
+          "alias": "# pods including replicas",
           "colorMode": "cell",
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -123,7 +123,7 @@
       "fill": 1,
       "gridPos": {
         "h": 8,
-        "w": 17,
+        "w": 18,
         "x": 6,
         "y": 0
       },
@@ -137,6 +137,8 @@
         "rightSide": true,
         "show": true,
         "sideWidth": 300,
+        "sort": "current",
+        "sortDesc": true,
         "total": false,
         "values": true
       },
@@ -236,6 +238,8 @@
         "rightSide": true,
         "show": true,
         "sideWidth": 300,
+        "sort": "current",
+        "sortDesc": true,
         "total": false,
         "values": true
       },
@@ -342,6 +346,8 @@
         "min": false,
         "rightSide": false,
         "show": true,
+        "sort": "current",
+        "sortDesc": true,
         "total": false,
         "values": true
       },
@@ -435,6 +441,8 @@
         "min": true,
         "rightSide": false,
         "show": true,
+        "sort": "current",
+        "sortDesc": true,
         "total": false,
         "values": true
       },

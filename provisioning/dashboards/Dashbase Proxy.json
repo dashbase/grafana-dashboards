@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1540976835530,
+  "iteration": 1541573512557,
   "links": [],
   "panels": [
     {
@@ -53,6 +53,8 @@
         "min": false,
         "rightSide": true,
         "show": true,
+        "sort": "current",
+        "sortDesc": true,
         "total": false,
         "values": true
       },
@@ -156,6 +158,8 @@
         "min": false,
         "rightSide": true,
         "show": true,
+        "sort": "current",
+        "sortDesc": true,
         "total": false,
         "values": true
       },
@@ -373,13 +377,17 @@
       },
       "id": 18,
       "legend": {
-        "avg": false,
-        "current": false,
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
         "max": false,
         "min": false,
+        "rightSide": true,
         "show": true,
+        "sort": "avg",
+        "sortDesc": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -830,7 +838,6 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "staging",
           "value": "staging"
         },
@@ -880,8 +887,8 @@
         "allValue": null,
         "current": {
           "tags": [],
-          "text": "1m",
-          "value": "1m"
+          "text": "5m",
+          "value": "5m"
         },
         "hide": 0,
         "includeAll": false,
@@ -890,12 +897,12 @@
         "name": "duration",
         "options": [
           {
-            "selected": true,
+            "selected": false,
             "text": "1m",
             "value": "1m"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "5m",
             "value": "5m"
           },
