@@ -1331,14 +1331,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg((dashbase_total_index_bytes{table_name=~'${table:pipe}',app='$app'} + dashbase_total_payload_bytes{table_name=~'${table:pipe}',app='$app'})) by (table,partition)",
+          "expr": "avg(dashbase_disk_used_bytes{table_name=~'${table:pipe}',app='$app'}) by (table,partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "index bytes - {{table_name}} - {{table_partition}}",
           "refId": "B"
         },
         {
-          "expr": "avg((dashbase_total_index_bytes{table=~'${table:pipe}',app='$app'} + dashbase_total_payload_bytes{table=~'${table:pipe}',app='$app'}) / dashbase_disk_total_bytes{table=~'${table:pipe}',app='$app'}) by (table,partition)",
+          "expr": "avg(dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app'} / dashbase_disk_total_bytes{table=~'${table:pipe}',app='$app'}) by (table,partition)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "% used - {{table}} - {{partition}}",
