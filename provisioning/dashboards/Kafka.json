@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": 721,
   "graphTooltip": 0,
-  "iteration": 1541573569804,
+  "iteration": 1541751830025,
   "links": [],
   "panels": [
     {
@@ -93,7 +93,7 @@
       "tooltip": {
         "msResolution": false,
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "cumulative"
       },
       "type": "graph",
@@ -188,7 +188,7 @@
       "tooltip": {
         "msResolution": false,
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "cumulative"
       },
       "type": "graph",
@@ -283,7 +283,7 @@
       "tooltip": {
         "msResolution": false,
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "cumulative"
       },
       "type": "graph",
@@ -378,7 +378,7 @@
       "tooltip": {
         "msResolution": false,
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "cumulative"
       },
       "type": "graph",
@@ -594,7 +594,7 @@
       "tooltip": {
         "msResolution": false,
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "cumulative"
       },
       "type": "graph",
@@ -695,7 +695,7 @@
       "title": "log size by topic",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
@@ -783,7 +783,7 @@
       "title": "log size by broker",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
@@ -851,13 +851,15 @@
       "id": 1,
       "isNew": true,
       "legend": {
-        "avg": false,
+        "alignAsTable": true,
+        "avg": true,
         "current": false,
         "max": false,
         "min": false,
+        "rightSide": true,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 2,
@@ -873,7 +875,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(irate(process_cpu_seconds_total{component=\"kafka\",app='$app'}[1m]))",
+          "expr": "irate(process_cpu_seconds_total{component=\"kafka\",app='$app'}[1m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -890,7 +892,7 @@
       "tooltip": {
         "msResolution": false,
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "cumulative"
       },
       "type": "graph",
@@ -973,7 +975,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(jvm_memory_bytes_used{area='heap',component=\"kafka\",app='$app'})",
+          "expr": "(jvm_memory_bytes_used{area='heap',component=\"kafka\",app='$app'})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "used",
@@ -982,7 +984,7 @@
           "step": 4
         },
         {
-          "expr": "avg(jvm_memory_bytes_max{area='heap',component=\"kafka\",app='$app'})",
+          "expr": "(jvm_memory_bytes_max{area='heap',component=\"kafka\",app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "max",
@@ -996,7 +998,7 @@
       "tooltip": {
         "msResolution": false,
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "cumulative"
       },
       "type": "graph",

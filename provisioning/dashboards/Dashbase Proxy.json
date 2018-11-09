@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1541573512557,
+  "iteration": 1541754481290,
   "links": [],
   "panels": [
     {
@@ -102,7 +102,7 @@
       "title": "Input",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
@@ -207,7 +207,7 @@
       "title": "Output",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
@@ -328,7 +328,7 @@
       "title": "Input - _bulk POST endpoint",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
@@ -417,7 +417,7 @@
       "title": "Delays",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
@@ -516,7 +516,7 @@
       "title": "Error",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
@@ -682,7 +682,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(jvm_cpu_usage_percent{component='proxy',app='$app'})",
+          "expr": "jvm_cpu_usage_percent{component='proxy',app='$app'}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -696,7 +696,7 @@
       "title": "CPU",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
@@ -794,7 +794,7 @@
       "title": "Memory",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
@@ -851,7 +851,7 @@
         "query": "label_values(dashbase_table_info, app)",
         "refresh": 1,
         "regex": "",
-        "sort": 0,
+        "sort": 2,
         "tagValuesQuery": "",
         "tags": [],
         "tagsQuery": "",
@@ -876,7 +876,7 @@
         "query": "label_values(dashbase_proxy_events_received{app='$app'},topic)",
         "refresh": 1,
         "regex": "",
-        "sort": 0,
+        "sort": 2,
         "tagValuesQuery": "",
         "tags": [],
         "tagsQuery": "",
