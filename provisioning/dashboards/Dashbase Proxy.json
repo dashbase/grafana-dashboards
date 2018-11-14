@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1541754481290,
+  "iteration": 1542146141324,
   "links": [],
   "panels": [
     {
@@ -498,15 +498,17 @@
         {
           "expr": "sum(rate(dashbase_proxy_events_parse_error_total{app='$app'}[$duration]))",
           "format": "time_series",
+          "hide": false,
           "intervalFactor": 1,
           "legendFormat": "parse error - total",
           "refId": "B"
         },
         {
-          "expr": "sum(rate(dashbase_kafka_failure{app='$app'}[$duration]))",
+          "expr": "sum(rate(dashbase_kafka_failure{app='$app'}[$duration])) by (exception)",
           "format": "time_series",
+          "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "kafka error - total",
+          "legendFormat": "kafka error - {{exception}}",
           "refId": "C"
         }
       ],
@@ -551,12 +553,97 @@
       }
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "# of events in the internal queue (which is only used to buffer events when Kafka is down)",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 37
+      },
+      "id": 22,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "max(dashbase_kafka_producer_internal_queue_size_proxy_sink{topic=~'${kafka_topic:pipe}',app='$app'})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{topic}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Internal Queue Size",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 37
+        "y": 46
       },
       "id": 16,
       "panels": [],
@@ -585,7 +672,7 @@
         "h": 9,
         "w": 6,
         "x": 0,
-        "y": 38
+        "y": 47
       },
       "id": 20,
       "interval": null,
@@ -656,7 +743,7 @@
         "h": 9,
         "w": 10,
         "x": 6,
-        "y": 38
+        "y": 47
       },
       "id": 2,
       "legend": {
@@ -741,7 +828,7 @@
         "h": 9,
         "w": 8,
         "x": 16,
-        "y": 38
+        "y": 47
       },
       "id": 4,
       "legend": {
@@ -838,8 +925,10 @@
       {
         "allValue": null,
         "current": {
-          "text": "staging",
-          "value": "staging"
+          "selected": true,
+          "tags": [],
+          "text": "dashbase-us-west-2",
+          "value": "dashbase-us-west-2"
         },
         "datasource": "Prometheus",
         "hide": 0,
@@ -861,6 +950,8 @@
       {
         "allValue": ".*",
         "current": {
+          "selected": false,
+          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -886,6 +977,7 @@
       {
         "allValue": null,
         "current": {
+          "selected": false,
           "tags": [],
           "text": "5m",
           "value": "5m"
@@ -918,7 +1010,7 @@
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
