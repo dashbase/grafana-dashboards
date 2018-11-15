@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1542146141324,
+  "iteration": 1542241684685,
   "links": [],
   "panels": [
     {
@@ -397,18 +397,38 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "/%/",
+          "stack": true,
+          "yaxis": 2
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "max(dashbase_proxy_delayInSec{app='$app'}) by (topic)",
+          "expr": "avg(rate(dashbase_proxy_event_delay_sum{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])/rate(dashbase_proxy_event_delay_count{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "delayInSec - {{topic}}",
+          "legendFormat": "average - {{topic}}",
           "refId": "A"
+        },
+        {
+          "expr": "1 - avg(rate(dashbase_proxy_event_delay_bucket{topic=~'${kafka_topic:pipe}',app='$app',le=\"60.0\"}[$duration])/ignoring(le) rate(dashbase_proxy_event_delay_count{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "% > 1m - {{topic}}",
+          "refId": "B"
+        },
+        {
+          "expr": "1 - avg(rate(dashbase_proxy_event_delay_bucket{topic=~'${kafka_topic:pipe}',app='$app',le=\"3600.0\"}[$duration])/ignoring(le) rate(dashbase_proxy_event_delay_count{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "% > 1h - {{topic}}",
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -438,7 +458,113 @@
           "show": true
         },
         {
-          "format": "short",
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 28
+      },
+      "id": 24,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/%/",
+          "stack": true,
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "floor(avg(rate(dashbase_proxy_event_size_sum{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])/rate(dashbase_proxy_event_size_count{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "average - {{topic}}",
+          "refId": "A"
+        },
+        {
+          "expr": "1 - avg(rate(dashbase_proxy_event_size_bucket{topic=~'${kafka_topic:pipe}',app='$app',le=\"1048576.0\"}[$duration])/ignoring(le) rate(dashbase_proxy_event_size_count{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "% > 1MB - {{topic}}",
+          "refId": "B"
+        },
+        {
+          "expr": "1 - avg(rate(dashbase_proxy_event_size_bucket{topic=~'${kafka_topic:pipe}',app='$app',le=\"1.048576E7\"}[$duration])/ignoring(le) rate(dashbase_proxy_event_size_count{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "% > 10MB - {{topic}}",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Event Size",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -461,8 +587,8 @@
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 12,
-        "y": 28
+        "x": 0,
+        "y": 37
       },
       "id": 10,
       "legend": {
@@ -563,7 +689,7 @@
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 0,
+        "x": 12,
         "y": 37
       },
       "id": 22,
@@ -925,10 +1051,8 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
-          "tags": [],
-          "text": "dashbase-us-west-2",
-          "value": "dashbase-us-west-2"
+          "text": "staging",
+          "value": "staging"
         },
         "datasource": "Prometheus",
         "hide": 0,
@@ -950,8 +1074,6 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": false,
-          "tags": [],
           "text": "All",
           "value": [
             "$__all"
