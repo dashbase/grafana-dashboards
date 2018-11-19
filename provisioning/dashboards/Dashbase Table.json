@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1542264101426,
+  "iteration": 1542657598983,
   "links": [],
   "panels": [
     {
@@ -1005,7 +1005,7 @@
       },
       "id": 35,
       "panels": [],
-      "title": "Others",
+      "title": "Timeslices",
       "type": "row"
     },
     {
@@ -1016,7 +1016,7 @@
       "datasource": "Prometheus",
       "fill": 1,
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 12,
         "x": 0,
         "y": 49
@@ -1107,12 +1107,184 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 49
+      },
+      "id": 53,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(dashbase_search_reader_cache_count{table=~'${table:pipe}',app='$app'}) by (table,partition)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "reader (cached) - {{table}} - {{partition}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Reader Cache",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 57
+      },
+      "id": 52,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(dashbase_indexed_full_flush_bytes{table=~'${table:pipe}',app='$app'}) by (table,partition)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "timeslice size (total) - {{table}} - {{partition}}",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Timeslice Size",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
       "fill": 0,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 49
+        "y": 57
       },
       "id": 33,
       "legend": {
@@ -1200,7 +1372,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 58
+        "y": 66
       },
       "id": 14,
       "panels": [],
@@ -1218,7 +1390,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 59
+        "y": 67
       },
       "id": 37,
       "legend": {
@@ -1306,7 +1478,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 67
+        "y": 75
       },
       "id": 2,
       "legend": {
@@ -1394,7 +1566,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 67
+        "y": 75
       },
       "id": 4,
       "legend": {
@@ -1495,7 +1667,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 76
+        "y": 84
       },
       "id": 6,
       "legend": {
@@ -1595,7 +1767,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 76
+        "y": 84
       },
       "id": 36,
       "legend": {
@@ -1697,7 +1869,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 85
+        "y": 93
       },
       "id": 39,
       "panels": [],
@@ -1715,7 +1887,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 86
+        "y": 94
       },
       "id": 41,
       "legend": {
@@ -1803,7 +1975,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 86
+        "y": 94
       },
       "id": 42,
       "legend": {
@@ -1891,7 +2063,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 95
+        "y": 103
       },
       "id": 43,
       "legend": {
@@ -1979,7 +2151,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 95
+        "y": 103
       },
       "id": 44,
       "legend": {
@@ -2067,7 +2239,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 104
+        "y": 112
       },
       "id": 45,
       "legend": {
@@ -2155,7 +2327,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 104
+        "y": 112
       },
       "id": 46,
       "legend": {
@@ -2243,7 +2415,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 104
+        "y": 112
       },
       "id": 47,
       "legend": {
@@ -2410,7 +2582,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
