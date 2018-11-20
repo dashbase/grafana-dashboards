@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1542241684685,
+  "iteration": 1542676329377,
   "links": [],
   "panels": [
     {
@@ -867,7 +867,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 10,
+        "w": 18,
         "x": 6,
         "y": 47
       },
@@ -899,7 +899,7 @@
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "CPU load",
+          "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
@@ -952,9 +952,9 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 8,
-        "x": 16,
-        "y": 47
+        "w": 12,
+        "x": 0,
+        "y": 56
       },
       "id": 4,
       "legend": {
@@ -976,7 +976,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "alias": "max",
+          "alias": "/max/",
           "dashes": true,
           "fill": 0
         }
@@ -989,7 +989,7 @@
           "expr": "jvm_memory_heap_used{component='proxy',app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "used",
+          "legendFormat": "used - {{instance}}",
           "refId": "A"
         },
         {
@@ -997,7 +997,7 @@
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "max",
+          "legendFormat": "max - {{instance}}",
           "refId": "B"
         }
       ],
@@ -1021,6 +1021,97 @@
       "yaxes": [
         {
           "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 56
+      },
+      "id": 26,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "rate(jvm_gc_G1_Young_Generation_time{app='$app',component='proxy'}[$duration])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "young gen - {{instance}}",
+          "refId": "A"
+        },
+        {
+          "expr": "rate(jvm_gc_G1_Old_Generation_time{app='$app',component='proxy'}[$duration])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "old gen - {{instance}}",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "GC time spent",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ms",
           "label": null,
           "logBase": 1,
           "max": null,

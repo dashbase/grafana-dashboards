@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1542657598983,
+  "iteration": 1542676786647,
   "links": [],
   "panels": [
     {
@@ -1387,8 +1387,8 @@
       "datasource": "Prometheus",
       "fill": 1,
       "gridPos": {
-        "h": 8,
-        "w": 24,
+        "h": 9,
+        "w": 12,
         "x": 0,
         "y": 67
       },
@@ -1477,8 +1477,8 @@
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 0,
-        "y": 75
+        "x": 12,
+        "y": 67
       },
       "id": 2,
       "legend": {
@@ -1565,8 +1565,8 @@
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 12,
-        "y": 75
+        "x": 0,
+        "y": 76
       },
       "id": 4,
       "legend": {
@@ -1661,13 +1661,106 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 76
+      },
+      "id": 55,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "irate(jvm_gc_G1_Young_Generation_time{app='$app',component='table'}[$duration])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "young gen - {{instance}}",
+          "refId": "A"
+        },
+        {
+          "expr": "irate(jvm_gc_G1_Old_Generation_time{app='$app',component='proxy'}[$duration])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "old gen - {{instance}}",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "GC time spent",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
       "datasource": "Prometheus",
       "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 84
+        "y": 85
       },
       "id": 6,
       "legend": {
@@ -1767,7 +1860,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 84
+        "y": 85
       },
       "id": 36,
       "legend": {
@@ -1869,7 +1962,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 93
+        "y": 94
       },
       "id": 39,
       "panels": [],
@@ -1887,7 +1980,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 94
+        "y": 95
       },
       "id": 41,
       "legend": {
@@ -1975,7 +2068,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 94
+        "y": 95
       },
       "id": 42,
       "legend": {
@@ -2063,7 +2156,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 103
+        "y": 104
       },
       "id": 43,
       "legend": {
@@ -2151,7 +2244,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 103
+        "y": 104
       },
       "id": 44,
       "legend": {
@@ -2239,7 +2332,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 112
+        "y": 113
       },
       "id": 45,
       "legend": {
@@ -2327,7 +2420,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 112
+        "y": 113
       },
       "id": 46,
       "legend": {
@@ -2415,7 +2508,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 112
+        "y": 113
       },
       "id": 47,
       "legend": {
