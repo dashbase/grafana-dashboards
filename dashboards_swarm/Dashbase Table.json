@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1542264903666,
+  "iteration": 1542758610021,
   "links": [],
   "panels": [
     {
@@ -1004,7 +1004,7 @@
       },
       "id": 35,
       "panels": [],
-      "title": "Others",
+      "title": "Timeslice",
       "type": "row"
     },
     {
@@ -1023,14 +1023,16 @@
       "id": 31,
       "legend": {
         "alignAsTable": true,
-        "avg": false,
+        "avg": true,
         "current": false,
         "max": false,
         "min": false,
         "rightSide": true,
         "show": true,
+        "sort": "avg",
+        "sortDesc": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -1066,7 +1068,7 @@
       "title": "Timeslice Counts",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
@@ -1106,12 +1108,188 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
-      "fill": 0,
+      "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
         "y": 49
+      },
+      "id": 52,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "avg",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(dashbase_search_reader_cache_count * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "timeslice (total) - {{table_name}} - {{table_partition}}",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Reader Cache",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 58
+      },
+      "id": 51,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(dashbase_indexed_full_flush_bytes * on(instance) group_left(table_name,table_partition) dashbase_table_info{table_name=~'${table:pipe}',app='$app'}) by (table_name,table_partition)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "timeslice (total) - {{table_name}} - {{table_partition}}",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Timeslice Size",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fill": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 58
       },
       "id": 33,
       "legend": {
@@ -1199,7 +1377,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 58
+        "y": 67
       },
       "id": 14,
       "panels": [],
@@ -1217,7 +1395,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 59
+        "y": 68
       },
       "id": 2,
       "legend": {
@@ -1305,7 +1483,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 59
+        "y": 68
       },
       "id": 4,
       "legend": {
@@ -1406,7 +1584,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 68
+        "y": 77
       },
       "id": 6,
       "legend": {
@@ -1501,7 +1679,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 77
+        "y": 86
       },
       "id": 39,
       "panels": [],
@@ -1519,7 +1697,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 78
+        "y": 87
       },
       "id": 37,
       "legend": {
@@ -1607,7 +1785,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 78
+        "y": 87
       },
       "id": 41,
       "legend": {
@@ -1695,7 +1873,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 87
+        "y": 96
       },
       "id": 43,
       "legend": {
@@ -1783,7 +1961,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 87
+        "y": 96
       },
       "id": 44,
       "legend": {
@@ -1871,7 +2049,7 @@
         "h": 9,
         "w": 8,
         "x": 0,
-        "y": 96
+        "y": 105
       },
       "id": 45,
       "legend": {
@@ -1959,7 +2137,7 @@
         "h": 9,
         "w": 8,
         "x": 8,
-        "y": 96
+        "y": 105
       },
       "id": 46,
       "legend": {
@@ -2047,7 +2225,7 @@
         "h": 9,
         "w": 8,
         "x": 16,
-        "y": 96
+        "y": 105
       },
       "id": 47,
       "legend": {
@@ -2134,6 +2312,7 @@
       {
         "allValue": null,
         "current": {
+          "selected": true,
           "text": "dashbase-us-west-2",
           "value": "dashbase-us-west-2"
         },
@@ -2157,8 +2336,12 @@
       {
         "allValue": ".*",
         "current": {
+          "selected": false,
+          "tags": [],
           "text": "All",
-          "value": "$__all"
+          "value": [
+            "$__all"
+          ]
         },
         "datasource": "Prometheus",
         "hide": 0,
@@ -2180,7 +2363,7 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
+          "selected": true,
           "text": "5m",
           "value": "5m"
         },
@@ -2212,7 +2395,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
@@ -2243,5 +2426,5 @@
   "timezone": "",
   "title": "Dashbase Table",
   "uid": "YhMqAJtmk",
-  "version": 2
+  "version": 1
 }
