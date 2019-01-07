@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1542837615093,
+  "iteration": 1546902176574,
   "links": [],
   "panels": [
     {
@@ -137,18 +137,17 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
-      "description": "Time spent to build each segment",
-      "fill": 0,
+      "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
         "y": 1
       },
-      "id": 20,
+      "id": 56,
       "legend": {
         "alignAsTable": true,
-        "avg": false,
+        "avg": true,
         "current": true,
         "max": false,
         "min": false,
@@ -167,31 +166,28 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "/bytes/",
+          "yaxis": 2
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_indexed_full_index_duration{table=~'${table:pipe}',app='$app',quantile='0.5'}) by (table,partition)",
+          "expr": "sum(rate(dashbase_ingestion_event_bytes_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{table}} - {{partition}}",
-          "refId": "A"
-        },
-        {
-          "expr": "avg(dashbase_indexed_full_index_duration{table=~'${table:pipe}',app='$app',quantile='0.99'}) by (table,partition)",
-          "format": "time_series",
-          "hide": true,
-          "intervalFactor": 1,
-          "legendFormat": "p99 - {{table}} - {{partition}}",
-          "refId": "B"
+          "legendFormat": "{{table}}",
+          "refId": "D"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Latency",
+      "title": "Total Throughput",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -207,15 +203,15 @@
       },
       "yaxes": [
         {
-          "format": "ns",
-          "label": null,
+          "format": "Bps",
+          "label": "# events indexed / sec",
           "logBase": 1,
           "max": null,
           "min": null,
           "show": true
         },
         {
-          "format": "short",
+          "format": "Bps",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -331,16 +327,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
-      "description": "{newest timestamp in a segment} - {oldest timestamp in a segment}",
-      "fill": 1,
+      "datasource": "Prometheus",
+      "description": "Time spent to build each segment",
+      "fill": 0,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
         "y": 10
       },
-      "id": 51,
+      "id": 20,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -368,24 +364,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_time_slice_range_secs{table=~'${table:pipe}',app='$app',quantile='0.5'}) by (table,partition)",
+          "expr": "avg(dashbase_indexed_full_index_duration{table=~'${table:pipe}',app='$app',quantile='0.5'}) by (table,partition)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "p50 - {{table}} - {{partition}}",
+          "legendFormat": "{{table}} - {{partition}}",
           "refId": "A"
         },
         {
-          "expr": "avg(dashbase_time_slice_range_secs{table=~'${table:pipe}',app='$app',quantile='0.999'}) by (table,partition)",
+          "expr": "avg(dashbase_indexed_full_index_duration{table=~'${table:pipe}',app='$app',quantile='0.99'}) by (table,partition)",
           "format": "time_series",
+          "hide": true,
           "intervalFactor": 1,
-          "legendFormat": "p999 - {{table}} - {{partition}}",
+          "legendFormat": "p99 - {{table}} - {{partition}}",
           "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Timeslice Range",
+      "title": "Latency",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -401,7 +398,7 @@
       },
       "yaxes": [
         {
-          "format": "s",
+          "format": "ns",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -409,7 +406,7 @@
           "show": true
         },
         {
-          "format": "s",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -503,6 +500,102 @@
         },
         {
           "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "{newest timestamp in a segment} - {oldest timestamp in a segment}",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 19
+      },
+      "id": 51,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(dashbase_time_slice_range_secs{table=~'${table:pipe}',app='$app',quantile='0.5'}) by (table,partition)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p50 - {{table}} - {{partition}}",
+          "refId": "A"
+        },
+        {
+          "expr": "avg(dashbase_time_slice_range_secs{table=~'${table:pipe}',app='$app',quantile='0.999'}) by (table,partition)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p999 - {{table}} - {{partition}}",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Timeslice Range",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -2510,7 +2603,7 @@
       }
     }
   ],
-  "refresh": "10s",
+  "refresh": "1m",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [],
@@ -2600,7 +2693,7 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
@@ -2631,5 +2724,5 @@
   "timezone": "",
   "title": "Dashbase Table",
   "uid": "YhMqAJtmk",
-  "version": 1
+  "version": 5
 }
