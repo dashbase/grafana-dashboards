@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1542676329377,
+  "iteration": 1547061949804,
   "links": [],
   "panels": [
     {
@@ -40,7 +40,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 24,
+        "w": 12,
         "x": 0,
         "y": 1
       },
@@ -85,14 +85,14 @@
           "expr": "sum(rate(dashbase_proxy_events_received{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "events received - {{topic}}",
+          "legendFormat": "events - {{topic}}",
           "refId": "A"
         },
         {
           "expr": "sum(rate(dashbase_proxy_bytes_received{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "bytes received - {{topic}}",
+          "legendFormat": "bytes - {{topic}}",
           "refId": "B"
         }
       ],
@@ -145,9 +145,9 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 24,
-        "x": 0,
-        "y": 10
+        "w": 12,
+        "x": 12,
+        "y": 1
       },
       "id": 17,
       "legend": {
@@ -190,14 +190,14 @@
           "expr": "sum(rate(dashbase_proxy_events_sent{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "events sent - {{topic}}",
+          "legendFormat": "events -  {{topic}}",
           "refId": "C"
         },
         {
           "expr": "sum(rate(dashbase_proxy_bytes_sent{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "bytes sent - {{topic}}",
+          "legendFormat": "bytes - {{topic}}",
           "refId": "D"
         }
       ],
@@ -205,6 +205,125 @@
       "timeFrom": null,
       "timeShift": null,
       "title": "Output",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "Bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "id": 28,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/bytes/",
+          "yaxis": 2
+        },
+        {
+          "alias": "/events/",
+          "fill": 0,
+          "points": true
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(rate(dashbase_proxy_events_sent{topic=~'${kafka_topic:pipe}',app='$app'}[$duration]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "events out",
+          "refId": "C"
+        },
+        {
+          "expr": "sum(rate(dashbase_proxy_bytes_sent{topic=~'${kafka_topic:pipe}',app='$app'}[$duration]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "bytes out",
+          "refId": "D"
+        },
+        {
+          "expr": "sum(rate(dashbase_proxy_events_received{topic=~'${kafka_topic:pipe}',app='$app'}[$duration]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "events in",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(rate(dashbase_proxy_bytes_received{topic=~'${kafka_topic:pipe}',app='$app'}[$duration]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "bytes in",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total Output",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -1142,8 +1261,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "staging",
-          "value": "staging"
+          "text": "dashbase-us-west-2",
+          "value": "dashbase-us-west-2"
         },
         "datasource": "Prometheus",
         "hide": 0,
