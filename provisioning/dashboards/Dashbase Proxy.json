@@ -323,7 +323,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Total Output",
+      "title": "Total I/O",
       "tooltip": {
         "shared": true,
         "sort": 2,
