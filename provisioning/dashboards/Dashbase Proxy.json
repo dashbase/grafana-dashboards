@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1547061949804,
+  "iteration": 1547191232785,
   "links": [],
   "panels": [
     {
@@ -755,6 +755,13 @@
           "intervalFactor": 1,
           "legendFormat": "kafka error - {{exception}}",
           "refId": "C"
+        },
+        {
+          "expr": "sum(rate(dashbase_overflow_message{app='$app'}[$duration]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "overflow message",
+          "refId": "D"
         }
       ],
       "thresholds": [],
@@ -1373,5 +1380,5 @@
   "timezone": "",
   "title": "Dashbase Proxy",
   "uid": "WBh5iVpiz",
-  "version": 1
+  "version": 2
 }
