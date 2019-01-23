@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1546902176574,
+  "iteration": 1548286010232,
   "links": [],
   "panels": [
     {
@@ -47,7 +47,7 @@
       "id": 10,
       "legend": {
         "alignAsTable": true,
-        "avg": false,
+        "avg": true,
         "current": true,
         "max": false,
         "min": false,
@@ -328,7 +328,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
-      "description": "Time spent to build each segment",
+      "description": "Time spent to build each time segment",
       "fill": 0,
       "gridPos": {
         "h": 9,
@@ -382,7 +382,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Latency",
+      "title": "Time to Index one Buffer",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -2603,7 +2603,7 @@
       }
     }
   ],
-  "refresh": "1m",
+  "refresh": false,
   "schemaVersion": 16,
   "style": "dark",
   "tags": [],
@@ -2612,8 +2612,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "staging",
-          "value": "staging"
+          "text": "dashbase",
+          "value": "dashbase"
         },
         "datasource": "Prometheus",
         "hide": 0,
@@ -2693,8 +2693,8 @@
     ]
   },
   "time": {
-    "from": "now-30m",
-    "to": "now"
+    "from": "2019-01-23T22:27:13.590Z",
+    "to": "2019-01-23T23:27:13.590Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -2724,5 +2724,5 @@
   "timezone": "",
   "title": "Dashbase Table",
   "uid": "YhMqAJtmk",
-  "version": 5
+  "version": 1
 }
