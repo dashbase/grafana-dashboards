@@ -1,4 +1,4 @@
-FROM grafana/grafana:5.2.2
+FROM grafana/grafana:5.4.3
 
 # Default provisioning for K8s
 COPY provisioning /etc/grafana/provisioning/
