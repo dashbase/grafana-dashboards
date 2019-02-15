@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1549935210145,
+  "iteration": 1550263968674,
   "links": [],
   "panels": [
     {
@@ -1625,12 +1625,98 @@
       },
       "id": 70,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(dashbase_index_chronicle_queue_num_entries{table=~'${table:pipe}',app='$app'}) by (instance)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "# entries in the queue",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 85
+      },
+      "id": 86,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": false
@@ -1698,12 +1784,98 @@
       }
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 85
+      },
+      "id": 88,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(dashbase_index_chronicle_queue_health{table=~'${table:pipe}',app='$app'}) by (instance)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "health check",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 85
+        "y": 94
       },
       "id": 16,
       "panels": [
@@ -1907,7 +2079,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 86
+        "y": 95
       },
       "id": 29,
       "panels": [],
@@ -1925,7 +2097,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 87
+        "y": 96
       },
       "id": 26,
       "legend": {
@@ -2021,7 +2193,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 87
+        "y": 96
       },
       "id": 27,
       "legend": {
@@ -2112,7 +2284,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 96
+        "y": 105
       },
       "id": 35,
       "panels": [],
@@ -2130,7 +2302,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 97
+        "y": 106
       },
       "id": 31,
       "legend": {
@@ -2217,7 +2389,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 97
+        "y": 106
       },
       "id": 53,
       "legend": {
@@ -2304,7 +2476,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 105
+        "y": 114
       },
       "id": 52,
       "legend": {
@@ -2391,7 +2563,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 105
+        "y": 114
       },
       "id": 33,
       "legend": {
@@ -2480,7 +2652,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 114
+        "y": 123
       },
       "id": 39,
       "panels": [],
@@ -2497,7 +2669,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 115
+        "y": 124
       },
       "id": 41,
       "legend": {
@@ -2585,7 +2757,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 115
+        "y": 124
       },
       "id": 42,
       "legend": {
@@ -2673,7 +2845,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 124
+        "y": 133
       },
       "id": 43,
       "legend": {
@@ -2761,7 +2933,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 124
+        "y": 133
       },
       "id": 44,
       "legend": {
@@ -2849,7 +3021,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 133
+        "y": 142
       },
       "id": 45,
       "legend": {
@@ -2937,7 +3109,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 133
+        "y": 142
       },
       "id": 46,
       "legend": {
@@ -3025,7 +3197,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 133
+        "y": 142
       },
       "id": 47,
       "legend": {
@@ -3109,7 +3281,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 141
+        "y": 150
       },
       "id": 14,
       "panels": [],
@@ -3127,7 +3299,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 142
+        "y": 151
       },
       "id": 37,
       "legend": {
@@ -3216,7 +3388,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 142
+        "y": 151
       },
       "id": 2,
       "legend": {
@@ -3305,7 +3477,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 151
+        "y": 160
       },
       "id": 4,
       "legend": {
@@ -3406,7 +3578,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 151
+        "y": 160
       },
       "id": 55,
       "legend": {
@@ -3501,7 +3673,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 160
+        "y": 169
       },
       "id": 6,
       "legend": {
@@ -3602,7 +3774,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 160
+        "y": 169
       },
       "id": 36,
       "legend": {
@@ -3709,6 +3881,7 @@
       {
         "allValue": null,
         "current": {
+          "selected": true,
           "text": "dashbase",
           "value": "dashbase"
         },
@@ -3734,10 +3907,9 @@
       {
         "allValue": ".*",
         "current": {
+          "selected": true,
           "text": "All",
-          "value": [
-            "$__all"
-          ]
+          "value": "$__all"
         },
         "datasource": "Prometheus",
         "definition": "",
@@ -3761,7 +3933,7 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
+          "selected": false,
           "tags": [],
           "text": "5m",
           "value": "5m"
@@ -3826,5 +3998,5 @@
   "timezone": "",
   "title": "Dashbase Table",
   "uid": "YhMqAJtmk",
-  "version": 4
+  "version": 1
 }
