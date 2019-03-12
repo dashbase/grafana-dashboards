@@ -163,7 +163,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_ingestion_event_bytes_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
+          "expr": "sum(rate(dashbase_ingestion_bytes_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{table}}",
@@ -462,7 +462,7 @@
           "refId": "C"
         },
         {
-          "expr": "avg(rate(dashbase_ingestion_event_bytes_total{table=~'${table:pipe}',app='$app'}[$duration])) by (instance)",
+          "expr": "avg(rate(dashbase_ingestion_bytes_total{table=~'${table:pipe}',app='$app'}[$duration])) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": " bytes - {{instance}}",
@@ -841,14 +841,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(dashbase_ingestion_parse_error_total{table=~'${table:pipe}',app='$app'}[$duration])) by (instance)",
+          "expr": "avg(rate(dashbase_parse_error_total{table=~'${table:pipe}',app='$app'}[$duration])) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "parse error - {{instance}}",
           "refId": "A"
         },
         {
-          "expr": "avg(rate(dashbase_ingestion_parse_skipped_total{table=~'${table:pipe}',app='$app'}[$duration])) by (instance)",
+          "expr": "avg(rate(dashbase_parse_skipped_total{table=~'${table:pipe}',app='$app'}[$duration])) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "skipped - {{instance}}",
