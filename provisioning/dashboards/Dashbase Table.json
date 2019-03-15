@@ -2597,7 +2597,7 @@
           "refId": "A"
         },
         {
-          "expr": "avg(histogram_quantile(0.99,dashbase_search_wait_latency_secs_bucket{table=~'${table:pipe}',app='$app'})) by (instance)",
+          "expr": "avg(histogram_quantile(0.99,rate(dashbase_search_wait_latency_secs_bucket{table=~'${table:pipe}',app='$app'}[5m]))) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p99 - {{instance}}",
