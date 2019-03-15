@@ -571,7 +571,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Latency",
+      "title": "Index Latency",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -587,7 +587,7 @@
       },
       "yaxes": [
         {
-          "format": "ns",
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -2229,7 +2229,7 @@
           "refId": "A"
         },
         {
-          "expr": "avg(histogram_quantile(0.99, dashbase_search_query_latency_secs_bucket{table=~'${table:pipe}',app='$app'})) by (instance)",
+          "expr": "avg(histogram_quantile(0.99, rate(dashbase_search_query_latency_secs_bucket{table=~'${table:pipe}',app='$app'}[5m]))) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p99 - {{instance}}",
@@ -2503,7 +2503,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_indexed_full_flush_bytes{table=~'${table:pipe}',app='$app'}) by (instance)",
+          "expr": "avg(rate(dashbase_indexer_flush_bytes_sum{table=~'${table:pipe}',app='$app'}[10m])/rate(dashbase_indexer_flush_bytes_count{table=~'${table:pipe}',app='$app'}[10m])) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
@@ -2590,14 +2590,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_search_wait_latency{quantile='0.5',table=~'${table:pipe}',app='$app'}) by (instance)",
+          "expr": "avg(rate(dashbase_search_wait_latency_secs_sum{table=~'${table:pipe}',app='$app'}[5m])/rate(dashbase_search_wait_latency_secs_count{table=~'${table:pipe}',app='$app'}[5m])) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "p50 - {{instance}}",
+          "legendFormat": "average - {{instance}}",
           "refId": "A"
         },
         {
-          "expr": "avg(dashbase_search_wait_latency{quantile='0.99',table=~'${table:pipe}',app='$app'}) by (instance)",
+          "expr": "avg(histogram_quantile(0.99,rate(dashbase_search_wait_latency_secs_bucket{table=~'${table:pipe}',app='$app'}[5m]))) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p99 - {{instance}}",
