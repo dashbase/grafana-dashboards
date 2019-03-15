@@ -252,7 +252,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_search_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
+          "expr": "sum(rate(dashbase_search_query_latency_secs_count{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{table}}",
@@ -341,14 +341,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_search_query_latency{table=~'${table:pipe}',app='$app',quantile='0.5'}) by (table)",
+          "expr": "avg(rate(dashbase_search_query_latency_secs_sum{table=~'${table:pipe}',app='$app'}[5m]) / rate(dashbase_search_query_latency_secs_count{table=~'${table:pipe}',app='$app'}[5m])) by (table)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "p50 - {{table}}",
+          "legendFormat": "average - {{table}}",
           "refId": "A"
         },
         {
-          "expr": "avg(dashbase_search_query_latency{table=~'${table:pipe}',app='$app',quantile='0.99'}) by (table)",
+          "expr": "avg(histogram_quantile(0.99, dashbase_search_query_latency_secs_bucket{table=~'${table:pipe}',app='$app'})) by (table)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p99 - {{table}}",
@@ -2126,7 +2126,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_search_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by (instance)",
+          "expr": "sum(rate(dashbase_search_query_latency_secs_sum{table=~'${table:pipe}',app='$app'}[$duration])) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "total - {{instance}}",
@@ -2222,14 +2222,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_search_query_latency{table=~'${table:pipe}',app='$app',quantile='0.5'}) by (instance)",
+          "expr": "avg(rate(dashbase_search_query_latency_secs_sum{table=~'${table:pipe}',app='$app'}[5m]) / rate(dashbase_search_query_latency_secs_count{table=~'${table:pipe}',app='$app'}[5m])) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "p50 - {{instance}}",
+          "legendFormat": "average - {{instance}}",
           "refId": "A"
         },
         {
-          "expr": "avg(dashbase_search_query_latency{table=~'${table:pipe}',app='$app',quantile='0.99'}) by (instance)",
+          "expr": "avg(histogram_quantile(0.99, dashbase_search_query_latency_secs_bucket{table=~'${table:pipe}',app='$app'})) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p99 - {{instance}}",
