@@ -263,14 +263,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "",
+          "expr": "avg(rate(dashbase_api_root_latency_count{app='$app'}[$duration])) by (root)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "QPS",
+          "legendFormat": "QPS - {{root}}",
           "refId": "A"
         },
         {
-          "expr": "avg(rate(dashbase_api_partition_errors_totalsum{app='$app'}[5m])/rate(dashbase_api_root_latency_secs_count{app='$app'}[5m])) by (root)",
+          "expr": "avg(rate(dashbase_api_root_latency_secs_sum{app='$app'}[5m])/rate(dashbase_api_root_latency_secs_count{app='$app'}[5m])) by (root)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "average latency - {{root}}",
