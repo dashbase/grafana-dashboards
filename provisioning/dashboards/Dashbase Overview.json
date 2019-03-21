@@ -263,31 +263,31 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(dashbase_dashbase_api_query_latency_count{app='$app'}[$duration]))",
+          "expr": "",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "QPS",
           "refId": "A"
         },
         {
-          "expr": "avg(dashbase_dashbase_api_query_latency{quantile='0.5',app='$app'})",
+          "expr": "avg(rate(dashbase_api_partition_errors_totalsum{app='$app'}[5m])/rate(dashbase_api_root_latency_secs_count{app='$app'}[5m])) by (root)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "latency - p50",
+          "legendFormat": "average latency - {{root}}",
           "refId": "B"
         },
         {
-          "expr": "avg(dashbase_dashbase_api_query_latency{quantile='0.99',app='$app'})",
+          "expr": "histogram_quantile(0.99, rate(dashbase_api_root_latency_secs_bucket{app='$app'}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "latency - p99",
+          "legendFormat": "p99 latency - {{root}}",
           "refId": "C"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Query",
+      "title": "Query Latency",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -311,7 +311,7 @@
           "show": true
         },
         {
-          "format": "ms",
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
