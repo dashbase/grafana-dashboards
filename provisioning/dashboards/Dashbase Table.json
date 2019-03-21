@@ -437,14 +437,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(dashbase_api_partition_errors_total{table=~'${table:pipe}',app='$app'}[5m]) / rate(dashbase_api_partition_errors_total{table=~'${table:pipe}',app='$app'}[5m])",
+          "expr": "rate(dashbase_api_partition_errors_total{root=~'${table:pipe}',app='$app'}[5m])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "errors - {{root}} - {{partition}}",
           "refId": "A"
         },
         {
-          "expr": "rate(dashbase_api_partition_timeouts_total{table=~'${table:pipe}',app='$app'}[5m]) / rate(dashbase_api_partition_timeouts_total{table=~'${table:pipe}',app='$app'}[5m])",
+          "expr": "rate(dashbase_api_partition_timeouts_total{root=~'${table:pipe}',app='$app'}[5m])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "timeouts - {{root}} - {{partition}}",
@@ -533,14 +533,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(dashbase_api_partition_latency_secs_sum{table=~'${table:pipe}',app='$app'}[5m]) / rate(dashbase_api_partition_latency_secs_count{table=~'${table:pipe}',app='$app'}[5m])",
+          "expr": "rate(dashbase_api_partition_latency_secs_sum{root=~'${table:pipe}',app='$app'}[5m]) / rate(dashbase_api_partition_latency_secs_count{root=~'${table:pipe}',app='$app'}[5m])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "average - {{root}} - {{partition}}",
           "refId": "A"
         },
         {
-          "expr": "histogram_quantile(0.99, rate(dashbase_api_partition_latency_secs_bucket{table=~'${table:pipe}',app='$app'}[5m]))",
+          "expr": "histogram_quantile(0.99, rate(dashbase_api_partition_latency_secs_bucket{root=~'${table:pipe}',app='$app'}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p99 - {{root}} - {{partition}}",
@@ -594,7 +594,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 27
       },
       "id": 12,
       "panels": [],
