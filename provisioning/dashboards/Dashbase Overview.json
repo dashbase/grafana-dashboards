@@ -277,7 +277,7 @@
           "refId": "B"
         },
         {
-          "expr": "histogram_quantile(0.99, rate(dashbase_api_root_latency_secs_bucket{app='$app'}[5m]))",
+          "expr": "avg(histogram_quantile(0.99, rate(dashbase_api_root_latency_secs_bucket{app='$app'}[5m]))) by (root)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "p99 latency - {{root}}",
