@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 6,
-  "iteration": 1552391905482,
+  "id": 10,
+  "iteration": 1553554322996,
   "links": [],
   "panels": [
     {
@@ -79,7 +79,7 @@
       "targets": [
         {
           "alias": "$tag_host",
-          "expr": "rate(nightwatch_metric_file_append_total_size{host=~\"$hostname\"}[5m])",
+          "expr": "rate(nightwatch_metric_file_append_total_size{host=~\"${hostname:pipe}\"}[5m])",
           "format": "time_series",
           "groupBy": [
             {
@@ -211,7 +211,7 @@
       "targets": [
         {
           "alias": "$tag_host",
-          "expr": "rate(http_libbeat_output_write_bytes{host=~\"$hostname\"}[5m])",
+          "expr": "rate(http_libbeat_output_write_bytes{host=~\"${hostname:pipe}\"}[5m])",
           "format": "time_series",
           "groupBy": [
             {
@@ -353,7 +353,7 @@
       "targets": [
         {
           "alias": "$tag_host",
-          "expr": "http_filebeat_harvester_running{host=~\"$hostname\"}",
+          "expr": "http_filebeat_harvester_running{host=~\"${hostname,pipe}\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -474,7 +474,7 @@
       "targets": [
         {
           "alias": "skipped - $tag_host",
-          "expr": "http_filebeat_harvester_skipped{host=~\"$hostname\"}",
+          "expr": "http_filebeat_harvester_skipped{host=~\"${hostname:pipe}\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -517,7 +517,7 @@
         },
         {
           "alias": "truncated - $tag_host",
-          "expr": "http_filebeat_input_log_files_truncated{host=~\"$hostname\"}",
+          "expr": "http_filebeat_input_log_files_truncated{host=~\"${hostname:pipe}\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -655,7 +655,7 @@
       "targets": [
         {
           "alias": "$tag_host",
-          "expr": "rate(http_filebeat_events_added{host=~\"$hostname\"}[5m])",
+          "expr": "rate(http_filebeat_events_added{host=~\"${hostname:pipe}\"}[5m])",
           "format": "time_series",
           "groupBy": [
             {
@@ -784,7 +784,7 @@
       "targets": [
         {
           "alias": "$tag_host",
-          "expr": "http_filebeat_events_active{host=~\"$hostname\"}",
+          "expr": "http_filebeat_events_active{host=~\"${hostname:pipe}\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -904,7 +904,7 @@
       "targets": [
         {
           "alias": "$tag_host",
-          "expr": "rate(http_filebeat_events_done{host=~\"$hostname\"}[5m])",
+          "expr": "rate(http_filebeat_events_done{host=~\"${hostname:pipe}\"}[5m])",
           "format": "time_series",
           "groupBy": [
             {
@@ -1049,7 +1049,7 @@
       "targets": [
         {
           "alias": "$tag_host",
-          "expr": "rate(http_libbeat_output_events_active{host=~\"$hostname\"}[5m])",
+          "expr": "rate(http_libbeat_output_events_active{host=~\"${hostname:pipe}\"}[5m])",
           "format": "time_series",
           "groupBy": [
             {
@@ -1179,7 +1179,7 @@
       "targets": [
         {
           "alias": "$tag_host",
-          "expr": "rate(http_libbeat_output_events_acked{host=~\"$hostname\"}[5m])",
+          "expr": "rate(http_libbeat_output_events_acked{host=~\"${hostname:pipe}\"}[5m])",
           "format": "time_series",
           "groupBy": [
             {
@@ -1306,7 +1306,7 @@
       "targets": [
         {
           "alias": "read - $tag_host",
-          "expr": "rate(http_libbeat_output_read_errors{host=~\"$hostname\"}[1m])",
+          "expr": "rate(http_libbeat_output_read_errors{host=~\"${hostname:pipe}\"}[1m])",
           "format": "time_series",
           "groupBy": [
             {
@@ -1349,7 +1349,7 @@
         },
         {
           "alias": "write - $tag_host",
-          "expr": "rate(http_libbeat_output_write_errors{host=~\"$hostname\"}[1m])",
+          "expr": "rate(http_libbeat_output_write_errors{host=~\"${hostname:pipe}\"}[1m])",
           "format": "time_series",
           "groupBy": [
             {
@@ -1487,7 +1487,7 @@
       "targets": [
         {
           "alias": "$tag_host",
-          "expr": "rate(http_system_load_5{host=~\"$hostname\"}[5m])",
+          "expr": "rate(http_system_load_5{host=~\"${hostname:pipe}\"}[5m])",
           "format": "time_series",
           "groupBy": [
             {
@@ -1622,7 +1622,7 @@
       "targets": [
         {
           "alias": "$tag_host",
-          "expr": "rate(http_beat_memstats_memory_alloc{host=~\"$hostname\"}[5m])",
+          "expr": "rate(http_beat_memstats_memory_alloc{host=~\"${hostname:pipe}\"}[5m])",
           "format": "time_series",
           "groupBy": [
             {
@@ -1728,15 +1728,15 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": "InfluxDB",
-        "definition": "",
+        "datasource": "Prometheus",
+        "definition": "label_values(http_filebeat_events_active,host)",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "hostname",
         "options": [],
-        "query": "show tag values with key = host",
+        "query": "label_values(http_filebeat_events_active,host)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1781,5 +1781,5 @@
   "timezone": "",
   "title": "Filebeat Monitoring[Prometheus]",
   "uid": "scIHJuCiz",
-  "version": 2
+  "version": 1
 }
