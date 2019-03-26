@@ -16,7 +16,8 @@
   "editable": true,
   "gnetId": 721,
   "graphTooltip": 0,
-  "iteration": 1547062704153,
+  "id": 3,
+  "iteration": 1553628115472,
   "links": [],
   "panels": [
     {
@@ -52,7 +53,7 @@
       "isNew": true,
       "legend": {
         "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": true,
         "max": false,
         "min": false,
@@ -77,7 +78,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_bytesin_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m]))",
+          "expr": "sum(rate(kafka_server_brokertopicmetrics_bytesin_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m])) by (topic)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{topic}}",
@@ -88,6 +89,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Bytes In Per Topic",
       "tooltip": {
@@ -147,7 +149,7 @@
       "isNew": true,
       "legend": {
         "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": true,
         "max": false,
         "min": false,
@@ -172,7 +174,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_bytesout_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m]))",
+          "expr": "sum(rate(kafka_server_brokertopicmetrics_bytesout_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m])) by (topic)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{topic}}",
@@ -183,6 +185,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Bytes Out Per Topic",
       "tooltip": {
@@ -242,7 +245,7 @@
       "isNew": true,
       "legend": {
         "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": true,
         "max": false,
         "min": false,
@@ -285,6 +288,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Total Bytes I/O",
       "tooltip": {
@@ -369,7 +373,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_messagesin_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m]))",
+          "expr": "sum(rate(kafka_server_brokertopicmetrics_messagesin_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m])) by (topic)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{topic}}",
@@ -380,6 +384,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Messages In Per Topic",
       "tooltip": {
@@ -439,7 +444,7 @@
       "isNew": true,
       "legend": {
         "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": true,
         "max": false,
         "min": false,
@@ -482,6 +487,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Total Messages In",
       "tooltip": {
@@ -584,6 +590,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Queue Size",
       "tooltip": {
@@ -668,7 +675,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_bytesrejected_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m]))",
+          "expr": "sum(rate(kafka_server_brokertopicmetrics_bytesrejected_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m])) by (topic)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{topic}}",
@@ -679,6 +686,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Bytes Rejected Per Topic",
       "tooltip": {
@@ -763,14 +771,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_totalproducerequests_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m]))",
+          "expr": "sum(rate(kafka_server_brokertopicmetrics_totalproducerequests_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m])) by (topic)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "produce - {{topic}}",
           "refId": "C"
         },
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_totalfetchrequests_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m]))",
+          "expr": "sum(rate(kafka_server_brokertopicmetrics_totalfetchrequests_total{component=\"kafka\",topic=~\"${topic:pipe}\",app='$app'}[5m])) by (topic)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "fetch - {{topic}}",
@@ -797,6 +805,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Produce/Fetch Requests",
       "tooltip": {
@@ -854,7 +863,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "fill": 1,
       "gridPos": {
         "h": 8,
@@ -899,6 +907,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "log size by topic",
       "tooltip": {
@@ -942,7 +951,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "fill": 1,
       "gridPos": {
         "h": 8,
@@ -987,6 +995,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "log size by broker",
       "tooltip": {
@@ -1087,7 +1096,7 @@
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "# cores used",
+          "legendFormat": "{{instance}}",
           "metric": "process_cpu_seconds_total",
           "refId": "A",
           "step": 4
@@ -1095,6 +1104,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "CPU",
       "tooltip": {
@@ -1173,7 +1183,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "alias": "max",
+          "alias": "/max.*/",
           "dashes": true,
           "fill": 0
         }
@@ -1186,7 +1196,7 @@
           "expr": "(jvm_memory_bytes_used{area='heap',component=\"kafka\",app='$app'})",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "used",
+          "legendFormat": "used - {{instance}}",
           "metric": "jvm_memory_bytes_used",
           "refId": "A",
           "step": 4
@@ -1195,12 +1205,13 @@
           "expr": "(jvm_memory_bytes_max{area='heap',component=\"kafka\",app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "max",
+          "legendFormat": "max - {{instance}}",
           "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Memory",
       "tooltip": {
@@ -1283,10 +1294,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(jvm_gc_collection_seconds_sum{component=\"kafka\",app='$app'}[5m]))",
+          "expr": "sum(rate(jvm_gc_collection_seconds_sum{component=\"kafka\",app='$app'}[5m])) by (instance)",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "time spent in GC",
+          "legendFormat": "{{instance}}",
           "metric": "jvm_gc_collection_seconds_sum",
           "refId": "A",
           "step": 4
@@ -1294,6 +1305,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Time spent in GC",
       "tooltip": {
@@ -1343,10 +1355,11 @@
       {
         "allValue": null,
         "current": {
-          "text": "dashbase-us-west-2",
-          "value": "dashbase-us-west-2"
+          "text": "dashbase",
+          "value": "dashbase"
         },
         "datasource": "Prometheus",
+        "definition": "",
         "hide": 0,
         "includeAll": false,
         "label": null,
@@ -1356,6 +1369,7 @@
         "query": "label_values(dashbase_table_info, app)",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
@@ -1370,6 +1384,7 @@
           "value": "$__all"
         },
         "datasource": "Prometheus",
+        "definition": "",
         "hide": 0,
         "includeAll": true,
         "label": null,
@@ -1379,6 +1394,7 @@
         "query": "label_values(kafka_server_brokertopicmetrics_messagesin_total{app='$app'},topic)",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
@@ -1420,5 +1436,5 @@
   "timezone": "",
   "title": "Kafka Overview",
   "uid": "FESeYQtiz",
-  "version": 1
+  "version": 4
 }
