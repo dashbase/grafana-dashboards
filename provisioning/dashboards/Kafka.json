@@ -986,7 +986,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(kafka_log_log_size) by (instance)",
+          "expr": "sum(kafka_log_log_size{app=\"$app\"}) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
