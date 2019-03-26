@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 10,
-  "iteration": 1553554322996,
+  "iteration": 1553598894544,
   "links": [],
   "panels": [
     {
@@ -353,7 +352,7 @@
       "targets": [
         {
           "alias": "$tag_host",
-          "expr": "http_filebeat_harvester_running{host=~\"${hostname,pipe}\"}",
+          "expr": "http_filebeat_harvester_running{host=~\"${hostname:pipe}\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -1487,7 +1486,7 @@
       "targets": [
         {
           "alias": "$tag_host",
-          "expr": "rate(http_system_load_5{host=~\"${hostname:pipe}\"}[5m])",
+          "expr": "http_system_load_norm_5{host=~\"${hostname:pipe}\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -1622,7 +1621,7 @@
       "targets": [
         {
           "alias": "$tag_host",
-          "expr": "rate(http_beat_memstats_memory_alloc{host=~\"${hostname:pipe}\"}[5m])",
+          "expr": "http_beat_memstats_memory_alloc{host=~\"${hostname:pipe}\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -1781,5 +1780,5 @@
   "timezone": "",
   "title": "Filebeat Monitoring[Prometheus]",
   "uid": "scIHJuCiz",
-  "version": 1
+  "version": 4
 }
