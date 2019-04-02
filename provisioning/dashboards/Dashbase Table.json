@@ -3899,7 +3899,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_disk_used_bytes{table_name=~'${table:pipe}',app='$app'}) by (instance)",
+          "expr": "avg(dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app'}) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "index bytes - {{instance}}",
@@ -4000,25 +4000,32 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_total_index_bytes{table=~'${table:pipe}',app='$app'}) by (instance)",
+          "expr": "dashbase_total_index_bytes{table=~'${table:pipe}',app='$app'} / on(instance) dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "total index bytes - {{instance}}",
-          "refId": "B"
-        },
-        {
-          "expr": "avg((dashbase_total_payload_bytes{table=~'${table:pipe}',app='$app'} / dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app'})) by (instance)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "% payload - {{instance}}",
+          "legendFormat": "% used by index - {{instance}}",
           "refId": "A"
         },
         {
-          "expr": "avg(dashbase_total_payload_bytes{table=~'${table:pipe}',app='$app'}) by (instance)",
+          "expr": "dashbase_total_payload_bytes{table=~'${table:pipe}',app='$app'} / on(instance) dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "total index bytes - {{instance}}",
+          "legendFormat": "% used by payload - {{instance}}",
+          "refId": "B"
+        },
+        {
+          "expr": "dashbase_bloomfilter_disk_used_MB{table=~'${table:pipe}',app='$app'} * 1024 * 1024 / on(instance) dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app'}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "% used by bloomfilter - {{instance}}",
           "refId": "C"
+        },
+        {
+          "expr": "(dashbase_total_payload_bytes{table=~'${table:pipe}',app='$app'} + dashbase_total_index_bytes{table=~'${table:pipe}',app='$app'} + (dashbase_bloomfilter_disk_used_MB{table=~'${table:pipe}',app='$app'}*1024*1024)) / on(instance) dashbase_total_raw_bytes{table=~'${table:pipe}',app='$app'}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "% compression ratio - {{instance}}",
+          "refId": "D"
         }
       ],
       "thresholds": [],
