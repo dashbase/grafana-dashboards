@@ -3903,14 +3903,21 @@
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "used bytes - {{instance}}",
+          "refId": "A"
+        },
+        {
+          "expr": "avg(dashbase_disk_total_bytes{table=~'${table:pipe}',app='$app'}) by (instance)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "total bytes - {{instance}}",
           "refId": "B"
         },
         {
-          "expr": "avg(dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app'} / dashbase_disk_total_bytes{table=~'${table:pipe}',app='$app'}) by (instance)",
+          "expr": "avg(dashbase_disk_available_bytes{table=~'${table:pipe}',app='$app'}) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "% used - {{instance}}",
-          "refId": "A"
+          "legendFormat": "available bytes - {{instance}}",
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -3932,14 +3939,6 @@
         "values": []
       },
       "yaxes": [
-        {
-          "format": "percentunit",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
         {
           "format": "bytes",
           "label": null,
@@ -4021,11 +4020,25 @@
           "refId": "C"
         },
         {
-          "expr": "(dashbase_total_payload_bytes{table=~'${table:pipe}',app='$app'} + dashbase_total_index_bytes{table=~'${table:pipe}',app='$app'} + (dashbase_bloomfilter_disk_used_MB{table=~'${table:pipe}',app='$app'}*1024*1024)) / on(instance) dashbase_total_raw_bytes{table=~'${table:pipe}',app='$app'}",
+          "expr": "dashbase_total_sample_size_KB{table=~'${table:pipe}',app='$app'} * 1024 / on(instance) dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app'}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "% used by sample index - {{instance}}",
+          "refId": "D"
+        },
+        {
+          "expr": "dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app'} / on(instance) dashbase_disk_total_bytes{table=~'${table:pipe}',app='$app'}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "% disk used - {{instance}}",
+          "refId": "E"
+        },
+        {
+          "expr": "(dashbase_total_payload_bytes{table=~'${table:pipe}',app='$app'} + dashbase_total_index_bytes{table=~'${table:pipe}',app='$app'}) / on(instance) dashbase_total_raw_bytes{table=~'${table:pipe}',app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "% compression ratio - {{instance}}",
-          "refId": "D"
+          "refId": "F"
         }
       ],
       "thresholds": [],
@@ -4049,14 +4062,6 @@
       "yaxes": [
         {
           "format": "percentunit",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "bytes",
           "label": null,
           "logBase": 1,
           "max": null,
