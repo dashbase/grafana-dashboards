@@ -3902,7 +3902,7 @@
           "expr": "avg(dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app'}) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "index bytes - {{instance}}",
+          "legendFormat": "used bytes - {{instance}}",
           "refId": "B"
         },
         {
