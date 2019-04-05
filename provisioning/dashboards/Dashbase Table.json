@@ -2526,6 +2526,13 @@
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
           "refId": "B"
+        },
+        {
+          "expr": "avg(dashbase_invalid_timeslice_count{table=~'${table:pipe}',app='$app'}) by (instance)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "bad timeslices - {{instance}}",
+          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -3902,21 +3909,21 @@
           "expr": "avg(dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app'}) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "used bytes - {{instance}}",
+          "legendFormat": "reported used bytes - {{instance}}",
           "refId": "A"
+        },
+        {
+          "expr": "avg(dashbase_disk_total_bytes{table=~'${table:pipe}',app='$app'} - dashbase_disk_available_bytes{table=~'${table:pipe}',app='$app'}) by (instance)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "actual used bytes - {{instance}}",
+          "refId": "B"
         },
         {
           "expr": "avg(dashbase_disk_total_bytes{table=~'${table:pipe}',app='$app'}) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "total bytes - {{instance}}",
-          "refId": "B"
-        },
-        {
-          "expr": "avg(dashbase_disk_available_bytes{table=~'${table:pipe}',app='$app'}) by (instance)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "available bytes - {{instance}}",
           "refId": "C"
         }
       ],
@@ -4035,10 +4042,10 @@
           "refId": "D"
         },
         {
-          "expr": "dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app'} / on(instance) dashbase_disk_total_bytes{table=~'${table:pipe}',app='$app'}",
+          "expr": "dashbase_disk_available_bytes{table=~'${table:pipe}',app='$app'} / on(instance) dashbase_disk_total_bytes{table=~'${table:pipe}',app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "% disk used - {{instance}}",
+          "legendFormat": "% disk free - {{instance}}",
           "refId": "E"
         },
         {
