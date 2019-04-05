@@ -2525,7 +2525,7 @@
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
-          "refId": "B"
+          "refId": "A"
         },
         {
           "expr": "avg(dashbase_invalid_timeslice_count{table=~'${table:pipe}',app='$app'}) by (instance)",
