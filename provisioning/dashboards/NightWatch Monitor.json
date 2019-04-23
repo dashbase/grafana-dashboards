@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 9,
-  "iteration": 1553553744326,
+  "id": 8,
+  "iteration": 1556052898490,
   "links": [],
   "panels": [
     {
@@ -1055,7 +1055,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
@@ -1084,7 +1084,7 @@
     ]
   },
   "timezone": "",
-  "title": "NightWatch Verify/Count",
+  "title": "NightWatch Monitor",
   "uid": "o1rMwNrik",
-  "version": 11
+  "version": 3
 }
