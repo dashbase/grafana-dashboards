@@ -15,7 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1553598894544,
+  "id": 6,
+  "iteration": 1556052507813,
   "links": [],
   "panels": [
     {
@@ -1778,7 +1779,7 @@
     ]
   },
   "timezone": "",
-  "title": "Filebeat Monitoring[Prometheus]",
+  "title": "Filebeat Monitoring",
   "uid": "scIHJuCiz",
-  "version": 4
+  "version": 5
 }
