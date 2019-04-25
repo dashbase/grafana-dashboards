@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 8,
-  "iteration": 1556052898490,
+  "iteration": 1556001524683,
   "links": [],
   "panels": [
     {
@@ -71,7 +70,7 @@
       "targets": [
         {
           "alias": "$tag_host Local",
-          "expr": "nightwatch_verify_local_count{host=~\"${hostname:pipe}\"}",
+          "expr": "nightwatch_verify_local_count{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -109,7 +108,7 @@
         },
         {
           "alias": "$tag_host Local",
-          "expr": "nightwatch_verify_dashbase_count{host=~\"${hostname:pipe}\"}",
+          "expr": "nightwatch_verify_dashbase_count{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -232,7 +231,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "nightwatch_verify_count_delta_percentile{host=~\"${hostname:pipe}\"}",
+          "expr": "nightwatch_verify_count_delta_percentile{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}",
           "format": "time_series",
           "interval": "1m",
           "intervalFactor": 1,
@@ -240,7 +239,7 @@
           "refId": "A"
         },
         {
-          "expr": "nightwatch_verify_count_delta{host=~\"${hostname:pipe}\"}",
+          "expr": "nightwatch_verify_count_delta{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}",
           "format": "time_series",
           "interval": "1m",
           "intervalFactor": 1,
@@ -340,7 +339,7 @@
       "targets": [
         {
           "alias": "$tag_host Local",
-          "expr": "nightwatch_verify_local_count{host=~\"${hostname:pipe}\"}",
+          "expr": "nightwatch_verify_local_count{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -469,7 +468,7 @@
       "targets": [
         {
           "alias": "$tag_host file counts",
-          "expr": "nightwatch_verify_local_used_nanosecond{host=~\"${hostname:pipe}\"}",
+          "expr": "nightwatch_verify_local_used_nanosecond{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -585,7 +584,7 @@
       "targets": [
         {
           "alias": "$tag_host file counts",
-          "expr": "nightwatch_verify_dashbase_query_used_nanosecond{host=~\"${hostname:pipe}\"}",
+          "expr": "nightwatch_verify_dashbase_query_used_nanosecond{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -701,7 +700,7 @@
       "targets": [
         {
           "alias": "$tag_host file counts",
-          "expr": "nightwatch_count_local_used_nanosecond{host=~\"${hostname:pipe}\"}",
+          "expr": "nightwatch_count_local_used_nanosecond{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -831,7 +830,7 @@
           "targets": [
             {
               "alias": "$tag_host",
-              "expr": "http_system_load_norm_5{host=~\"${hostname}\"}",
+              "expr": "http_system_load_norm_5{host=~\"${hostname}\", table=~\"${table:pipe}\"}",
               "format": "time_series",
               "groupBy": [
                 {
@@ -967,7 +966,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "http_beat_memstats_memory_alloc{host=~\"${hostname}\"}",
+              "expr": "http_beat_memstats_memory_alloc{host=~\"${hostname}\", table=~\"${table:pipe}\"}",
               "format": "time_series",
               "interval": "1m",
               "intervalFactor": 1,
@@ -1030,18 +1029,49 @@
       {
         "allValue": ".*",
         "current": {
+          "tags": [],
           "text": "All",
-          "value": "$__all"
+          "value": [
+            "$__all"
+          ]
         },
         "datasource": "Prometheus",
-        "definition": "label_values(nightwatch_metric_as_count,host)",
+        "definition": "label_values(nightwatch_metric_as_count, host)",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "hostname",
         "options": [],
-        "query": "label_values(nightwatch_metric_as_count,host)",
+        "query": "label_values(nightwatch_metric_as_count, host)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "tags": [],
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "Prometheus",
+        "definition": "label_values(nightwatch_metric_as_count, table)",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "table",
+        "options": [],
+        "query": "label_values(nightwatch_metric_as_count, table)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
