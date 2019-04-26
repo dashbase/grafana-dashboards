@@ -15,7 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1556212760339,
+  "id": 19,
+  "iteration": 1556317400369,
   "links": [],
   "panels": [
     {
@@ -443,7 +444,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum by (table) (sum by (account,table) (rate(dashbase_query_per_table_count{app=\"$app\",component=\"api\",table=\"$table\"}[$duration]))) > 0",
+          "expr": "sum (sum by (account,table) (rate(dashbase_query_count{app=\"$app\",component=\"api\",table=~\"$table(/.+)?|\\\\*\"}[$duration]))) > 0",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "users / sec",
@@ -598,7 +599,7 @@
       "id": 31,
       "panels": [],
       "repeat": null,
-      "repeatIteration": 1556212760339,
+      "repeatIteration": 1556317400369,
       "repeatPanelId": 30,
       "scopedVars": {
         "table": {
@@ -646,7 +647,7 @@
       "renderer": "flot",
       "repeat": null,
       "repeatDirection": "v",
-      "repeatIteration": 1556212760339,
+      "repeatIteration": 1556317400369,
       "repeatPanelId": 22,
       "repeatedByRow": true,
       "scopedVars": {
@@ -769,7 +770,7 @@
       "renderer": "flot",
       "repeat": null,
       "repeatDirection": "v",
-      "repeatIteration": 1556212760339,
+      "repeatIteration": 1556317400369,
       "repeatPanelId": 14,
       "repeatedByRow": true,
       "scopedVars": {
@@ -868,7 +869,7 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1556212760339,
+      "repeatIteration": 1556317400369,
       "repeatPanelId": 16,
       "repeatedByRow": true,
       "scopedVars": {
@@ -891,7 +892,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum by (table) (sum by (account,table) (rate(dashbase_query_per_table_count{app=\"$app\",component=\"api\",table=\"$table\"}[$duration]))) > 0",
+          "expr": "sum (sum by (account,table) (rate(dashbase_query_count{app=\"$app\",component=\"api\",table=~\"$table(/.+)?|\\\\*\"}[$duration]))) > 0",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "users / sec",
@@ -974,7 +975,7 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1556212760339,
+      "repeatIteration": 1556317400369,
       "repeatPanelId": 18,
       "repeatedByRow": true,
       "scopedVars": {
@@ -1049,7 +1050,7 @@
       "id": 36,
       "panels": [],
       "repeat": null,
-      "repeatIteration": 1556212760339,
+      "repeatIteration": 1556317400369,
       "repeatPanelId": 30,
       "scopedVars": {
         "table": {
@@ -1097,7 +1098,7 @@
       "renderer": "flot",
       "repeat": null,
       "repeatDirection": "v",
-      "repeatIteration": 1556212760339,
+      "repeatIteration": 1556317400369,
       "repeatPanelId": 22,
       "repeatedByRow": true,
       "scopedVars": {
@@ -1220,7 +1221,7 @@
       "renderer": "flot",
       "repeat": null,
       "repeatDirection": "v",
-      "repeatIteration": 1556212760339,
+      "repeatIteration": 1556317400369,
       "repeatPanelId": 14,
       "repeatedByRow": true,
       "scopedVars": {
@@ -1319,7 +1320,7 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1556212760339,
+      "repeatIteration": 1556317400369,
       "repeatPanelId": 16,
       "repeatedByRow": true,
       "scopedVars": {
@@ -1342,7 +1343,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum by (table) (sum by (account,table) (rate(dashbase_query_per_table_count{app=\"$app\",component=\"api\",table=\"$table\"}[$duration]))) > 0",
+          "expr": "sum (sum by (account,table) (rate(dashbase_query_count{app=\"$app\",component=\"api\",table=~\"$table(/.+)?|\\\\*\"}[$duration]))) > 0",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "users / sec",
@@ -1425,7 +1426,7 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1556212760339,
+      "repeatIteration": 1556317400369,
       "repeatPanelId": 18,
       "repeatedByRow": true,
       "scopedVars": {
@@ -1500,7 +1501,7 @@
       "id": 41,
       "panels": [],
       "repeat": null,
-      "repeatIteration": 1556212760339,
+      "repeatIteration": 1556317400369,
       "repeatPanelId": 30,
       "scopedVars": {
         "table": {
@@ -1548,7 +1549,7 @@
       "renderer": "flot",
       "repeat": null,
       "repeatDirection": "v",
-      "repeatIteration": 1556212760339,
+      "repeatIteration": 1556317400369,
       "repeatPanelId": 22,
       "repeatedByRow": true,
       "scopedVars": {
@@ -1671,7 +1672,7 @@
       "renderer": "flot",
       "repeat": null,
       "repeatDirection": "v",
-      "repeatIteration": 1556212760339,
+      "repeatIteration": 1556317400369,
       "repeatPanelId": 14,
       "repeatedByRow": true,
       "scopedVars": {
@@ -1770,7 +1771,7 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1556212760339,
+      "repeatIteration": 1556317400369,
       "repeatPanelId": 16,
       "repeatedByRow": true,
       "scopedVars": {
@@ -1793,7 +1794,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum by (table) (sum by (account,table) (rate(dashbase_query_per_table_count{app=\"$app\",component=\"api\",table=\"$table\"}[$duration]))) > 0",
+          "expr": "sum (sum by (account,table) (rate(dashbase_query_count{app=\"$app\",component=\"api\",table=~\"$table(/.+)?|\\\\*\"}[$duration]))) > 0",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "users / sec",
@@ -1876,7 +1877,7 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1556212760339,
+      "repeatIteration": 1556317400369,
       "repeatPanelId": 18,
       "repeatedByRow": true,
       "scopedVars": {
@@ -2181,6 +2182,7 @@
       {
         "allValue": null,
         "current": {
+          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -2272,5 +2274,5 @@
   "timezone": "",
   "title": "Dashbase Overview",
   "uid": "qwOotTpik",
-  "version": 3
+  "version": 4
 }
