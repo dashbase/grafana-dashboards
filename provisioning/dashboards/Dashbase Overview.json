@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 19,
-  "iteration": 1556571494736,
+  "iteration": 1556753202308,
   "links": [],
   "panels": [
     {
@@ -677,8 +676,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "flog",
-          "value": "flog"
+          "text": "kubernetes-logs",
+          "value": "kubernetes-logs"
         }
       },
       "title": "Table - $table",
@@ -693,7 +692,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 8,
+        "w": 12,
         "x": 0,
         "y": 41
       },
@@ -704,7 +703,7 @@
         "current": true,
         "max": false,
         "min": false,
-        "rightSide": false,
+        "rightSide": true,
         "show": true,
         "total": false,
         "values": true
@@ -712,7 +711,7 @@
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "minSpan": 5,
+      "maxPerRow": 4,
       "nullPointMode": "null",
       "percentage": false,
       "pointradius": 5,
@@ -723,8 +722,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "flog",
-          "value": "flog"
+          "text": "kubernetes-logs",
+          "value": "kubernetes-logs"
         }
       },
       "seriesOverrides": [],
@@ -733,31 +732,31 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_index_event_size_sum{app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by (table)",
+          "expr": "sum(rate(dashbase_index_event_size_sum{app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "filebeat -> table",
+          "legendFormat": "filebeat -> {{instance}}",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(dashbase_filebeat_parser_message_bytes_received{app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by (table) > 0",
+          "expr": "sum(rate(dashbase_filebeat_parser_message_bytes_received{app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by (instance) > 0",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "filebeat -> table (original)",
+          "legendFormat": "filebeat -> {{instance}} (original)",
           "refId": "B"
         },
         {
-          "expr": "avg(dashbase_firehose_kafka_consumer_fetch_manager_metrics_bytes_consumed_rate{table=~'${table:pipe}',app='$app'}) by (table)",
+          "expr": "avg(dashbase_firehose_kafka_consumer_fetch_manager_metrics_bytes_consumed_rate{table=~'${table:pipe}',app='$app'}) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "kafka -> table",
+          "legendFormat": "kafka -> {{instance}}",
           "refId": "C"
         },
         {
-          "expr": "sum(rate(dashbase_proxy_bytes_received{app=\"$app\",topic=\"$table\"}[$duration])) by (topic)",
+          "expr": "sum(rate(dashbase_proxy_bytes_received{app=\"$app\",topic=\"$table\"}[$duration])) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "proxy -> kafka",
+          "legendFormat": "{{instance}} -> kafka",
           "refId": "D"
         }
       ],
@@ -810,8 +809,8 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 8,
-        "x": 8,
+        "w": 12,
+        "x": 12,
         "y": 41
       },
       "id": 47,
@@ -821,7 +820,7 @@
         "current": true,
         "max": false,
         "min": false,
-        "rightSide": false,
+        "rightSide": true,
         "show": true,
         "total": false,
         "values": true
@@ -837,8 +836,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "flog",
-          "value": "flog"
+          "text": "kubernetes-logs",
+          "value": "kubernetes-logs"
         }
       },
       "seriesOverrides": [
@@ -852,34 +851,34 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(dashbase_ingestion_events_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
+          "expr": "avg(rate(dashbase_ingestion_events_total{table=~'${table:pipe}',app='$app'}[$duration])) by (instance)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "events ingested",
+          "legendFormat": "ingested - {{instance}}",
           "refId": "A"
         },
         {
-          "expr": "avg(rate(dashbase_indexer_events_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
+          "expr": "avg(rate(dashbase_indexer_events_total{table=~'${table:pipe}',app='$app'}[$duration])) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "events indexed",
+          "legendFormat": "indexed - {{instance}}",
           "refId": "B"
         },
         {
-          "expr": "avg(rate(dashbase_ingestion_bytes_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
+          "expr": "avg(rate(dashbase_ingestion_bytes_total{table=~'${table:pipe}',app='$app'}[$duration])) by (instance)",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 1,
-          "legendFormat": "bytes indexed",
+          "legendFormat": "bytes indexed {{instance}}",
           "refId": "D"
         },
         {
-          "expr": "avg(rate(dashbase_ingestion_bytes_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
+          "expr": "avg(rate(dashbase_indexer_bytes_total{table=~'${table:pipe}',app='$app'}[$duration])) by (instance)",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 1,
-          "legendFormat": "bytes ingested",
+          "legendFormat": "bytes ingested {{instance}}",
           "refId": "C"
         }
       ],
@@ -934,9 +933,9 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 8,
-        "x": 16,
-        "y": 41
+        "w": 12,
+        "x": 0,
+        "y": 50
       },
       "id": 14,
       "legend": {
@@ -946,7 +945,7 @@
         "max": false,
         "min": false,
         "rightSide": true,
-        "show": false,
+        "show": true,
         "sort": "current",
         "sortDesc": true,
         "total": false,
@@ -965,8 +964,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "flog",
-          "value": "flog"
+          "text": "kubernetes-logs",
+          "value": "kubernetes-logs"
         }
       },
       "seriesOverrides": [],
@@ -975,10 +974,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(dashbase_indexer_full_latency_secs_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_indexer_full_latency_secs_count{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
+          "expr": "avg(rate(dashbase_indexer_full_latency_secs_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_indexer_full_latency_secs_count{table=~'${table:pipe}',app='$app'}[$duration])) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{table}}",
+          "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
@@ -1026,6 +1025,105 @@
     {
       "aliasColors": {},
       "bars": false,
+      "cacheTimeout": null,
+      "dashLength": 10,
+      "dashes": false,
+      "decimals": null,
+      "description": "How long ago the oldest segment in Table was built.",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 50
+      },
+      "id": 102,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "repeatDirection": "v",
+      "scopedVars": {
+        "table": {
+          "selected": false,
+          "text": "kubernetes-logs",
+          "value": "kubernetes-logs"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "dashbase_actual_retention_days{app=\"$app\",table=~\"${table}\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Time Range",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "d",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
@@ -1034,7 +1132,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 50
+        "y": 59
       },
       "id": 16,
       "legend": {
@@ -1061,8 +1159,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "flog",
-          "value": "flog"
+          "text": "kubernetes-logs",
+          "value": "kubernetes-logs"
         }
       },
       "seriesOverrides": [],
@@ -1137,7 +1235,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 50
+        "y": 59
       },
       "id": 18,
       "legend": {
@@ -1164,1736 +1262,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "flog",
-          "value": "flog"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "avg(rate(dashbase_search_query_latency_secs_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_search_query_latency_secs_count{table=~'${table:pipe}',app='$app'}[$duration])) by (table) > 0",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{table}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Query Response Time",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "s",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 59
-      },
-      "id": 90,
-      "panels": [],
-      "repeat": null,
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 30,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "logmatters",
-          "value": "logmatters"
-        }
-      },
-      "title": "Table - $table",
-      "type": "row"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "description": "How fast Dashbase is ingesting (accepting) input data. \"original\" is only counting the size of the original log messages.",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 8,
-        "x": 0,
-        "y": 60
-      },
-      "id": 91,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "minSpan": 5,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeat": null,
-      "repeatDirection": "v",
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 22,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "logmatters",
-          "value": "logmatters"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(rate(dashbase_index_event_size_sum{app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by (table)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "filebeat -> table",
-          "refId": "A"
-        },
-        {
-          "expr": "sum(rate(dashbase_filebeat_parser_message_bytes_received{app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by (table) > 0",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "filebeat -> table (original)",
-          "refId": "B"
-        },
-        {
-          "expr": "avg(dashbase_firehose_kafka_consumer_fetch_manager_metrics_bytes_consumed_rate{table=~'${table:pipe}',app='$app'}) by (table)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "kafka -> table",
-          "refId": "C"
-        },
-        {
-          "expr": "sum(rate(dashbase_proxy_bytes_received{app=\"$app\",topic=\"$table\"}[$duration])) by (topic)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "proxy -> kafka",
-          "refId": "D"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Ingestion Throughput",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "Bps",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 8,
-        "x": 8,
-        "y": 60
-      },
-      "id": 92,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 47,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "logmatters",
-          "value": "logmatters"
-        }
-      },
-      "seriesOverrides": [
-        {
-          "alias": "/bytes/",
-          "yaxis": 2
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "avg(rate(dashbase_ingestion_events_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
-          "format": "time_series",
-          "hide": false,
-          "intervalFactor": 1,
-          "legendFormat": "events ingested",
-          "refId": "A"
-        },
-        {
-          "expr": "avg(rate(dashbase_indexer_events_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "events indexed",
-          "refId": "B"
-        },
-        {
-          "expr": "avg(rate(dashbase_ingestion_bytes_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
-          "format": "time_series",
-          "hide": true,
-          "intervalFactor": 1,
-          "legendFormat": "bytes indexed",
-          "refId": "D"
-        },
-        {
-          "expr": "avg(rate(dashbase_ingestion_bytes_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
-          "format": "time_series",
-          "hide": true,
-          "intervalFactor": 1,
-          "legendFormat": "bytes ingested",
-          "refId": "C"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Ingestion / Index",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "bytes",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "decimals": null,
-      "description": "Delay from event produce until searchable",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 8,
-        "x": 16,
-        "y": 60
-      },
-      "id": 93,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "sort": "current",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeat": null,
-      "repeatDirection": "v",
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 14,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "logmatters",
-          "value": "logmatters"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "avg(rate(dashbase_indexer_full_latency_secs_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_indexer_full_latency_secs_count{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{table}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Ingestion Delay",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "s",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "s",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 69
-      },
-      "id": 94,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sort": "current",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 16,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "logmatters",
-          "value": "logmatters"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(rate(dashbase_search_query_latency_secs_count{table=~'${table:pipe}',app='$app'}[$duration])) by (table) > 0",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "queries / sec",
-          "refId": "A"
-        },
-        {
-          "expr": "sum (sum by (account,table) (rate(dashbase_query_count{app=\"$app\",component=\"api\",table=~\"$table(/.+)?|\\\\*\"}[$duration]))) > 0",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "users / sec",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Query Rate",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": "Query/User Per Second",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fill": 0,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 69
-      },
-      "id": 95,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sort": "current",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 18,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "logmatters",
-          "value": "logmatters"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "avg(rate(dashbase_search_query_latency_secs_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_search_query_latency_secs_count{table=~'${table:pipe}',app='$app'}[$duration])) by (table) > 0",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{table}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Query Response Time",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "s",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 78
-      },
-      "id": 96,
-      "panels": [],
-      "repeat": null,
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 30,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "nginx-json",
-          "value": "nginx-json"
-        }
-      },
-      "title": "Table - $table",
-      "type": "row"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "description": "How fast Dashbase is ingesting (accepting) input data. \"original\" is only counting the size of the original log messages.",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 8,
-        "x": 0,
-        "y": 79
-      },
-      "id": 97,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "minSpan": 5,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeat": null,
-      "repeatDirection": "v",
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 22,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "nginx-json",
-          "value": "nginx-json"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(rate(dashbase_index_event_size_sum{app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by (table)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "filebeat -> table",
-          "refId": "A"
-        },
-        {
-          "expr": "sum(rate(dashbase_filebeat_parser_message_bytes_received{app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by (table) > 0",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "filebeat -> table (original)",
-          "refId": "B"
-        },
-        {
-          "expr": "avg(dashbase_firehose_kafka_consumer_fetch_manager_metrics_bytes_consumed_rate{table=~'${table:pipe}',app='$app'}) by (table)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "kafka -> table",
-          "refId": "C"
-        },
-        {
-          "expr": "sum(rate(dashbase_proxy_bytes_received{app=\"$app\",topic=\"$table\"}[$duration])) by (topic)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "proxy -> kafka",
-          "refId": "D"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Ingestion Throughput",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "Bps",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 8,
-        "x": 8,
-        "y": 79
-      },
-      "id": 98,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 47,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "nginx-json",
-          "value": "nginx-json"
-        }
-      },
-      "seriesOverrides": [
-        {
-          "alias": "/bytes/",
-          "yaxis": 2
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "avg(rate(dashbase_ingestion_events_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
-          "format": "time_series",
-          "hide": false,
-          "intervalFactor": 1,
-          "legendFormat": "events ingested",
-          "refId": "A"
-        },
-        {
-          "expr": "avg(rate(dashbase_indexer_events_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "events indexed",
-          "refId": "B"
-        },
-        {
-          "expr": "avg(rate(dashbase_ingestion_bytes_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
-          "format": "time_series",
-          "hide": true,
-          "intervalFactor": 1,
-          "legendFormat": "bytes indexed",
-          "refId": "D"
-        },
-        {
-          "expr": "avg(rate(dashbase_ingestion_bytes_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
-          "format": "time_series",
-          "hide": true,
-          "intervalFactor": 1,
-          "legendFormat": "bytes ingested",
-          "refId": "C"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Ingestion / Index",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "bytes",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "decimals": null,
-      "description": "Delay from event produce until searchable",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 8,
-        "x": 16,
-        "y": 79
-      },
-      "id": 99,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "sort": "current",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeat": null,
-      "repeatDirection": "v",
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 14,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "nginx-json",
-          "value": "nginx-json"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "avg(rate(dashbase_indexer_full_latency_secs_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_indexer_full_latency_secs_count{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{table}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Ingestion Delay",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "s",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "s",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 88
-      },
-      "id": 100,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sort": "current",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 16,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "nginx-json",
-          "value": "nginx-json"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(rate(dashbase_search_query_latency_secs_count{table=~'${table:pipe}',app='$app'}[$duration])) by (table) > 0",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "queries / sec",
-          "refId": "A"
-        },
-        {
-          "expr": "sum (sum by (account,table) (rate(dashbase_query_count{app=\"$app\",component=\"api\",table=~\"$table(/.+)?|\\\\*\"}[$duration]))) > 0",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "users / sec",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Query Rate",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": "Query/User Per Second",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fill": 0,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 88
-      },
-      "id": 101,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sort": "current",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 18,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "nginx-json",
-          "value": "nginx-json"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "avg(rate(dashbase_search_query_latency_secs_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_search_query_latency_secs_count{table=~'${table:pipe}',app='$app'}[$duration])) by (table) > 0",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{table}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Query Response Time",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "s",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 97
-      },
-      "id": 102,
-      "panels": [],
-      "repeat": null,
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 30,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "sink",
-          "value": "sink"
-        }
-      },
-      "title": "Table - $table",
-      "type": "row"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "description": "How fast Dashbase is ingesting (accepting) input data. \"original\" is only counting the size of the original log messages.",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 8,
-        "x": 0,
-        "y": 98
-      },
-      "id": 103,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "minSpan": 5,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeat": null,
-      "repeatDirection": "v",
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 22,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "sink",
-          "value": "sink"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(rate(dashbase_index_event_size_sum{app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by (table)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "filebeat -> table",
-          "refId": "A"
-        },
-        {
-          "expr": "sum(rate(dashbase_filebeat_parser_message_bytes_received{app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by (table) > 0",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "filebeat -> table (original)",
-          "refId": "B"
-        },
-        {
-          "expr": "avg(dashbase_firehose_kafka_consumer_fetch_manager_metrics_bytes_consumed_rate{table=~'${table:pipe}',app='$app'}) by (table)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "kafka -> table",
-          "refId": "C"
-        },
-        {
-          "expr": "sum(rate(dashbase_proxy_bytes_received{app=\"$app\",topic=\"$table\"}[$duration])) by (topic)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "proxy -> kafka",
-          "refId": "D"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Ingestion Throughput",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "Bps",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 8,
-        "x": 8,
-        "y": 98
-      },
-      "id": 104,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 47,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "sink",
-          "value": "sink"
-        }
-      },
-      "seriesOverrides": [
-        {
-          "alias": "/bytes/",
-          "yaxis": 2
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "avg(rate(dashbase_ingestion_events_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
-          "format": "time_series",
-          "hide": false,
-          "intervalFactor": 1,
-          "legendFormat": "events ingested",
-          "refId": "A"
-        },
-        {
-          "expr": "avg(rate(dashbase_indexer_events_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "events indexed",
-          "refId": "B"
-        },
-        {
-          "expr": "avg(rate(dashbase_ingestion_bytes_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
-          "format": "time_series",
-          "hide": true,
-          "intervalFactor": 1,
-          "legendFormat": "bytes indexed",
-          "refId": "D"
-        },
-        {
-          "expr": "avg(rate(dashbase_ingestion_bytes_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
-          "format": "time_series",
-          "hide": true,
-          "intervalFactor": 1,
-          "legendFormat": "bytes ingested",
-          "refId": "C"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Ingestion / Index",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "bytes",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "decimals": null,
-      "description": "Delay from event produce until searchable",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 8,
-        "x": 16,
-        "y": 98
-      },
-      "id": 105,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "sort": "current",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeat": null,
-      "repeatDirection": "v",
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 14,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "sink",
-          "value": "sink"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "avg(rate(dashbase_indexer_full_latency_secs_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_indexer_full_latency_secs_count{table=~'${table:pipe}',app='$app'}[$duration])) by (table)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{table}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Ingestion Delay",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "s",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "s",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 107
-      },
-      "id": 106,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sort": "current",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 16,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "sink",
-          "value": "sink"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(rate(dashbase_search_query_latency_secs_count{table=~'${table:pipe}',app='$app'}[$duration])) by (table) > 0",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "queries / sec",
-          "refId": "A"
-        },
-        {
-          "expr": "sum (sum by (account,table) (rate(dashbase_query_count{app=\"$app\",component=\"api\",table=~\"$table(/.+)?|\\\\*\"}[$duration]))) > 0",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "users / sec",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Query Rate",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": "Query/User Per Second",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fill": 0,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 107
-      },
-      "id": 107,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sort": "current",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1556571494736,
-      "repeatPanelId": 18,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "table": {
-          "selected": false,
-          "text": "sink",
-          "value": "sink"
+          "text": "kubernetes-logs",
+          "value": "kubernetes-logs"
         }
       },
       "seriesOverrides": [],
@@ -2952,7 +1322,7 @@
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 16,
+  "schemaVersion": 18,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -2960,10 +1330,10 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
+          "selected": false,
           "tags": [],
-          "text": "staging",
-          "value": "staging"
+          "text": "monitor",
+          "value": "monitor"
         },
         "datasource": "Prometheus",
         "definition": "",
@@ -3076,5 +1446,5 @@
   "timezone": "",
   "title": "Dashbase Overview",
   "uid": "qwOotTpik",
-  "version": 4
+  "version": 5
 }
