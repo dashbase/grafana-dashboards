@@ -15,7 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1556001524683,
+  "id": 8,
+  "iteration": 1556905184118,
   "links": [],
   "panels": [
     {
@@ -46,14 +47,15 @@
       },
       "id": 57,
       "legend": {
-        "alignAsTable": false,
-        "avg": false,
-        "current": false,
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
         "max": false,
         "min": false,
+        "rightSide": true,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": false,
       "linewidth": 1,
@@ -149,7 +151,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "File count check",
+      "title": "Local and Dashbase Count",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -201,13 +203,15 @@
       },
       "id": 62,
       "legend": {
-        "avg": false,
-        "current": false,
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
         "max": false,
         "min": false,
+        "rightSide": true,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": false,
       "linewidth": 1,
@@ -251,7 +255,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Count percentile",
+      "title": "Count Percentile",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -296,135 +300,6 @@
         "x": 0,
         "y": 19
       },
-      "id": 54,
-      "panels": [],
-      "title": "Count",
-      "type": "row"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 24,
-        "x": 0,
-        "y": 20
-      },
-      "id": 63,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": false,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": true,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_host Local",
-          "expr": "nightwatch_verify_local_count{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}",
-          "format": "time_series",
-          "groupBy": [
-            {
-              "params": [
-                "host"
-              ],
-              "type": "tag"
-            }
-          ],
-          "interval": "1min",
-          "intervalFactor": 1,
-          "legendFormat": "{{host}}",
-          "measurement": "nightwatch-verify",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "local_count"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$hostname$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "File count check",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 29
-      },
       "id": 60,
       "panels": [],
       "title": "Time Used",
@@ -441,7 +316,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 30
+        "y": 20
       },
       "id": 58,
       "legend": {
@@ -557,7 +432,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 30
+        "y": 20
       },
       "id": 61,
       "legend": {
@@ -673,7 +548,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 39
+        "y": 29
       },
       "id": 52,
       "legend": {
@@ -784,7 +659,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 48
+        "y": 38
       },
       "id": 22,
       "panels": [
@@ -1021,7 +896,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 16,
+  "schemaVersion": 18,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1029,7 +904,6 @@
       {
         "allValue": ".*",
         "current": {
-          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -1057,7 +931,6 @@
       {
         "allValue": ".*",
         "current": {
-          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -1116,5 +989,5 @@
   "timezone": "",
   "title": "NightWatch Monitor",
   "uid": "o1rMwNrik",
-  "version": 3
+  "version": 6
 }
