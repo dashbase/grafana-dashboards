@@ -187,10 +187,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_proxy_events_parse_error_total{app='$app'}[$duration]))",
+          "expr": "sum(rate(dashbase_proxy_events_parse_error_total{app='$app'}[$duration])) by (topic) > 0",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "proxy - parse error",
+          "legendFormat": "proxy {{topic}} - parse error",
           "refId": "A"
         },
         {
@@ -204,35 +204,35 @@
           "expr": "sum(rate(dashbase_overflow_message{app='$app'}[$duration])) > 0",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "proxy - message overflow",
+          "legendFormat": "message overflow",
           "refId": "C"
         },
         {
-          "expr": "sum(rate(dashbase_index_event_parse_error{table=~'${table:pipe}',app='$app'}[$duration])) > 0",
+          "expr": "sum(rate(dashbase_index_event_parse_error{table=~'${table:pipe}',app='$app'}[$duration])) by (table) > 0",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "table - input parse error",
+          "legendFormat": "table {{table}} - input parse error",
           "refId": "D"
         },
         {
-          "expr": "sum(rate(io_dashbase_http_es_IndexResource_bulkPost_exceptions_total{table=~'${table:pipe}',app='$app'}[$duration])) > 0",
+          "expr": "sum(rate(io_dashbase_http_es_IndexResource_bulkPost_exceptions_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table) > 0",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "table - input rest exception",
+          "legendFormat": "table {{table}} - input rest exception",
           "refId": "E"
         },
         {
-          "expr": "sum(rate(dashbase_parse_error_total{table=~'${table:pipe}',app='$app'}[$duration])) > 0",
+          "expr": "sum(rate(dashbase_parse_error_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table) > 0",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "table - index parse error",
+          "legendFormat": "table {{table}} - index parse error",
           "refId": "F"
         },
         {
-          "expr": "sum(rate(dashbase_parse_skipped_total{table=~'${table:pipe}',app='$app'}[$duration])) > 0",
+          "expr": "sum(rate(dashbase_parse_skipped_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table) > 0",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "table - skipped",
+          "legendFormat": "table {{table}} - skipped",
           "refId": "G"
         },
         {
@@ -1446,5 +1446,5 @@
   "timezone": "",
   "title": "Dashbase Overview",
   "uid": "qwOotTpik",
-  "version": 5
+  "version": 6
 }
