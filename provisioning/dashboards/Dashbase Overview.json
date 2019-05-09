@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
-  "iteration": 1557437267503,
+  "iteration": 1556753202308,
   "links": [],
   "panels": [
     {
@@ -677,8 +676,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "nginx-json",
-          "value": "nginx-json"
+          "text": "kubernetes-logs",
+          "value": "kubernetes-logs"
         }
       },
       "title": "Table - $table",
@@ -723,8 +722,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "nginx-json",
-          "value": "nginx-json"
+          "text": "kubernetes-logs",
+          "value": "kubernetes-logs"
         }
       },
       "seriesOverrides": [],
@@ -837,8 +836,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "nginx-json",
-          "value": "nginx-json"
+          "text": "kubernetes-logs",
+          "value": "kubernetes-logs"
         }
       },
       "seriesOverrides": [
@@ -965,8 +964,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "nginx-json",
-          "value": "nginx-json"
+          "text": "kubernetes-logs",
+          "value": "kubernetes-logs"
         }
       },
       "seriesOverrides": [],
@@ -1064,8 +1063,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "nginx-json",
-          "value": "nginx-json"
+          "text": "kubernetes-logs",
+          "value": "kubernetes-logs"
         }
       },
       "seriesOverrides": [],
@@ -1160,8 +1159,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "nginx-json",
-          "value": "nginx-json"
+          "text": "kubernetes-logs",
+          "value": "kubernetes-logs"
         }
       },
       "seriesOverrides": [],
@@ -1263,8 +1262,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "nginx-json",
-          "value": "nginx-json"
+          "text": "kubernetes-logs",
+          "value": "kubernetes-logs"
         }
       },
       "seriesOverrides": [],
@@ -1323,7 +1322,7 @@
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 16,
+  "schemaVersion": 18,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1331,9 +1330,10 @@
       {
         "allValue": null,
         "current": {
+          "selected": false,
           "tags": [],
-          "text": "nightly",
-          "value": "nightly"
+          "text": "monitor",
+          "value": "monitor"
         },
         "datasource": "Prometheus",
         "definition": "",
