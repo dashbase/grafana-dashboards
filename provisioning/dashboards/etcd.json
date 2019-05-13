@@ -12,12 +12,11 @@
       }
     ]
   },
-  "description": "etcd sample Grafana dashboard with Prometheus",
+  "description": "etcd Grafana dashboard with Prometheus",
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 7,
-  "iteration": 1553293855498,
+  "iteration": 1557530655141,
   "links": [],
   "panels": [
     {
@@ -83,8 +82,9 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(etcd_server_has_leader{app=\"$app\"})",
+          "expr": "sum(etcd_server_has_leader{dashbase_io_app=\"$app\"})",
           "format": "time_series",
+          "instant": true,
           "intervalFactor": 2,
           "legendFormat": "",
           "metric": "etcd_server_has_leader",
@@ -144,7 +144,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(grpc_server_started_total{app=\"$app\",grpc_type=\"unary\"}[5m]))",
+          "expr": "sum(rate(grpc_server_started_total{dashbase_io_app=\"$app\",grpc_type=\"unary\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "RPC Rate",
@@ -153,7 +153,7 @@
           "step": 2
         },
         {
-          "expr": "sum(rate(grpc_server_handled_total{app=\"$app\",grpc_type=\"unary\",grpc_code!=\"OK\"}[5m]))",
+          "expr": "sum(rate(grpc_server_handled_total{dashbase_io_app=\"$app\",grpc_type=\"unary\",grpc_code!=\"OK\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "RPC Failed Rate",
@@ -243,7 +243,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(grpc_server_started_total{app=\"$app\",grpc_service=\"etcdserverpb.Watch\",grpc_type=\"bidi_stream\"}) - sum(grpc_server_handled_total{app=\"$app\",grpc_service=\"etcdserverpb.Watch\",grpc_type=\"bidi_stream\"})",
+          "expr": "sum(grpc_server_started_total{dashbase_io_app=\"$app\",grpc_service=\"etcdserverpb.Watch\",grpc_type=\"bidi_stream\"}) - sum(grpc_server_handled_total{dashbase_io_app=\"$app\",grpc_service=\"etcdserverpb.Watch\",grpc_type=\"bidi_stream\"})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "Watch Streams",
@@ -252,7 +252,7 @@
           "step": 4
         },
         {
-          "expr": "sum(grpc_server_started_total{app=\"$app\",grpc_service=\"etcdserverpb.Lease\",grpc_type=\"bidi_stream\"}) - sum(grpc_server_handled_total{app=\"$app\",grpc_service=\"etcdserverpb.Lease\",grpc_type=\"bidi_stream\"})",
+          "expr": "sum(grpc_server_started_total{dashbase_io_app=\"$app\",grpc_service=\"etcdserverpb.Lease\",grpc_type=\"bidi_stream\"}) - sum(grpc_server_handled_total{dashbase_io_app=\"$app\",grpc_service=\"etcdserverpb.Lease\",grpc_type=\"bidi_stream\"})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "Lease Streams",
@@ -343,7 +343,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "etcd_mvcc_db_total_size_in_bytes{app=\"$app\"}",
+          "expr": "etcd_mvcc_db_total_size_in_bytes{dashbase_io_app=\"$app\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -433,7 +433,7 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "histogram_quantile(0.99, sum(rate(etcd_disk_wal_fsync_duration_seconds_bucket{app=\"$app\"}[5m])) by (instance, le))",
+          "expr": "histogram_quantile(0.99, sum(rate(etcd_disk_wal_fsync_duration_seconds_bucket{dashbase_io_app=\"$app\"}[5m])) by (instance, le))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -443,7 +443,7 @@
           "step": 4
         },
         {
-          "expr": "histogram_quantile(0.99, sum(rate(etcd_disk_backend_commit_duration_seconds_bucket{app=\"$app\"}[5m])) by (instance, le))",
+          "expr": "histogram_quantile(0.99, sum(rate(etcd_disk_backend_commit_duration_seconds_bucket{dashbase_io_app=\"$app\"}[5m])) by (instance, le))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}} DB fsync",
@@ -531,7 +531,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "process_resident_memory_bytes{app=\"$app\",component=\"etcd\"}",
+          "expr": "process_resident_memory_bytes{dashbase_io_app=\"$app\",component=\"etcd\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}} Resident Memory",
@@ -621,7 +621,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(etcd_network_client_grpc_received_bytes_total{app=\"$app\"}[5m])",
+          "expr": "rate(etcd_network_client_grpc_received_bytes_total{dashbase_io_app=\"$app\"}[5m])",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}} Client Traffic In",
@@ -711,7 +711,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(etcd_network_client_grpc_sent_bytes_total{app=\"$app\"}[5m])",
+          "expr": "rate(etcd_network_client_grpc_sent_bytes_total{dashbase_io_app=\"$app\"}[5m])",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}} Client Traffic Out",
@@ -801,7 +801,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(etcd_network_peer_received_bytes_total{app=\"$app\"}[5m])) by (instance)",
+          "expr": "sum(rate(etcd_network_peer_received_bytes_total{dashbase_io_app=\"$app\"}[5m])) by (instance)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}} Peer Traffic In",
@@ -892,7 +892,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(etcd_network_peer_sent_bytes_total{app=\"$app\"}[5m])) by (instance)",
+          "expr": "sum(rate(etcd_network_peer_sent_bytes_total{dashbase_io_app=\"$app\"}[5m])) by (instance)",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -982,7 +982,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(etcd_server_proposals_failed_total{app=\"$app\"}[5m]))",
+          "expr": "sum(rate(etcd_server_proposals_failed_total{dashbase_io_app=\"$app\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "Proposal Failure Rate",
@@ -991,7 +991,7 @@
           "step": 2
         },
         {
-          "expr": "sum(etcd_server_proposals_pending{app=\"$app\"})",
+          "expr": "sum(etcd_server_proposals_pending{dashbase_io_app=\"$app\"})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "Proposal Pending Total",
@@ -1000,7 +1000,7 @@
           "step": 2
         },
         {
-          "expr": "sum(rate(etcd_server_proposals_committed_total{app=\"$app\"}[5m]))",
+          "expr": "sum(rate(etcd_server_proposals_committed_total{dashbase_io_app=\"$app\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "Proposal Commit Rate",
@@ -1009,7 +1009,7 @@
           "step": 2
         },
         {
-          "expr": "sum(rate(etcd_server_proposals_applied_total{app=\"$app\"}[5m]))",
+          "expr": "sum(rate(etcd_server_proposals_applied_total{dashbase_io_app=\"$app\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "Proposal Apply Rate",
@@ -1101,7 +1101,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "changes(etcd_server_leader_changes_seen_total{app=\"$app\"}[1d])",
+          "expr": "changes(etcd_server_leader_changes_seen_total{dashbase_io_app=\"$app\"}[1d])",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}} Total Leader Elections Per Day",
@@ -1154,7 +1154,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 16,
+  "schemaVersion": 18,
   "style": "dark",
   "tags": [],
   "templating": {
