@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1557530655141,
+  "iteration": 1560981345899,
   "links": [],
   "panels": [
     {
@@ -343,7 +343,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "etcd_mvcc_db_total_size_in_bytes{dashbase_io_app=\"$app\"}",
+          "expr": "etcd_debugging_mvcc_db_total_size_in_bytes{dashbase_io_app=\"$app\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -352,6 +352,13 @@
           "metric": "",
           "refId": "A",
           "step": 4
+        },
+        {
+          "expr": "etcd_debugging_mvcc_db_total_size_in_bytes{app=\"$app\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{instance}} DB Size",
+          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -531,13 +538,20 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "process_resident_memory_bytes{dashbase_io_app=\"$app\",component=\"etcd\"}",
+          "expr": "process_resident_memory_bytes{dashbase_io_app=\"$app\",instance=~\"etcd.*\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{instance}} Resident Memory",
           "metric": "process_resident_memory_bytes",
           "refId": "A",
           "step": 4
+        },
+        {
+          "expr": "process_resident_memory_bytes{app=\"$app\",component=\"etcd\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{instance}} Resident Memory",
+          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -1162,8 +1176,10 @@
       {
         "allValue": null,
         "current": {
-          "text": "dashbase",
-          "value": "dashbase"
+          "selected": false,
+          "tags": [],
+          "text": "staging",
+          "value": "staging"
         },
         "datasource": "Prometheus",
         "definition": "label_values(dashbase_table_info, app)",
@@ -1219,5 +1235,5 @@
   "timezone": "",
   "title": "etcd Overview",
   "uid": "ymyAHE3mk",
-  "version": 2
+  "version": 4
 }
