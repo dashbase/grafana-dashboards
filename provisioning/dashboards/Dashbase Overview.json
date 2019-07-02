@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1556753202308,
+  "iteration": 1562103587842,
   "links": [],
   "panels": [
     {
@@ -194,14 +194,14 @@
           "refId": "A"
         },
         {
-          "expr": "sum(rate(dashbase_kafka_failure{app='$app'}[$duration])) > 0",
+          "expr": "proxy:kafka_failure:sum{app='$app'} > 0",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "proxy - kafka failure",
           "refId": "B"
         },
         {
-          "expr": "sum(rate(dashbase_overflow_message{app='$app'}[$duration])) > 0",
+          "expr": "proxy:overflow_message:sum{app='$app'} > 0",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "message overflow",
@@ -241,6 +241,13 @@
           "intervalFactor": 1,
           "legendFormat": "api - error calling tables",
           "refId": "H"
+        },
+        {
+          "expr": "proxy:bulk_post_exception:sum{app='$app'} > 0",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "proxy - exception",
+          "refId": "I"
         }
       ],
       "thresholds": [],
@@ -338,11 +345,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(jvm_cpu_usage_percent{app='$app'}) by (instance)",
+          "expr": "avg(jvm_cpu_usage_percent{app='$app',component!='proxy'}) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
           "refId": "A"
+        },
+        {
+          "expr": "proxy:cpu:max{app='$app'}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "proxy",
+          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -427,7 +441,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(jvm_memory_heap_usage{app='$app'}) by (instance)",
+          "expr": "avg(jvm_memory_heap_usage{app='$app',component!=\"proxy\"}) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
@@ -440,6 +454,13 @@
           "intervalFactor": 1,
           "legendFormat": "table - {{table}}",
           "refId": "B"
+        },
+        {
+          "expr": "proxy:heap_usage:max{app='$app'}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "proxy",
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -676,8 +697,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "kubernetes-logs",
-          "value": "kubernetes-logs"
+          "text": "filebeat",
+          "value": "filebeat"
         }
       },
       "title": "Table - $table",
@@ -722,8 +743,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "kubernetes-logs",
-          "value": "kubernetes-logs"
+          "text": "filebeat",
+          "value": "filebeat"
         }
       },
       "seriesOverrides": [],
@@ -836,8 +857,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "kubernetes-logs",
-          "value": "kubernetes-logs"
+          "text": "filebeat",
+          "value": "filebeat"
         }
       },
       "seriesOverrides": [
@@ -964,8 +985,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "kubernetes-logs",
-          "value": "kubernetes-logs"
+          "text": "filebeat",
+          "value": "filebeat"
         }
       },
       "seriesOverrides": [],
@@ -1063,8 +1084,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "kubernetes-logs",
-          "value": "kubernetes-logs"
+          "text": "filebeat",
+          "value": "filebeat"
         }
       },
       "seriesOverrides": [],
@@ -1159,8 +1180,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "kubernetes-logs",
-          "value": "kubernetes-logs"
+          "text": "filebeat",
+          "value": "filebeat"
         }
       },
       "seriesOverrides": [],
@@ -1262,8 +1283,8 @@
       "scopedVars": {
         "table": {
           "selected": false,
-          "text": "kubernetes-logs",
-          "value": "kubernetes-logs"
+          "text": "filebeat",
+          "value": "filebeat"
         }
       },
       "seriesOverrides": [],
@@ -1330,10 +1351,8 @@
       {
         "allValue": null,
         "current": {
-          "selected": false,
-          "tags": [],
-          "text": "monitor",
-          "value": "monitor"
+          "text": "dashbase",
+          "value": "dashbase"
         },
         "datasource": "Prometheus",
         "definition": "",
@@ -1446,5 +1465,5 @@
   "timezone": "",
   "title": "Dashbase Overview",
   "uid": "qwOotTpik",
-  "version": 6
+  "version": 2
 }

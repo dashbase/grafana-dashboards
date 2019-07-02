@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1548279471300,
+  "iteration": 1562102144930,
   "links": [],
   "panels": [
     {
@@ -47,7 +47,7 @@
       "id": 8,
       "legend": {
         "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": true,
         "max": false,
         "min": false,
@@ -82,14 +82,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_proxy_events_received{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
+          "expr": "proxy:events_received:sum{topic=~'${kafka_topic:pipe}',app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "events - {{topic}}",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(dashbase_proxy_bytes_received{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
+          "expr": "proxy:bytes_received:sum{topic=~'${kafka_topic:pipe}',app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "bytes - {{topic}}",
@@ -98,6 +98,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Input",
       "tooltip": {
@@ -152,7 +153,7 @@
       "id": 17,
       "legend": {
         "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": true,
         "max": false,
         "min": false,
@@ -187,14 +188,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_proxy_events_sent{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
+          "expr": "proxy:events_sent:sum{topic=~'${kafka_topic:pipe}',app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "events -  {{topic}}",
           "refId": "C"
         },
         {
-          "expr": "sum(rate(dashbase_proxy_bytes_sent{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
+          "expr": "proxy:bytes_sent:sum{topic=~'${kafka_topic:pipe}',app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "bytes - {{topic}}",
@@ -203,6 +204,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Output",
       "tooltip": {
@@ -257,7 +259,7 @@
       "id": 28,
       "legend": {
         "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": true,
         "max": false,
         "min": false,
@@ -292,28 +294,28 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_proxy_events_sent{topic=~'${kafka_topic:pipe}',app='$app'}[$duration]))",
+          "expr": "sum(proxy:events_sent:sum{topic=~'${kafka_topic:pipe}',app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "events out",
           "refId": "C"
         },
         {
-          "expr": "sum(rate(dashbase_proxy_bytes_sent{topic=~'${kafka_topic:pipe}',app='$app'}[$duration]))",
+          "expr": "sum(proxy:bytes_sent:sum{topic=~'${kafka_topic:pipe}',app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "bytes out",
           "refId": "D"
         },
         {
-          "expr": "sum(rate(dashbase_proxy_events_received{topic=~'${kafka_topic:pipe}',app='$app'}[$duration]))",
+          "expr": "sum(proxy:events_received:sum{topic=~'${kafka_topic:pipe}',app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "events in",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(dashbase_proxy_bytes_received{topic=~'${kafka_topic:pipe}',app='$app'}[$duration]))",
+          "expr": "sum(proxy:bytes_received:sum{topic=~'${kafka_topic:pipe}',app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "bytes in",
@@ -322,6 +324,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Total I/O",
       "tooltip": {
@@ -375,14 +378,15 @@
       },
       "id": 6,
       "legend": {
+        "alignAsTable": true,
         "avg": false,
-        "current": false,
+        "current": true,
         "max": false,
         "min": false,
-        "rightSide": false,
+        "rightSide": true,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -404,7 +408,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(io_dashbase_esproxy_api_IndexAPI_bulkPost_count{app='$app'}[$duration]))",
+          "expr": "proxy:bulk_post_count:sum{app='$app'}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -412,7 +416,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum(rate(io_dashbase_esproxy_api_IndexAPI_bulkPost_exceptions_total{app='$app'}[$duration]))",
+          "expr": "proxy:bulk_post_exception:sum{app='$app'}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -420,21 +424,21 @@
           "refId": "B"
         },
         {
-          "expr": "avg(io_dashbase_esproxy_api_IndexAPI_bulkPost{quantile='0.5',app='$app'})",
+          "expr": "proxy:bulk_post_latency:avg{quantile='0.5',app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "latency (p50)",
           "refId": "C"
         },
         {
-          "expr": "avg(io_dashbase_esproxy_api_IndexAPI_bulkPost{quantile='0.95',app='$app'})",
+          "expr": "proxy:bulk_post_latency:avg{quantile='0.95',app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "latency (p95)",
           "refId": "D"
         },
         {
-          "expr": "avg(io_dashbase_esproxy_api_IndexAPI_bulkPost{quantile='0.99',app='$app'})",
+          "expr": "proxy:bulk_post_latency:avg{quantile='0.99',app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "latency (p99)",
@@ -443,6 +447,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Input - _bulk POST endpoint",
       "tooltip": {
@@ -497,7 +502,7 @@
       "id": 18,
       "legend": {
         "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": true,
         "max": false,
         "min": false,
@@ -528,7 +533,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(dashbase_proxy_event_delay_sum{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])/rate(dashbase_proxy_event_delay_count{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
+          "expr": "proxy:event_delay:avg{topic=~'${kafka_topic:pipe}',app='$app'}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -536,22 +541,16 @@
           "refId": "A"
         },
         {
-          "expr": "1 - avg(rate(dashbase_proxy_event_delay_bucket{topic=~'${kafka_topic:pipe}',app='$app',le=\"60.0\"}[$duration])/ignoring(le) rate(dashbase_proxy_event_delay_count{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
+          "expr": "proxy:event_delay:ratio{topic=~'${kafka_topic:pipe}',app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "% > 1m - {{topic}}",
+          "legendFormat": "% > {{greater_than}} - {{topic}}",
           "refId": "B"
-        },
-        {
-          "expr": "1 - avg(rate(dashbase_proxy_event_delay_bucket{topic=~'${kafka_topic:pipe}',app='$app',le=\"3600.0\"}[$duration])/ignoring(le) rate(dashbase_proxy_event_delay_count{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "% > 1h - {{topic}}",
-          "refId": "C"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Delays",
       "tooltip": {
@@ -595,7 +594,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "fill": 1,
       "gridPos": {
         "h": 9,
@@ -635,29 +633,23 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "floor(avg(rate(dashbase_proxy_event_size_sum{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])/rate(dashbase_proxy_event_size_count{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic))",
+          "expr": "proxy:event_size:avg{topic=~'${kafka_topic:pipe}',app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "average - {{topic}}",
           "refId": "A"
         },
         {
-          "expr": "1 - avg(rate(dashbase_proxy_event_size_bucket{topic=~'${kafka_topic:pipe}',app='$app',le=\"1048576.0\"}[$duration])/ignoring(le) rate(dashbase_proxy_event_size_count{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
+          "expr": "proxy:event_size:ratio{topic=~'${kafka_topic:pipe}',app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "% > 1MB - {{topic}}",
+          "legendFormat": "% > {{greater_than}} - {{topic}}",
           "refId": "B"
-        },
-        {
-          "expr": "1 - avg(rate(dashbase_proxy_event_size_bucket{topic=~'${kafka_topic:pipe}',app='$app',le=\"1.048576E7\"}[$duration])/ignoring(le) rate(dashbase_proxy_event_size_count{topic=~'${kafka_topic:pipe}',app='$app'}[$duration])) by (topic)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "% > 10MB - {{topic}}",
-          "refId": "C"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Event Size",
       "tooltip": {
@@ -749,7 +741,7 @@
           "refId": "B"
         },
         {
-          "expr": "sum(rate(dashbase_kafka_failure{app='$app'}[$duration])) by (exception)",
+          "expr": "sum(proxy:kafka_failure:sum{app='$app'}) by (exception)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -757,7 +749,7 @@
           "refId": "C"
         },
         {
-          "expr": "sum(rate(dashbase_overflow_message{app='$app'}[$duration]))",
+          "expr": "proxy:overflow_message:sum{app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "overflow message",
@@ -766,6 +758,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Error",
       "tooltip": {
@@ -809,7 +802,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "description": "# of events in the internal queue (which is only used to buffer events when Kafka is down)",
       "fill": 1,
       "gridPos": {
@@ -842,15 +834,16 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "max(dashbase_kafka_producer_internal_queue_size_proxy_sink{topic=~'${kafka_topic:pipe}',app='$app'})",
+          "expr": "proxy:internal_queue_size:max{topic=~'${kafka_topic:pipe}',app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{topic}}",
+          "legendFormat": "queue size",
           "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Internal Queue Size",
       "tooltip": {
@@ -963,7 +956,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(up{app='$app',component='proxy'}) by (component)",
+          "expr": "proxy:instance_count{app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -1000,7 +993,7 @@
       "id": 2,
       "legend": {
         "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": true,
         "max": false,
         "min": false,
@@ -1023,16 +1016,24 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "jvm_cpu_usage_percent{component='proxy',app='$app'}",
+          "expr": "proxy:cpu:max{app='$app'}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "max",
           "refId": "A"
+        },
+        {
+          "expr": "proxy:cpu:avg{app='$app'}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "avg",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "CPU",
       "tooltip": {
@@ -1132,7 +1133,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": " max(jvm_attribute_uptime{component='proxy',app='$app'})",
+          "expr": "proxy:uptime:max{app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -1158,7 +1159,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "fill": 1,
       "gridPos": {
         "h": 9,
@@ -1169,7 +1169,7 @@
       "id": 26,
       "legend": {
         "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": true,
         "max": false,
         "min": false,
@@ -1192,14 +1192,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(jvm_gc_G1_Young_Generation_time{app='$app',component='proxy'}[$duration])",
+          "expr": "proxy:gc_young:max{app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "young gen - {{instance}}",
           "refId": "A"
         },
         {
-          "expr": "rate(jvm_gc_G1_Old_Generation_time{app='$app',component='proxy'}[$duration])",
+          "expr": "proxy:gc_old:max{app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "old gen - {{instance}}",
@@ -1208,6 +1208,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "GC time spent",
       "tooltip": {
@@ -1262,7 +1263,7 @@
       "id": 4,
       "legend": {
         "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": true,
         "max": false,
         "min": false,
@@ -1291,23 +1292,24 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "jvm_memory_heap_used{component='proxy',app='$app'}",
+          "expr": "proxy:heap_used:max{app='$app'}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "used - {{instance}}",
+          "legendFormat": "used",
           "refId": "A"
         },
         {
-          "expr": "jvm_memory_heap_max{component='proxy',app='$app'}",
+          "expr": "proxy:heap_max:max{app='$app'}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "max - {{instance}}",
+          "legendFormat": "max",
           "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Memory",
       "tooltip": {
@@ -1348,7 +1350,7 @@
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 16,
+  "schemaVersion": 18,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1360,6 +1362,7 @@
           "value": "dashbase"
         },
         "datasource": "Prometheus",
+        "definition": "",
         "hide": 0,
         "includeAll": false,
         "label": null,
@@ -1369,6 +1372,7 @@
         "query": "label_values(dashbase_table_info, app)",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 2,
         "tagValuesQuery": "",
         "tags": [],
@@ -1385,6 +1389,7 @@
           ]
         },
         "datasource": "Prometheus",
+        "definition": "",
         "hide": 0,
         "includeAll": true,
         "label": null,
@@ -1394,6 +1399,7 @@
         "query": "label_values(dashbase_proxy_events_received{app='$app'},topic)",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 2,
         "tagValuesQuery": "",
         "tags": [],
@@ -1432,12 +1438,13 @@
           }
         ],
         "query": "1m,5m,15m",
+        "skipUrlSync": false,
         "type": "custom"
       }
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
@@ -1468,5 +1475,5 @@
   "timezone": "",
   "title": "Dashbase Proxy",
   "uid": "WBh5iVpiz",
-  "version": 1
+  "version": 2
 }
