@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1562102144930,
+  "iteration": 1562178183142,
   "links": [],
   "panels": [
     {
@@ -1204,6 +1204,13 @@
           "intervalFactor": 1,
           "legendFormat": "old gen - {{instance}}",
           "refId": "B"
+        },
+        {
+          "expr": "proxy:mark_sweep:max{app='$app'}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "mark sweep - {{instance}}",
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -1475,5 +1482,5 @@
   "timezone": "",
   "title": "Dashbase Proxy",
   "uid": "WBh5iVpiz",
-  "version": 2
+  "version": 3
 }
