@@ -15,7 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1562178183142,
+  "id": 2,
+  "iteration": 1562708255767,
   "links": [],
   "panels": [
     {
@@ -965,7 +966,7 @@
       "thresholds": "",
       "timeFrom": "1m",
       "timeShift": null,
-      "title": "instance count",
+      "title": "Instance Count",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
