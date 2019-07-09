@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1557447563405,
+  "iteration": 1562707607704,
   "links": [],
   "panels": [
     {
@@ -367,6 +367,7 @@
         "alignAsTable": true,
         "avg": false,
         "current": true,
+        "hideEmpty": false,
         "max": false,
         "min": false,
         "rightSide": true,
@@ -402,7 +403,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Time Range",
+      "title": "Retention in Days",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -418,8 +419,9 @@
       },
       "yaxes": [
         {
-          "format": "d",
-          "label": null,
+          "decimals": -1,
+          "format": "short",
+          "label": "Days",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -4138,10 +4140,8 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
-          "tags": [],
-          "text": "staging",
-          "value": "staging"
+          "text": "dashbase",
+          "value": "dashbase"
         },
         "datasource": "Prometheus",
         "definition": "",
@@ -4230,8 +4230,8 @@
         "current": {
           "selected": true,
           "tags": [],
-          "text": "table",
-          "value": "table"
+          "text": "instance",
+          "value": "instance"
         },
         "hide": 0,
         "includeAll": false,
@@ -4240,12 +4240,12 @@
         "name": "per",
         "options": [
           {
-            "selected": true,
+            "selected": false,
             "text": "table",
             "value": "table"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "instance",
             "value": "instance"
           }
@@ -4288,5 +4288,5 @@
   "timezone": "",
   "title": "Dashbase Table",
   "uid": "YhMqAJtmk",
-  "version": 14
+  "version": 15
 }
