@@ -7,6 +7,7 @@ COPY provisioning /etc/grafana/provisioning/
 # Set GF_PATHS_PROVISIONING=/etc/grafana/provisioning_swarm to enable it
 COPY provisioning /etc/grafana/provisioning_swarm/
 COPY dashboards_swarm/* /etc/grafana/provisioning_swarm/dashboards/
+COPY conf/grafana.ini /etc/grafana/grafana.ini
 
 # Run as root so that it can write a mounted volume (which can only be accessed by root)
 USER root
