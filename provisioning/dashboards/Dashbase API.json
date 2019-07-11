@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 15,
-  "iteration": 1557440239052,
+  "iteration": 1562869516246,
   "links": [],
   "panels": [
     {
@@ -91,7 +90,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(increase(dashbase_query_count{app=\"$app\", component=\"api\"}[1h]))",
+          "expr": "sum(increase(dashbase_query_count{app=\"$app\", component=\"api\",table=~'${table:pipe}'}[1h]))",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -149,7 +148,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_query_count{app=\"$app\", component=\"api\"}[$duration])) by (table)",
+          "expr": "sum(rate(dashbase_query_count{app=\"$app\", component=\"api\",table=~'${table:pipe}'}[$duration])) by (table)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{table}}",
@@ -235,7 +234,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (sum by (account,table) (rate(dashbase_query_count{app=\"$app\",component=\"api\"}[$duration]))) > 0",
+          "expr": "sum (sum by (account,table) (rate(dashbase_query_count{app=\"$app\",component=\"api\",table=~'${table:pipe}'}[$duration]))) > 0",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "users / sec",
@@ -838,7 +837,6 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "staging",
           "value": "staging"
         },
@@ -894,6 +892,35 @@
         "query": "1m,5m,15m",
         "skipUrlSync": false,
         "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "nginx-json + logmatters",
+          "value": [
+            "nginx-json",
+            "logmatters"
+          ]
+        },
+        "datasource": "Prometheus",
+        "definition": "label_values(dashbase_table_info, table)",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "table",
+        "options": [],
+        "query": "label_values(dashbase_table_info, table)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 2,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       }
     ]
   },
@@ -929,5 +956,5 @@
   "timezone": "",
   "title": "Dashbase API",
   "uid": "0yjWFPgZk",
-  "version": 8
+  "version": 10
 }
