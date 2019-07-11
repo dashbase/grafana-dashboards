@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1562804135298,
+  "iteration": 1562869516246,
   "links": [],
   "panels": [
     {
@@ -90,7 +90,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(increase(dashbase_query_count{app=\"$app\", component=\"api\", table=\"$table\"}[1h]))",
+          "expr": "sum(increase(dashbase_query_count{app=\"$app\", component=\"api\",table=~'${table:pipe}'}[1h]))",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -148,7 +148,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_query_count{app=\"$app\", component=\"api\", table=\"$table\"}[$duration])) by (table)",
+          "expr": "sum(rate(dashbase_query_count{app=\"$app\", component=\"api\",table=~'${table:pipe}'}[$duration])) by (table)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{table}}",
@@ -234,7 +234,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (sum by (account,table) (rate(dashbase_query_count{app=\"$app\",component=\"api\",table=\"$table\"}[$duration]))) > 0",
+          "expr": "sum (sum by (account,table) (rate(dashbase_query_count{app=\"$app\",component=\"api\",table=~'${table:pipe}'}[$duration]))) > 0",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "users / sec",
@@ -837,8 +837,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "dashbase",
-          "value": "dashbase"
+          "text": "staging",
+          "value": "staging"
         },
         "datasource": "Prometheus",
         "definition": "",
@@ -864,8 +864,8 @@
         "current": {
           "selected": false,
           "tags": [],
-          "text": "1m",
-          "value": "1m"
+          "text": "5m",
+          "value": "5m"
         },
         "hide": 0,
         "includeAll": false,
@@ -897,9 +897,10 @@
         "allValue": null,
         "current": {
           "tags": [],
-          "text": "intraswitch",
+          "text": "nginx-json + logmatters",
           "value": [
-            "intraswitch"
+            "nginx-json",
+            "logmatters"
           ]
         },
         "datasource": "Prometheus",
@@ -924,7 +925,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
@@ -955,5 +956,5 @@
   "timezone": "",
   "title": "Dashbase API",
   "uid": "0yjWFPgZk",
-  "version": 1
+  "version": 10
 }
