@@ -129,7 +129,7 @@
       ],
       "targets": [
         {
-          "expr": "sum(label_replace (kube_deployment_labels{label_dashbase_io=\"true\",label_app=\"$app\"} * on (deployment,exported_namespace) (kube_deployment_status_replicas_available), \"component\", \"$1\", \"deployment\", \"(.+)\") ) by (component)\nor\nsum(label_replace (kube_statefulset_labels{label_dashbase_io=\"true\",label_app=\"$app\"} * on (statefulset,exported_namespace) (kube_statefulset_status_replicas_ready), \"component\", \"$1\", \"statefulset\", \"(.+)\") ) by (component)",
+          "expr": "sum(label_replace (kube_deployment_labels{label_dashbase_io=\"true\",label_app=\"$app\"} * on (deployment,exported_namespace,instance) (kube_deployment_status_replicas_available), \"component\", \"$1\", \"deployment\", \"(.+)\") ) by (component)\nor\nsum(label_replace (kube_statefulset_labels{label_dashbase_io=\"true\",label_app=\"$app\"} * on (statefulset,exported_namespace,instance) (kube_statefulset_status_replicas_ready), \"component\", \"$1\", \"statefulset\", \"(.+)\") ) by (component)",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -138,7 +138,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum(label_replace (kube_deployment_labels{label_dashbase_io=\"true\",label_app=\"$app\"} * on (deployment,exported_namespace) (kube_deployment_status_replicas_available == bool on(deployment,exported_namespace) kube_deployment_spec_replicas), \"component\", \"$1\", \"deployment\", \"(.+)\") ) by (component)\nor\nsum(label_replace (kube_statefulset_labels{label_dashbase_io=\"true\",label_app=\"$app\"} * on (statefulset,exported_namespace) (kube_statefulset_status_replicas_ready == bool on(statefulset,exported_namespace) kube_statefulset_replicas), \"component\", \"$1\", \"statefulset\", \"(.+)\") ) by (component)",
+          "expr": "sum(label_replace (kube_deployment_labels{label_dashbase_io=\"true\",label_app=\"$app\"} * on (deployment,exported_namespace,instance) (kube_deployment_status_replicas_available == bool on(deployment,exported_namespace,instance) kube_deployment_spec_replicas), \"component\", \"$1\", \"deployment\", \"(.+)\") ) by (component)\nor\nsum(label_replace (kube_statefulset_labels{label_dashbase_io=\"true\",label_app=\"$app\"} * on (statefulset,exported_namespace,instance) (kube_statefulset_status_replicas_ready == bool on(statefulset,exported_namespace,instance) kube_statefulset_replicas), \"component\", \"$1\", \"statefulset\", \"(.+)\") ) by (component)",
           "format": "table",
           "hide": false,
           "instant": true,
