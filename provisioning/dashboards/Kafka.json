@@ -478,7 +478,7 @@
           "step": 4
         },
         {
-          "expr": "sum(rate(dashbase_proxy_events_sent{topic=~'${topic:pipe}',app='$app'}[5m]))",
+          "expr": "sum(proxy:events_sent:sum{topic=~'${topic:pipe}',app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "sent from proxy",
