@@ -1403,7 +1403,7 @@
         "multi": true,
         "name": "kafka_topic",
         "options": [],
-        "query": "label_values(dashbase_proxy_events_received{app='$app'},topic)",
+        "query": "label_values(proxy:events_received:sum{app='$app'},topic)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
