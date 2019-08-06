@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1562103587842,
+  "iteration": 1565111848896,
   "links": [],
   "panels": [
     {
@@ -696,9 +696,9 @@
       "repeat": "table",
       "scopedVars": {
         "table": {
-          "selected": false,
-          "text": "filebeat",
-          "value": "filebeat"
+          "selected": true,
+          "text": "nginx-json-kafka",
+          "value": "nginx-json-kafka"
         }
       },
       "title": "Table - $table",
@@ -742,9 +742,9 @@
       "repeatDirection": "v",
       "scopedVars": {
         "table": {
-          "selected": false,
-          "text": "filebeat",
-          "value": "filebeat"
+          "selected": true,
+          "text": "nginx-json-kafka",
+          "value": "nginx-json-kafka"
         }
       },
       "seriesOverrides": [],
@@ -753,32 +753,46 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_index_event_size_sum{app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by (instance)",
+          "expr": "sum(rate(dashbase_index_event_size_sum{app=\"$app\",table=\"${table}\"}[$duration])) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "filebeat -> {{instance}}",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(dashbase_filebeat_parser_message_bytes_received{app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by (instance) > 0",
+          "expr": "sum(rate(dashbase_filebeat_parser_message_bytes_received{app=\"$app\",table=\"${table}\"}[$duration])) by (instance) > 0",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "filebeat -> {{instance}} (original)",
           "refId": "B"
         },
         {
-          "expr": "avg(dashbase_firehose_kafka_consumer_fetch_manager_metrics_bytes_consumed_rate{table=~'${table:pipe}',app='$app'}) by (instance)",
+          "expr": "sum(dashbase_firehose_kafka_consumer_fetch_manager_metrics_bytes_consumed_rate{table='${table}',app='$app'}) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "kafka -> {{instance}}",
           "refId": "C"
         },
         {
-          "expr": "sum(rate(dashbase_proxy_bytes_received{app=\"$app\",topic=\"$table\"}[$duration])) by (instance)",
+          "expr": "proxy:bytes_received:sum{app=\"$app\",topic=\"$table\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}} -> kafka",
+          "legendFormat": "filebeat -> proxy",
           "refId": "D"
+        },
+        {
+          "expr": "sum(proxy:filebeat:original_bytes_received:sum{app=\"$app\",table=\"$table\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "filebeat -> proxy (original)",
+          "refId": "E"
+        },
+        {
+          "expr": "proxy:bytes_sent:sum{app=\"$app\",topic=\"$table\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "proxy -> kafka",
+          "refId": "F"
         }
       ],
       "thresholds": [],
@@ -856,9 +870,9 @@
       "renderer": "flot",
       "scopedVars": {
         "table": {
-          "selected": false,
-          "text": "filebeat",
-          "value": "filebeat"
+          "selected": true,
+          "text": "nginx-json-kafka",
+          "value": "nginx-json-kafka"
         }
       },
       "seriesOverrides": [
@@ -984,9 +998,9 @@
       "repeatDirection": "v",
       "scopedVars": {
         "table": {
-          "selected": false,
-          "text": "filebeat",
-          "value": "filebeat"
+          "selected": true,
+          "text": "nginx-json-kafka",
+          "value": "nginx-json-kafka"
         }
       },
       "seriesOverrides": [],
@@ -1083,9 +1097,9 @@
       "repeatDirection": "v",
       "scopedVars": {
         "table": {
-          "selected": false,
-          "text": "filebeat",
-          "value": "filebeat"
+          "selected": true,
+          "text": "nginx-json-kafka",
+          "value": "nginx-json-kafka"
         }
       },
       "seriesOverrides": [],
@@ -1179,9 +1193,9 @@
       "renderer": "flot",
       "scopedVars": {
         "table": {
-          "selected": false,
-          "text": "filebeat",
-          "value": "filebeat"
+          "selected": true,
+          "text": "nginx-json-kafka",
+          "value": "nginx-json-kafka"
         }
       },
       "seriesOverrides": [],
@@ -1282,9 +1296,9 @@
       "renderer": "flot",
       "scopedVars": {
         "table": {
-          "selected": false,
-          "text": "filebeat",
-          "value": "filebeat"
+          "selected": true,
+          "text": "nginx-json-kafka",
+          "value": "nginx-json-kafka"
         }
       },
       "seriesOverrides": [],
@@ -1351,8 +1365,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "dashbase",
-          "value": "dashbase"
+          "text": "staging",
+          "value": "staging"
         },
         "datasource": "Prometheus",
         "definition": "",
@@ -1376,8 +1390,11 @@
       {
         "allValue": null,
         "current": {
-          "text": "All",
-          "value": "$__all"
+          "tags": [],
+          "text": "nginx-json-kafka",
+          "value": [
+            "nginx-json-kafka"
+          ]
         },
         "datasource": "Prometheus",
         "definition": "label_values(dashbase_table_info{app='$app'}, table)",
@@ -1465,5 +1482,5 @@
   "timezone": "",
   "title": "Dashbase Overview",
   "uid": "qwOotTpik",
-  "version": 2
+  "version": 3
 }
