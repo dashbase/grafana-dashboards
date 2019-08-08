@@ -15,7 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1565111848896,
+  "id": 2,
+  "iteration": 1565264402929,
   "links": [],
   "panels": [
     {
@@ -292,12 +293,116 @@
       }
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 104,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "proxy:filebeat:original_bytes_received:sum{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}",
+          "format": "time_series",
+          "hide": true,
+          "intervalFactor": 1,
+          "legendFormat": "{{ host }} -> proxy",
+          "refId": "A"
+        },
+        {
+          "expr": "rate(nightwatch_metric_file_append_total_size{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}[5m])",
+          "format": "time_series",
+          "hide": true,
+          "intervalFactor": 1,
+          "legendFormat": "{{host}} - local",
+          "refId": "B"
+        },
+        {
+          "expr": "proxy:filebeat:original_bytes_received:sum / on(host, table)rate(nightwatch_metric_file_append_total_size[5m])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{host}} - proxy : local",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Proxy vs Local",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 20
+        "y": 28
       },
       "id": 24,
       "panels": [],
@@ -315,7 +420,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 21
+        "y": 29
       },
       "id": 2,
       "legend": {
@@ -411,7 +516,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 21
+        "y": 29
       },
       "id": 4,
       "legend": {
@@ -514,7 +619,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 31
+        "y": 39
       },
       "id": 67,
       "legend": {
@@ -607,7 +712,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 31
+        "y": 39
       },
       "id": 87,
       "legend": {
@@ -689,7 +794,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 40
+        "y": 48
       },
       "id": 30,
       "panels": [],
@@ -715,7 +820,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 41
+        "y": 49
       },
       "id": 22,
       "legend": {
@@ -846,7 +951,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 41
+        "y": 49
       },
       "id": 47,
       "legend": {
@@ -970,7 +1075,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 50
+        "y": 58
       },
       "id": 14,
       "legend": {
@@ -1070,7 +1175,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 50
+        "y": 58
       },
       "id": 102,
       "legend": {
@@ -1167,7 +1272,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 59
+        "y": 67
       },
       "id": 16,
       "legend": {
@@ -1270,7 +1375,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 59
+        "y": 67
       },
       "id": 18,
       "legend": {
@@ -1390,7 +1495,6 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "nginx-json-kafka",
           "value": [
             "nginx-json-kafka"
@@ -1405,6 +1509,31 @@
         "name": "table",
         "options": [],
         "query": "label_values(dashbase_table_info{app='$app'}, table)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "text": "flog-producer-0",
+          "value": "flog-producer-0"
+        },
+        "datasource": "Prometheus",
+        "definition": "label_values(http_filebeat_events_active, host)",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "hostname",
+        "options": [],
+        "query": "label_values(http_filebeat_events_active, host)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1482,5 +1611,5 @@
   "timezone": "",
   "title": "Dashbase Overview",
   "uid": "qwOotTpik",
-  "version": 3
+  "version": 4
 }
