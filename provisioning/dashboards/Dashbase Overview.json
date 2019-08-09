@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 2,
-  "iteration": 1565264402929,
+  "iteration": 1565111848896,
   "links": [],
   "panels": [
     {
@@ -309,7 +308,7 @@
         "alignAsTable": true,
         "avg": true,
         "current": false,
-        "hideEmpty": true,
+        "hideEmpty": false,
         "hideZero": false,
         "max": false,
         "min": false,
@@ -332,27 +331,12 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "proxy:filebeat:original_bytes_received:sum{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}",
+          "expr": "proxy:filebeat:original_bytes_received:sum / on(host, table) rate(nightwatch_metric_file_append_total_size{host=~\"${hostname:pipe}\",table=~\"${table:pipe}\"}[5m])",
           "format": "time_series",
-          "hide": true,
+          "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "{{ host }} -> proxy",
+          "legendFormat": "{{host}} - proxy/local",
           "refId": "A"
-        },
-        {
-          "expr": "rate(nightwatch_metric_file_append_total_size{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}[5m])",
-          "format": "time_series",
-          "hide": true,
-          "intervalFactor": 1,
-          "legendFormat": "{{host}} - local",
-          "refId": "B"
-        },
-        {
-          "expr": "proxy:filebeat:original_bytes_received:sum / on(host, table)rate(nightwatch_metric_file_append_total_size[5m])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{host}} - proxy : local",
-          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -1611,5 +1595,5 @@
   "timezone": "",
   "title": "Dashbase Overview",
   "uid": "qwOotTpik",
-  "version": 4
+  "version": 3
 }
