@@ -638,7 +638,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum(kafka_log_log_size{app=\"$app\"}) by (app, instance)\n        /\n      on(app, instance)\n        label_replace(\n          label_replace(\n            kube_persistentvolumeclaim_resource_requests_storage_bytes{persistentvolumeclaim=~\"kafka.*\"},\n            \"instance\", \"$1\", \"persistentvolumeclaim\", \"kafka-data-(.+)\"),\n          \"app\", \"$1\", \"exported_namespace\", \"(.+)\")",
+          "expr": "sum(kafka_log_log_size{app=\"$app\"}) by (app, instance)\n        /\n      on(app, instance)\n        label_replace(\n          label_replace(\n            kube_persistentvolumeclaim_resource_requests_storage_bytes{persistentvolumeclaim=~\"^kafka.*\"},\n            \"instance\", \"$1\", \"persistentvolumeclaim\", \"kafka-data-(.+)\"),\n          \"app\", \"$1\", \"exported_namespace\", \"(.+)\")",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
