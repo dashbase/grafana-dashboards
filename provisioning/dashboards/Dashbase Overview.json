@@ -15,9 +15,280 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1565111848896,
+  "id": 17,
+  "iteration": 1566892582651,
   "links": [],
   "panels": [
+    {
+      "columns": [],
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 106,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 10,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "hidden"
+        },
+        {
+          "alias": "Num of CPUs",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 0,
+          "pattern": "Value #A",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Heap of Mem",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #B",
+          "thresholds": [],
+          "type": "number",
+          "unit": "bytes"
+        },
+        {
+          "alias": "Total disk ",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #C",
+          "thresholds": [],
+          "type": "number",
+          "unit": "bytes"
+        },
+        {
+          "alias": "Partitions",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "Value #D",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "CPU usage",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #E",
+          "thresholds": [],
+          "type": "number",
+          "unit": "percent"
+        },
+        {
+          "alias": "Mem usage",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #F",
+          "thresholds": [],
+          "type": "number",
+          "unit": "percentunit"
+        },
+        {
+          "alias": "Disk usage",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #G",
+          "thresholds": [],
+          "type": "number",
+          "unit": "percentunit"
+        },
+        {
+          "alias": "Data indexed (24h)",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #H",
+          "thresholds": [],
+          "type": "number",
+          "unit": "decbytes"
+        },
+        {
+          "alias": "Raw data collected(24h)",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #I",
+          "thresholds": [],
+          "type": "number",
+          "unit": "decbytes"
+        },
+        {
+          "alias": "Querys/h",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": false,
+          "mappingType": 1,
+          "pattern": "Value #J",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "avg(jvm_cpu_num_processors{component=\"table\",app=\"$app\",table=~\"${table:pipe}$\"}) by  (table)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "A"
+        },
+        {
+          "expr": "avg(jvm_memory_heap_max{component='table',app='$app',table=~\"${table:pipe}$\"}) by (table)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "B"
+        },
+        {
+          "expr": "avg(dashbase_disk_total_bytes{app=\"$app\",table=~\"${table:pipe}$\"}) by  (table)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "C"
+        },
+        {
+          "expr": "count( dashbase_actual_retention_days{app=\"$app\",table=~\"${table:pipe}$\"} ) by (table)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "D"
+        },
+        {
+          "expr": "avg(jvm_cpu_usage_percent{component=\"table\",app='$app',table=~\"${table:pipe}$\"}) by (table)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "E"
+        },
+        {
+          "expr": "avg(jvm_memory_heap_usage{component='table',app='$app',table=~\"${table:pipe}$\"}) by (table)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "F"
+        },
+        {
+          "expr": "avg(1 - (dashbase_disk_available_bytes{app=\"$app\",table=~\"$table$\"}  / dashbase_disk_total_bytes{app=\"$app\",table=~\"$table$\"}) ) by (table)   ",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "G"
+        },
+        {
+          "expr": "sum( label_replace(increase(nightwatch_metric_file_append_total_size{table=~\"$app-$table\"}[24h]), \"table\", \"$1\", \"table\", \"$app-(.*)\") ) by (table)",
+          "format": "table",
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "I"
+        },
+        {
+          "expr": "sum(increase(dashbase_indexer_bytes_total{app=\"$app\",table=~\"${table:pipe}$\"}[24h])) by (table)",
+          "format": "table",
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "H"
+        },
+        {
+          "expr": "sum(increase(dashbase_table_query_count{app=\"$app\",table=~\"${table:pipe}$\"}[1h])) by (table)",
+          "format": "table",
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "J"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Table Status",
+      "transform": "table",
+      "type": "table"
+    },
     {
       "columns": [],
       "fontSize": "100%",
@@ -25,7 +296,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 7
       },
       "id": 10,
       "links": [],
@@ -161,7 +432,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 18
       },
       "id": 89,
       "legend": {
@@ -301,7 +572,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 20
+        "y": 27
       },
       "id": 104,
       "legend": {
@@ -386,7 +657,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 35
       },
       "id": 24,
       "panels": [],
@@ -404,7 +675,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 29
+        "y": 36
       },
       "id": 2,
       "legend": {
@@ -500,7 +771,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 29
+        "y": 36
       },
       "id": 4,
       "legend": {
@@ -603,7 +874,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 39
+        "y": 46
       },
       "id": 67,
       "legend": {
@@ -696,7 +967,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 39
+        "y": 46
       },
       "id": 87,
       "legend": {
@@ -778,7 +1049,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 48
+        "y": 55
       },
       "id": 30,
       "panels": [],
@@ -804,7 +1075,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 49
+        "y": 56
       },
       "id": 22,
       "legend": {
@@ -935,7 +1206,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 49
+        "y": 56
       },
       "id": 47,
       "legend": {
@@ -1059,7 +1330,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 58
+        "y": 65
       },
       "id": 14,
       "legend": {
@@ -1159,7 +1430,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 58
+        "y": 65
       },
       "id": 102,
       "legend": {
@@ -1256,7 +1527,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 67
+        "y": 74
       },
       "id": 16,
       "legend": {
@@ -1359,7 +1630,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 67
+        "y": 74
       },
       "id": 18,
       "legend": {
@@ -1506,8 +1777,8 @@
       {
         "allValue": ".*",
         "current": {
-          "text": "flog-producer-0",
-          "value": "flog-producer-0"
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": "Prometheus",
         "definition": "label_values(http_filebeat_events_active, host)",
@@ -1595,5 +1866,5 @@
   "timezone": "",
   "title": "Dashbase Overview",
   "uid": "qwOotTpik",
-  "version": 3
+  "version": 4
 }
