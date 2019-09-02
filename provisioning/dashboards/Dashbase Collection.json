@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 31,
-  "iteration": 1567051706908,
+  "iteration": 1567467592299,
   "links": [],
   "panels": [
     {
@@ -125,7 +124,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Local Probe - Write Rate",
+      "title": "NightWatch Local Produce Rate",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -989,5 +988,5 @@
   "timezone": "",
   "title": "Dashbase Collection",
   "uid": "H4ajoAKZz",
-  "version": 1
+  "version": 3
 }
