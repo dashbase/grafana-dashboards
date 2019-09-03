@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 33,
-  "iteration": 1567192481658,
+  "iteration": 1567478333415,
   "links": [],
   "panels": [
     {
@@ -535,7 +534,7 @@
           "refId": "F"
         },
         {
-          "expr": "#Total disk \navg(dashbase_disk_total_bytes{app=\"$app\",table=~\"${table:pipe}$\"}) by  (table)",
+          "expr": "#Total disk \nsum(dashbase_disk_total_bytes{app=\"$app\",table=~\"${table:pipe}$\"}) by  (table)",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -543,7 +542,7 @@
           "refId": "C"
         },
         {
-          "expr": "#Disk Used \navg(dashbase_disk_total_bytes{app=\"$app\",table=~\"$table$\"} - dashbase_disk_available_bytes{app=\"$app\",table=~\"$table$\"}) by (table) ",
+          "expr": "#Disk Used\nsum(dashbase_disk_total_bytes{app=\"$app\",table=~\"$table$\"} - dashbase_disk_available_bytes{app=\"$app\",table=~\"$table$\"}) by (table) ",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -551,7 +550,7 @@
           "refId": "K"
         },
         {
-          "expr": "#Disk Available \navg(dashbase_disk_available_bytes{app=\"$app\",table=~\"$table$\"}) by (table)  #origin query\n",
+          "expr": "#Disk Available \nsum(dashbase_disk_available_bytes{app=\"$app\",table=~\"$table$\"}) by (table)  #origin query\n",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1062,8 +1061,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "staging",
-          "value": "staging"
+          "text": "dashbase",
+          "value": "dashbase"
         },
         "datasource": "Prometheus",
         "definition": "",
@@ -1087,6 +1086,7 @@
       {
         "allValue": null,
         "current": {
+          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -1204,5 +1204,5 @@
   "timezone": "",
   "title": "Dashbase Overview",
   "uid": "qwOotTpik",
-  "version": 7
+  "version": 12
 }
