@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1567383103770,
+  "iteration": 1567486324388,
   "links": [],
   "panels": [
     {
@@ -27,7 +27,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 175,
+      "id": 10,
       "links": [],
       "pageSize": null,
       "repeat": null,
@@ -35,7 +35,7 @@
       "scroll": true,
       "showHeader": true,
       "sort": {
-        "col": 2,
+        "col": null,
         "desc": false
       },
       "styles": [
@@ -177,8 +177,9 @@
       ],
       "targets": [
         {
-          "expr": "#Uptime \nlabel_replace ( \n    (kube_deployment_labels{label_dashbase_io=\"true\",label_app=\"$app\"}\n  ), \"component\", \"$1\", \"deployment\", \"(.+)\") \n* on (component) \n(\nmin(\n  label_replace (\n    ( time()- container_start_time_seconds{namespace=\"$app\"} \n  ), \"component\", \"$1\", \"container_name\", \"(.+)\")\n  ) by (component))\nor \nlabel_replace ( \n    (kube_statefulset_labels{label_dashbase_io=\"true\",label_app=\"$app\"}\n  ), \"component\", \"$1\", \"statefulset\", \"(.+)\") \n* on (component) \n(\nsum(\n  label_replace (\n    ( time()- container_start_time_seconds{namespace=\"$app\"} \n  ), \"component\", \"$1\", \"container_name\", \"(.+)\")\n  ) by (component))",
+          "expr": "min(label_replace (\n    ( time()- kube_pod_start_time{exported_namespace=\"$app\",pod=~\"(.+)-[0-9]$\"} \n  ), \"component\", \"$1\", \"pod\", \"(.+)-[0-9]\") ) by (component)\nor\nmin(label_replace (\n    ( time()- kube_pod_start_time{exported_namespace=\"$app\",pod=~\"^([a-z]+)-[A-Fa-f0-9]{10}-[A-za-z0-9]{5}$\"} \n  ), \"component\", \"$1\", \"pod\", \"^([a-z]+)-[A-Fa-f0-9]{10}-[A-za-z0-9]{5}$\") ) by (component)",
           "format": "table",
+          "hide": false,
           "instant": true,
           "intervalFactor": 1,
           "refId": "D"
@@ -199,22 +200,6 @@
           "instant": true,
           "intervalFactor": 1,
           "refId": "B"
-        },
-        {
-          "expr": "#CPU Usage \navg(\n  label_replace(\n    (\n      avg(jvm_cpu_usage_percent{component=\"table\",app='$app',table=~\"${table:pipe}$\"}) by (table,instance)\n    ), \"component\", \"$1\", \"instance\", \"(.+)-.*\")\n  ) by (component) \nor \nsum(jvm_cpu_usage_percent{app=\"$app\",component!=\"table\"}) by (component)",
-          "format": "table",
-          "hide": true,
-          "instant": true,
-          "intervalFactor": 1,
-          "refId": "C"
-        },
-        {
-          "expr": "#Heap Usage \navg(\n  label_replace(\n    (avg(jvm_memory_heap_usage{component='table',app='$app',table=~\"${table:pipe}$\"}) by (table,instance)  #origin query\n    ), \"component\", \"$1\", \"instance\", \"(.+)-.*\")\n  ) by (component) \nor \nsum(jvm_memory_heap_usage{app=\"$app\",component!=\"table\"}) by (component)",
-          "format": "table",
-          "hide": true,
-          "instant": true,
-          "intervalFactor": 1,
-          "refId": "E"
         }
       ],
       "title": "Cluster Status",
@@ -1061,6 +1046,7 @@
       {
         "allValue": null,
         "current": {
+          "selected": true,
           "text": "dashbase",
           "value": "dashbase"
         },
@@ -1086,6 +1072,7 @@
       {
         "allValue": null,
         "current": {
+          "selected": true,
           "tags": [],
           "text": "All",
           "value": [
@@ -1114,6 +1101,7 @@
       {
         "allValue": ".*",
         "current": {
+          "selected": true,
           "text": "All",
           "value": "$__all"
         },
@@ -1140,7 +1128,6 @@
         "allValue": null,
         "current": {
           "selected": true,
-          "tags": [],
           "text": "5m",
           "value": "5m"
         },
@@ -1204,5 +1191,5 @@
   "timezone": "",
   "title": "Dashbase Overview",
   "uid": "qwOotTpik",
-  "version": 12
+  "version": 13
 }
