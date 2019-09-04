@@ -141,43 +141,11 @@
           "thresholds": [],
           "type": "number",
           "unit": "s"
-        },
-        {
-          "alias": "CPU usage",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "Value #C",
-          "thresholds": [],
-          "type": "number",
-          "unit": "percent"
-        },
-        {
-          "alias": "Mem Usage",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "Value #E",
-          "thresholds": [],
-          "type": "number",
-          "unit": "percentunit"
         }
       ],
       "targets": [
         {
-          "expr": "min(label_replace (\n    ( time()- kube_pod_start_time{exported_namespace=\"$app\",pod=~\"^(.+)-[0-9]$\"} \n  ), \"component\", \"$1\", \"pod\", \"^(.+)-[0-9]$\") ) by (component)\nor\nmin(label_replace (\n    ( time()- kube_pod_start_time{exported_namespace=\"$app\",pod=~\"^([a-z]+)-[A-Fa-f0-9]{10}-[A-za-z0-9]{5}$\"} \n  ), \"component\", \"$1\", \"pod\", \"^([a-z]+)-[A-Fa-f0-9]{10}-[A-za-z0-9]{5}$\") ) by (component)",
+          "expr": "#Uptime\nmin(\n  label_replace(\n    (kube_statefulset_labels{label_dashbase_io=\"true\",label_app=\"$app\"} * on (statefulset) group_right \n      label_replace (\n        ( time()- kube_pod_start_time{exported_namespace=\"$app\",pod=~\"^(.+)-[0-9]$\"} \n      ), \"statefulset\", \"$1\", \"pod\", \"^(.+)-[0-9]$\")\n    ), \"component\", \"$1\", \"statefulset\", \"(.+)\")\n  ) by (component)\nor\nmin(\n  label_replace(\n    (kube_deployment_labels{label_dashbase_io=\"true\",label_app=\"$app\"} * on (deployment) group_right \n      label_replace (\n        ( time()- kube_pod_start_time{exported_namespace=\"$app\",pod=~\"^(.+)-[A-Fa-f0-9]+-[A-za-z0-9]+$\"} \n      ), \"deployment\", \"$1\", \"pod\", \"^(.+)-[A-Fa-f0-9]+-[A-za-z0-9]+$\") \n    ), \"component\", \"$1\", \"deployment\", \"(.+)\")\n  ) by (component)",
           "format": "table",
           "hide": false,
           "instant": true,
