@@ -177,7 +177,7 @@
       ],
       "targets": [
         {
-          "expr": "min(label_replace (\n    ( time()- kube_pod_start_time{exported_namespace=\"$app\",pod=~\"^(.+)-[0-9]$\"} \n  ), \"component\", \"$1\", \"pod\", \"^(.+)-[0-9]$\") ) by (component)\nor\nmin(label_replace (\n    ( time()- kube_pod_start_time{exported_namespace=\"$app\",pod=~\"^([a-z]+)-[A-Fa-f0-9]{10}-[A-za-z0-9]{5}$\"} \n  ), \"component\", \"$1\", \"pod\", \"^([a-z]+)-[A-Fa-f0-9]{10}-[A-za-z0-9]{5}$\") ) by (component)",
+          "expr": "min(label_replace (\n    ( time()- kube_pod_start_time{exported_namespace=\"$app\",pod=~\"^(.+)-[0-9]$\"} \n  ), \"component\", \"$1\", \"pod\", \"^(.+)-[0-9]$\") ) by (component)\nor\nmin(label_replace (\n    ( time()- kube_pod_start_time{exported_namespace=\"$app\",pod=~\"^([a-z]+)-[A-Fa-f0-9]+-[A-za-z0-9]+$\"} \n  ), \"component\", \"$1\", \"pod\", \"^([a-z]+)-[A-Fa-f0-9]+-[A-za-z0-9]+$\") ) by (component)",
           "format": "table",
           "hide": false,
           "instant": true,
