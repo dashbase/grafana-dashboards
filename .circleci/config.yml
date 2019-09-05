@@ -22,3 +22,12 @@ jobs:
 
               .circleci/update.sh
             fi
+
+workflows:
+  version: 2
+  build-n-deploy:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
