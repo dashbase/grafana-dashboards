@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 31,
-  "iteration": 1567051706908,
+  "iteration": 1568011465915,
   "links": [],
   "panels": [
     {
@@ -715,11 +714,12 @@
         "x": 0,
         "y": 29
       },
-      "id": 12,
+      "id": 20,
       "legend": {
         "alignAsTable": true,
         "avg": false,
         "current": true,
+        "hideEmpty": false,
         "max": false,
         "min": false,
         "rightSide": true,
@@ -744,7 +744,7 @@
       "targets": [
         {
           "alias": "read - $tag_host",
-          "expr": "http_libbeat_output_read_errors{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}",
+          "expr": "rate(http_libbeat_output_read_errors{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}[1m])",
           "format": "time_series",
           "groupBy": [
             {
@@ -787,7 +787,7 @@
         },
         {
           "alias": "write - $tag_host",
-          "expr": "http_libbeat_output_write_errors{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}",
+          "expr": "rate(http_libbeat_output_write_errors{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}[1m])",
           "format": "time_series",
           "groupBy": [
             {
@@ -833,7 +833,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Output Errors",
+      "title": "Output Error Rate",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -989,5 +989,5 @@
   "timezone": "",
   "title": "Dashbase Collection",
   "uid": "H4ajoAKZz",
-  "version": 1
+  "version": 3
 }
