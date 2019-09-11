@@ -543,7 +543,7 @@
           "refId": "I"
         },
         {
-          "expr": "#Raw Received \nsum(increase(dashbase_filebeat_parser_message_bytes_received{app=\"$app\",table=~\"${table:pipe}$\"}[24h])) by (table)",
+          "expr": "#Raw Received \nsum(filebeat:original_bytes_received:increase:sum{app=\"$app\",table=~\"${table:pipe}$\"}) by (table)",
           "format": "table",
           "hide": false,
           "instant": true,
