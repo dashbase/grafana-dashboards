@@ -337,7 +337,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "proxy:filebeat:original_bytes_received:sum / on(host, table) rate(nightwatch_metric_file_append_total_size{host=~\"${hostname:pipe}\",table=~\"${table:pipe}\"}[5m])",
+          "expr": "filebeat:original_bytes_received:sum / on(host, table) rate(nightwatch_metric_file_append_total_size{host=~\"${hostname:pipe}\",table=~\"${table:pipe}\"}[5m])",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
