@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1568156064488,
+  "iteration": 1569103269710,
   "links": [],
   "panels": [
     {
@@ -298,101 +298,12 @@
       }
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 1,
-      "gridPos": {
-        "h": 8,
-        "w": 24,
-        "x": 0,
-        "y": 10
-      },
-      "id": 6,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": false,
-        "hideEmpty": false,
-        "hideZero": false,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "filebeat:original_bytes_received:sum / on(host, table) rate(nightwatch_metric_file_append_total_size{host=~\"${hostname:pipe}\",table=~\"${table:pipe}\"}[5m])",
-          "format": "time_series",
-          "hide": false,
-          "intervalFactor": 1,
-          "legendFormat": "received {{host}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Bytes Received %",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "percentunit",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "bytes",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 18
+        "y": 10
       },
       "id": 14,
       "panels": [],
@@ -410,7 +321,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 19
+        "y": 11
       },
       "id": 8,
       "legend": {
@@ -531,7 +442,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 19
+        "y": 11
       },
       "id": 10,
       "legend": {
@@ -694,7 +605,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 20
       },
       "id": 18,
       "panels": [],
@@ -712,7 +623,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 29
+        "y": 21
       },
       "id": 20,
       "legend": {
@@ -990,5 +901,5 @@
   "timezone": "",
   "title": "Dashbase Collection",
   "uid": "H4ajoAKZz",
-  "version": 5
+  "version": 8
 }
