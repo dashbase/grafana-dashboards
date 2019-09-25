@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1569103269710,
+  "iteration": 1569452925604,
   "links": [],
   "panels": [
     {
@@ -37,7 +37,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
-      "description": "Dashbase Night-Watch Probe\n\nhttps://github.com/dashbase/night-watch",
+      "description": "Dashbase NightWatch Probe\nCalculates the rate of which log files are written to the input(s) given to NightWatch.\n\nhttps://github.com/dashbase/night-watch",
       "fill": 1,
       "gridPos": {
         "h": 9,
@@ -124,7 +124,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Local Probe - Write Rate",
+      "title": "NightWatch Local Write Rate",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -901,5 +901,5 @@
   "timezone": "",
   "title": "Dashbase Collection",
   "uid": "H4ajoAKZz",
-  "version": 8
+  "version": 9
 }
