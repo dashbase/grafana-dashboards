@@ -1,11 +1,9 @@
 #!/bin/bash
-CIRCLE_BRANCH="master"
 
-if [ $CIRCLE_BRANCH == "master" ]; then
-cd ~
-git clone git@github.com:dashbase/dashbase.git
+if [ ${CIRCLE_BRANCH} == "master" ]; then
+git clone -b Add_grafana_build git@github.com:dashbase/dashbase.git
 cd dashbase
-sed -i "sgrafana-dashboards tag:.*/#grafana-dashboards tag:${CIRCLE_SHA1::6}g" ./docker/grafana/build.sh
+sed -i 's/grafana-dashboards\ tag:.*/#grafana-dashboards\ tag:${CIRCLE_SHA1::6}/g' ./docker/grafana/build.sh
 git config user.name "CI"
 git config user.email "ci@dashbase.io"
 git add .
