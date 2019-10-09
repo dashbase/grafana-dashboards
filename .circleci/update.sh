@@ -1,9 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -e
 
-if [ ${CIRCLE_BRANCH} == "master" ]; then
-git clone git@github.com:dashbase/dashbase.git
-cd dashbase
-sed -i 's/grafana-dashboards\ tag:.*/#grafana-dashboards\ tag:${CIRCLE_SHA1::6}/g' ./docker/grafana/build.sh
+cd ~
+git clone git@github.com:dashbase/dashbase-deployment.git
+cd dashbase-deployment
+sed -i "s=dashbase/grafana.*=dashbase/grafana:${TAG}-${CIRCLE_SHA1::6}=g" kubernetes/monitor.yml
 git config user.name "CI"
 git config user.email "ci@dashbase.io"
 git add .
@@ -11,4 +12,3 @@ git commit -m "Update from dashbase/grafana-dashboards"
 echo ""
 echo "Commit and push to GitHub"
 git push origin
-fi

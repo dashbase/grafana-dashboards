@@ -17,8 +17,8 @@ jobs:
               docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
               docker push dashbase/grafana:$TAG
 
-              docker build -t dashbase/grafana:${CIRCLE_SHA1::6} .
-              docker push dashbase/grafana:${CIRCLE_SHA1::6}
+              docker build -t dashbase/grafana:$TAG-${CIRCLE_SHA1::6} .
+              docker push dashbase/grafana:$TAG-${CIRCLE_SHA1::6}
 
               .circleci/update.sh
             fi
