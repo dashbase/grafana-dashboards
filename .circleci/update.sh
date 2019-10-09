@@ -4,7 +4,7 @@ set -e
 cd ~
 git clone git@github.com:dashbase/dashbase-deployment.git
 cd dashbase-deployment
-sed -i "s=dashbase/grafana.*=dashbase/grafana:${TAG}-${CIRCLE_SHA1::6}=g" kubernetes/monitor.yml
+sed -i "s=dashbase/grafana.*=dashbase/grafana:${CIRCLE_SHA1::6}=g" kubernetes/monitor.yml
 git config user.name "CI"
 git config user.email "ci@dashbase.io"
 git add .
