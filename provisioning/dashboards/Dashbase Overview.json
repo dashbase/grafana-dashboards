@@ -630,7 +630,7 @@
           "refId": "D"
         },
         {
-          "expr": "sum(rate(io_dashbase_http_es_IndexResource_bulkPost_exceptions_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table) > 0",
+          "expr": "sum(rate(io_dashbase_elasticsearch_resource_IndexResource_bulkPost_exceptions_total{table=~'${table:pipe}',app='$app'}[$duration])) by (table) > 0",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "table {{table}} - input rest exception",
