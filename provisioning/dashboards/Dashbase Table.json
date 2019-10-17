@@ -769,7 +769,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(io_dashbase_http_es_IndexResource_bulkPost_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "sum(rate(io_dashbase_elasticsearch_resource_IndexResource_bulkPost_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{$per}}",
@@ -855,7 +855,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(io_dashbase_http_es_IndexResource_bulkPost{quantile='0.5',app='$app',table=~'${table:pipe}'}) by ($per)",
+              "expr": "avg(io_dashbase_elasticsearch_resource_IndexResource_bulkPost{quantile='0.5',app='$app',table=~'${table:pipe}'}) by ($per)",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -863,7 +863,7 @@
               "refId": "A"
             },
             {
-              "expr": "avg(io_dashbase_http_es_IndexResource_bulkPost{quantile='0.99',app='$app',table=~'${table:pipe}'}) by ($per)",
+              "expr": "avg(io_dashbase_elasticsearch_resource_IndexResource_bulkPost{quantile='0.99',app='$app',table=~'${table:pipe}'}) by ($per)",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -964,7 +964,7 @@
               "refId": "B"
             },
             {
-              "expr": "sum(rate(io_dashbase_http_es_IndexResource_bulkPost_exceptions_total{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "sum(rate(io_dashbase_elasticsearch_resource_IndexResource_bulkPost_exceptions_total{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "exception - {{$per}}",
