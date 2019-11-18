@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1567486324388,
+  "iteration": 1574116410391,
   "links": [],
   "panels": [
     {
@@ -347,7 +347,7 @@
           "unit": "decbytes"
         },
         {
-          "alias": "Querys/h",
+          "alias": "Estimated Cost (per Month)",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -361,7 +361,7 @@
           "pattern": "Value #J",
           "thresholds": [],
           "type": "number",
-          "unit": "short"
+          "unit": "currencyUSD"
         },
         {
           "alias": "Disk Used",
@@ -557,6 +557,14 @@
           "instant": true,
           "intervalFactor": 1,
           "refId": "H"
+        },
+        {
+          "expr": "#Estimated Cost\n(sum(jvm_cpu_num_processors{app=\"$app\",table=~\"${table:pipe}$\"}) by (table) * 46.1175) + (sum(dashbase_disk_total_bytes{app=\"$app\",table=~\"${table:pipe}$\"}) by (table) / 1073741824 * 0.045)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "J"
         }
       ],
       "timeFrom": null,
@@ -1006,6 +1014,7 @@
       }
     }
   ],
+  "refresh": "10s",
   "schemaVersion": 18,
   "style": "dark",
   "tags": [],
@@ -1159,5 +1168,5 @@
   "timezone": "",
   "title": "Dashbase Overview",
   "uid": "qwOotTpik",
-  "version": 13
+  "version": 15
 }
