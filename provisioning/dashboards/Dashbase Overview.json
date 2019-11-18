@@ -355,7 +355,7 @@
             "rgba(50, 172, 45, 0.97)"
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 0,
+          "decimals": 2,
           "link": false,
           "mappingType": 1,
           "pattern": "Value #J",
