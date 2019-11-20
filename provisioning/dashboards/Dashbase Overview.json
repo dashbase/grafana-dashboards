@@ -617,18 +617,11 @@
           "refId": "A"
         },
         {
-          "expr": "proxy:kafka_failure:sum{app='$app'} > 0",
+          "expr": "sum(proxy:kafka_failure:rate5m{app='$app'}) > 0",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "proxy - kafka failure",
           "refId": "B"
-        },
-        {
-          "expr": "proxy:overflow_message:sum{app='$app'} > 0",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "message overflow",
-          "refId": "C"
         },
         {
           "expr": "sum(rate(dashbase_index_event_parse_error{table=~'${table:pipe}',app='$app'}[$duration])) by (table) > 0",
@@ -666,7 +659,7 @@
           "refId": "H"
         },
         {
-          "expr": "proxy:bulk_post_exception:sum{app='$app'} > 0",
+          "expr": "sum(proxy:bulk_post_exception:rate5m{app='$app'}) > 0",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "proxy - exception",

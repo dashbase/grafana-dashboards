@@ -478,7 +478,7 @@
           "step": 4
         },
         {
-          "expr": "sum(proxy:events_sent:sum{topic=~'${topic:pipe}',app='$app'})",
+          "expr": "sum(proxy:events_sent:rate5m{topic=~'${topic:pipe}',app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "sent from proxy",
@@ -1347,7 +1347,7 @@
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 16,
+  "schemaVersion": 18,
   "style": "dark",
   "tags": [],
   "templating": {
