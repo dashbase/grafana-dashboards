@@ -82,17 +82,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "proxy:events_received:sum{topic=~'${kafka_topic:pipe}',app='$app'}",
+          "expr": "sum(proxy:events_received:rate5m{topic=~'${kafka_topic:pipe}',app='$app'}) by (topic, $per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "events - {{topic}}",
+          "legendFormat": "events - {{topic}} - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "proxy:bytes_received:sum{topic=~'${kafka_topic:pipe}',app='$app'}",
+          "expr": "sum(proxy:bytes_received:rate5m{topic=~'${kafka_topic:pipe}',app='$app'}) by (topic, $per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "bytes - {{topic}}",
+          "legendFormat": "bytes - {{topic}} - {{$per}}",
           "refId": "B"
         }
       ],
@@ -188,17 +188,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "proxy:events_sent:sum{topic=~'${kafka_topic:pipe}',app='$app'}",
+          "expr": "sum(proxy:events_sent:rate5m{topic=~'${kafka_topic:pipe}',app='$app'}) by (topic, $per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "events -  {{topic}}",
+          "legendFormat": "events - {{topic}} - {{$per}}",
           "refId": "C"
         },
         {
-          "expr": "proxy:bytes_sent:sum{topic=~'${kafka_topic:pipe}',app='$app'}",
+          "expr": "sum(proxy:bytes_sent:rate5m{topic=~'${kafka_topic:pipe}',app='$app'}) by (topic, $per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "bytes - {{topic}}",
+          "legendFormat": "bytes - {{topic}} - {{$per}}",
           "refId": "D"
         }
       ],
@@ -294,31 +294,31 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(proxy:events_sent:sum{topic=~'${kafka_topic:pipe}',app='$app'})",
+          "expr": "sum(proxy:events_sent:rate5m{topic=~'${kafka_topic:pipe}',app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "events out",
+          "legendFormat": "events out - {{$per}}",
           "refId": "C"
         },
         {
-          "expr": "sum(proxy:bytes_sent:sum{topic=~'${kafka_topic:pipe}',app='$app'})",
+          "expr": "sum(proxy:bytes_sent:rate5m{topic=~'${kafka_topic:pipe}',app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "bytes out",
+          "legendFormat": "bytes out - {{$per}}",
           "refId": "D"
         },
         {
-          "expr": "sum(proxy:events_received:sum{topic=~'${kafka_topic:pipe}',app='$app'})",
+          "expr": "sum(proxy:events_received:rate5m{topic=~'${kafka_topic:pipe}',app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "events in",
+          "legendFormat": "events in - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "sum(proxy:bytes_received:sum{topic=~'${kafka_topic:pipe}',app='$app'})",
+          "expr": "sum(proxy:bytes_received:rate5m{topic=~'${kafka_topic:pipe}',app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "bytes in",
+          "legendFormat": "bytes in - {{$per}}",
           "refId": "B"
         }
       ],
@@ -408,40 +408,40 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "proxy:bulk_post_count:sum{app='$app'}",
+          "expr": "sum(proxy:bulk_post_count:rate5m{app='$app'}) by ($per)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "request rate",
+          "legendFormat": "request rate - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "proxy:bulk_post_exception:sum{app='$app'}",
+          "expr": "sum(proxy:bulk_post_exception:rate5m{app='$app'}) by ($per)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "exception rate",
+          "legendFormat": "exception rate - {{$per}}",
           "refId": "B"
         },
         {
-          "expr": "proxy:bulk_post_latency:avg{quantile='0.5',app='$app'}",
+          "expr": "avg(proxy:bulk_post_latency{quantile='0.5',app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "latency (p50)",
+          "legendFormat": "latency (p50) - {{$per}}",
           "refId": "C"
         },
         {
-          "expr": "proxy:bulk_post_latency:avg{quantile='0.95',app='$app'}",
+          "expr": "avg(proxy:bulk_post_latency{quantile='0.95',app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "latency (p95)",
+          "legendFormat": "latency (p95) - {{$per}}",
           "refId": "D"
         },
         {
-          "expr": "proxy:bulk_post_latency:avg{quantile='0.99',app='$app'}",
+          "expr": "avg(proxy:bulk_post_latency{quantile='0.99',app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "latency (p99)",
+          "legendFormat": "latency (p99) - {{$per}}",
           "refId": "E"
         }
       ],
@@ -533,18 +533,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "proxy:event_delay:avg{topic=~'${kafka_topic:pipe}',app='$app'}",
+          "expr": "avg(proxy:event_delay:rate5m{topic=~'${kafka_topic:pipe}',app='$app'}) by (topic, $per)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "average - {{topic}}",
+          "legendFormat": "average - {{topic}} - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "proxy:event_delay:ratio{topic=~'${kafka_topic:pipe}',app='$app'}",
+          "expr": "sum(proxy:event_delay:ratio{topic=~'${kafka_topic:pipe}',app='$app'}) by (greater_than, topic, $per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "% > {{greater_than}} - {{topic}}",
+          "legendFormat": "% > {{greater_than}} - {{topic}} - {{$per}}",
           "refId": "B"
         }
       ],
@@ -633,17 +633,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "proxy:event_size:avg{topic=~'${kafka_topic:pipe}',app='$app'}",
+          "expr": "avg(proxy:event_size:rate5m{topic=~'${kafka_topic:pipe}',app='$app'}) by (topic, $per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "average - {{topic}}",
+          "legendFormat": "average - {{topic}} - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "proxy:event_size:ratio{topic=~'${kafka_topic:pipe}',app='$app'}",
+          "expr": "sum(proxy:event_size:ratio{topic=~'${kafka_topic:pipe}',app='$app'}) by (greater_than, topic, $per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "% > {{greater_than}} - {{topic}}",
+          "legendFormat": "% > {{greater_than}} - {{topic}} - {{$per}}",
           "refId": "B"
         }
       ],
@@ -725,35 +725,28 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_proxy_events_parse_error{app='$app'}[$duration])) by (topic)",
+          "expr": "sum(rate(dashbase_proxy_events_parse_error{app='$app'}[$duration])) by (topic, $per)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "parse error - {{topic}}",
+          "legendFormat": "parse error - {{topic}} - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(dashbase_proxy_events_parse_error_total{app='$app'}[$duration]))",
+          "expr": "sum(rate(dashbase_proxy_events_parse_error_total{app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "parse error - total",
+          "legendFormat": "parse error - total - {{$per}}",
           "refId": "B"
         },
         {
-          "expr": "sum(proxy:kafka_failure:sum{app='$app'}) by (exception)",
+          "expr": "sum(proxy:kafka_failure:rate5m{app='$app'}) by (exception, $per)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "kafka error - {{exception}}",
+          "legendFormat": "kafka error - {{exception}} - {{$per}}",
           "refId": "C"
-        },
-        {
-          "expr": "proxy:overflow_message:sum{app='$app'}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "overflow message",
-          "refId": "D"
         }
       ],
       "thresholds": [],
@@ -834,10 +827,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "proxy:internal_queue_size:max{topic=~'${kafka_topic:pipe}',app='$app'}",
+          "expr": "max(proxy:internal_queue_size{topic=~'${kafka_topic:pipe}',app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "queue size",
+          "legendFormat": "queue size - {{$per}}",
           "refId": "A"
         }
       ],
@@ -1016,18 +1009,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "proxy:cpu:max{app='$app'}",
+          "expr": "max(proxy:cpu{app='$app'}) by ($per)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "max",
+          "legendFormat": "max - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "proxy:cpu:avg{app='$app'}",
+          "expr": "avg(proxy:cpu{app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "avg",
+          "legendFormat": "avg - {{$per}}",
           "refId": "B"
         }
       ],
@@ -1133,7 +1126,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "proxy:uptime:max{app='$app'}",
+          "expr": "max(proxy:uptime{app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -1192,24 +1185,24 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "proxy:gc_young:max{app='$app'}",
+          "expr": "max(proxy:gc_young:rate5m{app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "young gen - {{instance}}",
+          "legendFormat": "young gen - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "proxy:gc_old:max{app='$app'}",
+          "expr": "max(proxy:gc_old:rate5m{app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "old gen - {{instance}}",
+          "legendFormat": "old gen - {{$per}}",
           "refId": "B"
         },
         {
-          "expr": "proxy:mark_sweep:max{app='$app'}",
+          "expr": "max(proxy:mark_sweep:rate5m{app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "mark sweep - {{instance}}",
+          "legendFormat": "mark sweep - {{$per}}",
           "refId": "C"
         }
       ],
@@ -1299,18 +1292,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "proxy:heap_used:max{app='$app'}",
+          "expr": "max(proxy:heap_used{app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "used",
+          "legendFormat": "used - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "proxy:heap_max:max{app='$app'}",
+          "expr": "max(proxy:heap_max{app='$app'}) by ($per)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "max",
+          "legendFormat": "max - {{$per}}",
           "refId": "B"
         }
       ],
@@ -1445,6 +1438,34 @@
           }
         ],
         "query": "1m,5m,15m",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "app",
+          "value": "app"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "groupBy",
+        "multi": false,
+        "name": "per",
+        "options": [
+          {
+            "selected": false,
+            "text": "app",
+            "value": "app"
+          },
+          {
+            "selected": true,
+            "text": "instance",
+            "value": "instance"
+          }
+        ],
+        "query": "app,instance",
         "skipUrlSync": false,
         "type": "custom"
       }
