@@ -193,7 +193,7 @@
           "refId": "A"
         },
         {
-          "expr": "avg(rate(dashbase_indexer_events_total{table=~'${table:pipe}',app='$app',type='realtime'}[$duration])) by ($per)",
+          "expr": "avg(rate(dashbase_indexer_events_total{table=~'${table:pipe}',app='$app',type='full'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "indexed - {{$per}}",
