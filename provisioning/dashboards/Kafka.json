@@ -16,8 +16,7 @@
   "editable": true,
   "gnetId": 721,
   "graphTooltip": 0,
-  "id": 3,
-  "iteration": 1553628115472,
+  "iteration": 1575438056994,
   "links": [],
   "panels": [
     {
@@ -1346,7 +1345,6 @@
       }
     }
   ],
-  "refresh": "10s",
   "schemaVersion": 18,
   "style": "dark",
   "tags": [],
@@ -1436,5 +1434,5 @@
   "timezone": "",
   "title": "Kafka Overview",
   "uid": "FESeYQtiz",
-  "version": 4
+  "version": 8
 }
