@@ -836,7 +836,7 @@
       "targets": [
         {
           "alias": "$tag_host",
-          "expr": "http_system_load_norm_5{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}",
+          "expr": "http_system_load_norm_15{host=~\"${hostname:pipe}\", table=~\"${table:pipe}\"}",
           "format": "time_series",
           "groupBy": [
             {
@@ -908,7 +908,7 @@
       },
       "yaxes": [
         {
-          "format": "percentunit",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
