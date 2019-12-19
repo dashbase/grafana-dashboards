@@ -95,6 +95,7 @@
         {
           "expr": "sum(com_facebook_presto_metadata_discoverynodemanager_activenodecount{app='$app'})",
           "format": "time_series",
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
