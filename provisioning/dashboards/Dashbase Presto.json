@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 10,
-  "iteration": 1576667058726,
+  "iteration": 1576759398168,
   "links": [],
   "panels": [
     {
@@ -377,6 +377,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "decimals": 0,
       "fill": 1,
       "gridPos": {
         "h": 8,
@@ -406,7 +407,15 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "alias": "/total queries/",
+          "alias": "/running queries/",
+          "yaxis": 2
+        },
+        {
+          "alias": "/queued queries/",
+          "yaxis": 2
+        },
+        {
+          "alias": "/failed queries/",
           "yaxis": 2
         }
       ],
@@ -439,7 +448,7 @@
           "expr": "com_facebook_presto_execution_querymanager_completedqueries_totalcount{app='$app',component='presto-coordinator'}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "total queries - {{instance}}",
+          "legendFormat": "total completed queries - {{instance}}",
           "refId": "D"
         }
       ],
@@ -463,19 +472,21 @@
       },
       "yaxes": [
         {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
-        },
-        {
+          "decimals": 0,
           "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
+          "show": true
+        },
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
           "show": true
         }
       ],
@@ -596,6 +607,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "decimals": null,
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -612,6 +624,7 @@
         "min": false,
         "rightSide": true,
         "show": true,
+        "sideWidth": null,
         "total": false,
         "values": true
       },
@@ -634,14 +647,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "com_facebook_presto_execution_taskmanager_inputdatasize_fifteenminute_count{app='$app',component='presto-coordinator'}",
+          "expr": "floor(com_facebook_presto_execution_taskmanager_inputdatasize_fifteenminute_count{app='$app',component='presto-coordinator'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Bytes - {{instance}}",
           "refId": "A"
         },
         {
-          "expr": "com_facebook_presto_execution_taskmanager_inputpositions_fifteenminute_count{app='$app',component='presto-coordinator'}",
+          "expr": "floor(com_facebook_presto_execution_taskmanager_inputpositions_fifteenminute_count{app='$app',component='presto-coordinator'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Rows - {{instance}}",
@@ -668,6 +681,7 @@
       },
       "yaxes": [
         {
+          "decimals": null,
           "format": "bytes",
           "label": null,
           "logBase": 1,
@@ -676,6 +690,7 @@
           "show": true
         },
         {
+          "decimals": null,
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1091,6 +1106,7 @@
       },
       "yaxes": [
         {
+          "decimals": 0,
           "format": "short",
           "label": "thread count",
           "logBase": 1,
@@ -1216,7 +1232,6 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "dashbase",
           "value": "dashbase"
         },
