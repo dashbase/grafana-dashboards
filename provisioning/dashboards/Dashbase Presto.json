@@ -340,7 +340,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(com_facebook_presto_execution_querymanager_failedqueries_fifteenminute_count{app='$app',component='presto-coordinator'})",
+          "expr": "floor(sum(com_facebook_presto_execution_querymanager_failedqueries_fifteenminute_count{app='$app',component='presto-coordinator'}))",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -1224,7 +1224,6 @@
       }
     }
   ],
-  "refresh": "10s",
   "schemaVersion": 18,
   "style": "dark",
   "tags": [],
