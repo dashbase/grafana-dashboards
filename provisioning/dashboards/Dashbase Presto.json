@@ -1238,7 +1238,7 @@
         "datasource": "Prometheus",
         "definition": "label_values(dashbase_table_info, app)",
         "hide": 0,
-        "includeAll": false,
+        "includeAll": true,
         "label": null,
         "multi": false,
         "name": "app",
