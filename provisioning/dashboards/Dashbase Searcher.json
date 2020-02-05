@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 11,
-  "iteration": 1580762267620,
+  "iteration": 1580926911524,
   "links": [],
   "panels": [
     {
@@ -659,13 +659,6 @@
           "intervalFactor": 1,
           "legendFormat": "max - {{instance}}",
           "refId": "B"
-        },
-        {
-          "expr": "dashbase_searcher_bloom_filter_memory_bytes{component='searcher',app='$app'}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "bloom filter cache - {{instance}}",
-          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -813,6 +806,7 @@
       {
         "allValue": null,
         "current": {
+          "selected": true,
           "text": "dashbase",
           "value": "dashbase"
         },
@@ -838,11 +832,9 @@
       {
         "allValue": ".*",
         "current": {
-          "tags": [],
+          "selected": false,
           "text": "All",
-          "value": [
-            "$__all"
-          ]
+          "value": "$__all"
         },
         "datasource": "Prometheus",
         "definition": "label_values(jvm_attribute_uptime{app='$app'}, table)",
@@ -904,6 +896,7 @@
       {
         "allValue": null,
         "current": {
+          "selected": true,
           "text": "table",
           "value": "table"
         },
@@ -962,5 +955,5 @@
   "timezone": "",
   "title": "Dashbase Searcher",
   "uid": "cAKMbk8Wz",
-  "version": 5
+  "version": 6
 }

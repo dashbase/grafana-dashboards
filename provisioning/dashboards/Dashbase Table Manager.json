@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 10,
-  "iteration": 1580762370476,
+  "iteration": 1580927712619,
   "links": [],
   "panels": [
     {
@@ -933,13 +933,6 @@
           "intervalFactor": 1,
           "legendFormat": "max - {{$per}}",
           "refId": "B"
-        },
-        {
-          "expr": "sum(dashbase_table_manager_bloom_filter_memory_bytes{table=~'${table:pipe}',app='$app'}) by ($per)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "bloom filter - {{$per}}",
-          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -1112,10 +1105,8 @@
       {
         "allValue": ".*",
         "current": {
-          "text": "All",
-          "value": [
-            "$__all"
-          ]
+          "text": "filebeat",
+          "value": "filebeat"
         },
         "datasource": "Prometheus",
         "definition": "label_values(jvm_attribute_uptime{app='$app'}, table)",
@@ -1235,5 +1226,5 @@
   "timezone": "",
   "title": "Dashbase Table Manager",
   "uid": "bUtzhk8Zk",
-  "version": 6
+  "version": 7
 }
