@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 11,
-  "iteration": 1580926911524,
+  "iteration": 1581031598114,
   "links": [],
   "panels": [
     {
@@ -74,6 +74,13 @@
           "intervalFactor": 1,
           "legendFormat": "{{$per}}",
           "refId": "A"
+        },
+        {
+          "expr": "sum(rate(dashbase_realtime_searcher_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "realtime - {{$per}}",
+          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -161,6 +168,13 @@
           "intervalFactor": 1,
           "legendFormat": "{{$per}}",
           "refId": "A"
+        },
+        {
+          "expr": "avg(rate(dashbase_realtime_searcher_query_latency_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_realtime_searcher_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "realtime - {{$per}}",
+          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -955,5 +969,5 @@
   "timezone": "",
   "title": "Dashbase Searcher",
   "uid": "cAKMbk8Wz",
-  "version": 6
+  "version": 7
 }

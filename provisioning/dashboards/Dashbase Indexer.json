@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 9,
-  "iteration": 1580766295817,
+  "iteration": 1581031594052,
   "links": [],
   "panels": [
     {
@@ -1448,8 +1448,9 @@
         {
           "expr": "sum(floor(increase(dashbase_indexer_flush_bytes_count{table=~'${table:pipe}',app='$app'}[1m]))) by ($per, type)",
           "format": "time_series",
+          "hide": false,
           "instant": false,
-          "interval": "1m",
+          "interval": "30s",
           "intervalFactor": 1,
           "legendFormat": "{{type}} segment - {{$per}}",
           "refId": "A"
@@ -2392,6 +2393,7 @@
       {
         "allValue": null,
         "current": {
+          "selected": true,
           "text": "dashbase",
           "value": "dashbase"
         },
@@ -2417,6 +2419,7 @@
       {
         "allValue": ".*",
         "current": {
+          "selected": true,
           "text": "All",
           "value": "$__all"
         },
@@ -2481,7 +2484,6 @@
         "allValue": null,
         "current": {
           "selected": true,
-          "tags": [],
           "text": "table",
           "value": "table"
         },
@@ -2540,5 +2542,5 @@
   "timezone": "",
   "title": "Dashbase Indexer",
   "uid": "2kC2zlsZz",
-  "version": 4
+  "version": 5
 }
