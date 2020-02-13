@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 11,
-  "iteration": 1580926911524,
+  "iteration": 1581537274223,
   "links": [],
   "panels": [
     {
@@ -69,11 +68,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_searcher_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "avg(rate(dashbase_searcher_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{$per}}",
+          "legendFormat": "full - {{$per}}",
           "refId": "A"
+        },
+        {
+          "expr": "avg(rate(dashbase_realtime_searcher_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "realtime - {{$per}}",
+          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -159,8 +165,15 @@
           "expr": "avg(rate(dashbase_searcher_query_latency_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_searcher_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{$per}}",
+          "legendFormat": "full - {{$per}}",
           "refId": "A"
+        },
+        {
+          "expr": "avg(rate(dashbase_realtime_searcher_query_latency_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_realtime_searcher_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "realtime - {{$per}}",
+          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -247,11 +260,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(delta(dashbase_searcher_num_segments_searched{table=~'${table:pipe}',app='$app'}[1m])) by ($per)",
+          "expr": "sum(delta(dashbase_searcher_num_segments_searched{component='searcher',table=~'${table:pipe}',app='$app'}[1m])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "searched - {{$per}}",
+          "legendFormat": "full - {{$per}}",
           "refId": "C"
+        },
+        {
+          "expr": "sum(delta(dashbase_searcher_num_segments_searched{component='indexer',table=~'${table:pipe}',app='$app'}[1m])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "realtime - {{$per}}",
+          "refId": "D"
         },
         {
           "expr": "avg(delta(dashbase_searcher_num_segments_bloom_filter_checked{table=~'${table:pipe}',app='$app'}[1m]) / delta(dashbase_searcher_num_segments_searched{table=~'${table:pipe}',app='$app'}[1m])) by ($per)",
@@ -347,24 +367,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(dashbase_searcher_reader_cache_count{app=\"$app\"})",
+          "expr": "sum(dashbase_searcher_reader_cache_count{component=\"searcher\",app=\"$app\"}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "segment reader",
+          "legendFormat": "segment reader - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "sum(dashbase_searcher_num_bloom_filters_loaded{app=\"$app\"})",
+          "expr": "sum(dashbase_searcher_num_bloom_filters_loaded{component=\"searcher\",app=\"$app\"}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "bloom filter",
+          "legendFormat": "bloom filter - {{$per}}",
           "refId": "B"
         },
         {
           "expr": "sum(caffeine_cache_estimated_size{component=\"searcher\",cache=\"payload\"})",
           "format": "time_series",
+          "hide": true,
           "intervalFactor": 1,
-          "legendFormat": "payload",
+          "legendFormat": "payload - {{$per}}",
           "refId": "C"
         }
       ],
@@ -806,7 +827,6 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
           "text": "dashbase",
           "value": "dashbase"
         },
@@ -832,7 +852,6 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": false,
           "text": "All",
           "value": "$__all"
         },
@@ -897,6 +916,7 @@
         "allValue": null,
         "current": {
           "selected": true,
+          "tags": [],
           "text": "table",
           "value": "table"
         },
@@ -955,5 +975,5 @@
   "timezone": "",
   "title": "Dashbase Searcher",
   "uid": "cAKMbk8Wz",
-  "version": 6
+  "version": 8
 }
