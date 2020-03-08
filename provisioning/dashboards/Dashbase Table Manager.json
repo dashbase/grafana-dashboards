@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 10,
-  "iteration": 1580927712619,
+  "iteration": 1582324562314,
   "links": [],
   "panels": [
     {
@@ -250,7 +249,7 @@
           "expr": "sum(delta(dashbase_table_manager_num_segments_searched{table=~'${table:pipe}',app='$app'}[1m])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "searched - {{$per}}",
+          "legendFormat": "total - {{$per}}",
           "refId": "C"
         },
         {
@@ -261,11 +260,18 @@
           "refId": "A"
         },
         {
-          "expr": "avg(delta(dashbase_table_manager_num_segments_bloom_filtered{table=~'${table:pipe}',app='$app'}[1m]) / ignoring(type) group_left delta(dashbase_table_manager_num_segments_searched{table=~'${table:pipe}',app='$app'}[1m])) by ($per,type)",
+          "expr": "avg(delta(dashbase_table_manager_num_segments_bloom_filtered{table=~'${table:pipe}',app='$app'}[1m]) / delta(dashbase_table_manager_num_segments_searched{table=~'${table:pipe}',app='$app'}[1m])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "% filtered by {{type}} bloom filter - {{$per}}",
+          "legendFormat": "% filtered by bloom filter - {{$per}}",
           "refId": "B"
+        },
+        {
+          "expr": "avg(delta(dashbase_table_manager_num_segments_filtered_by_continuation_token{table=~'${table:pipe}',app='$app'}[1m]) / delta(dashbase_table_manager_num_segments_searched{table=~'${table:pipe}',app='$app'}[1m])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "% filtered by continuation token - {{$per}}",
+          "refId": "D"
         }
       ],
       "thresholds": [],
@@ -441,18 +447,19 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(dashbase_table_manager_num_merged_bloom_filters{app=\"$app\",table=~'${table:pipe}'}) by ($per)",
+          "expr": "sum(dashbase_table_manager_num_segments_bloom_filter_loaded{app=\"$app\",table=~'${table:pipe}'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "merged - {{$per}}",
-          "refId": "A"
+          "legendFormat": "{{$per}}",
+          "refId": "B"
         },
         {
-          "expr": "sum(caffeine_cache_estimated_size{component=\"table-manager\",cache=\"bloomFilter\",app=\"$app\",table=~'${table:pipe}'}) by ($per)",
+          "expr": "sum(caffeine_cache_estimated_size{app=\"$app\",cache=\"table_manager_bloom_filter\",table=~'${table:pipe}'}) by ($per)",
           "format": "time_series",
+          "hide": true,
           "intervalFactor": 1,
-          "legendFormat": "individual - {{$per}}",
-          "refId": "B"
+          "legendFormat": "# merged - {{$per}}",
+          "refId": "A"
         }
       ],
       "thresholds": [],
@@ -475,7 +482,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "none",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1226,5 +1233,5 @@
   "timezone": "",
   "title": "Dashbase Table Manager",
   "uid": "bUtzhk8Zk",
-  "version": 7
+  "version": 8
 }

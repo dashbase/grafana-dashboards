@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1581537274223,
+  "iteration": 1581537274263,
   "links": [],
   "panels": [
     {
@@ -367,26 +367,35 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(dashbase_searcher_reader_cache_count{component=\"searcher\",app=\"$app\"}) by ($per)",
+          "expr": "sum(dashbase_searcher_reader_cache_count{app=\"$app\",table=~'${table:pipe}'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "segment reader - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "sum(dashbase_searcher_num_bloom_filters_loaded{component=\"searcher\",app=\"$app\"}) by ($per)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "bloom filter - {{$per}}",
-          "refId": "B"
-        },
-        {
-          "expr": "sum(caffeine_cache_estimated_size{component=\"searcher\",cache=\"payload\"})",
+          "expr": "sum(caffeine_cache_estimated_size{component=\"searcher\",app=\"$app\",cache=\"searcher_bloom_filter\"})",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 1,
-          "legendFormat": "payload - {{$per}}",
+          "legendFormat": "bloom filter",
+          "refId": "B"
+        },
+        {
+          "expr": "sum(caffeine_cache_estimated_size{component=\"searcher\",app=\"$app\",cache=\"payload\"})",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "payload",
           "refId": "C"
+        },
+        {
+          "expr": "sum(dashbase_searcher_num_bloom_filters_loaded{app=\"$app\",table=~'${table:pipe}'}) by ($per)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "bloom filter - {{$per}}",
+          "refId": "D"
         }
       ],
       "thresholds": [],
