@@ -4511,14 +4511,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_total_index_bytes{table=~'${table:pipe}',app='$app'} / on(instance,table) dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app'}) by ($per)",
+          "expr": "avg(dashbase_total_index_bytes{table=~'${table:pipe}',app='$app',container!='set-vm-max-map-count'} / on(instance,table) dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app',container!='set-vm-max-map-count'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "% used by index - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "avg(dashbase_total_payload_bytes{table=~'${table:pipe}',app='$app'} / on(instance,table) dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app'}) by ($per)",
+          "expr": "avg(dashbase_total_payload_bytes{table=~'${table:pipe}',app='$app',container!='set-vm-max-map-count'} / on(instance,table) dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app',container!='set-vm-max-map-count'}) by ($per)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -4526,7 +4526,7 @@
           "refId": "B"
         },
         {
-          "expr": "avg(dashbase_bloomfilter_disk_used_MB{table=~'${table:pipe}',app='$app'} * 1024 * 1024 / on(instance,table) dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app'}) by ($per)",
+          "expr": "avg(dashbase_bloomfilter_disk_used_MB{table=~'${table:pipe}',app='$app',container!='set-vm-max-map-count'} * 1024 * 1024 / on(instance,table) dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app',container!='set-vm-max-map-count'}) by ($per)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -4534,7 +4534,7 @@
           "refId": "C"
         },
         {
-          "expr": "avg(dashbase_total_sample_size_KB{table=~'${table:pipe}',app='$app'} * 1024 / on(instance,table) dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app'}) by ($per)",
+          "expr": "avg(dashbase_total_sample_size_KB{table=~'${table:pipe}',app='$app',container!='set-vm-max-map-count',} * 1024 / on(instance,table) dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app',container!='set-vm-max-map-count'}) by ($per)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -4542,7 +4542,7 @@
           "refId": "D"
         },
         {
-          "expr": "avg(dashbase_disk_available_bytes{table=~'${table:pipe}',app='$app'} / on(instance,table) dashbase_disk_total_bytes{table=~'${table:pipe}',app='$app'}) by ($per)",
+          "expr": "avg(dashbase_disk_available_bytes{table=~'${table:pipe}',app='$app',container!='set-vm-max-map-count'} / on(instance,table) dashbase_disk_total_bytes{table=~'${table:pipe}',app='$app',container!='set-vm-max-map-count'}) by ($per)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -4550,7 +4550,7 @@
           "refId": "E"
         },
         {
-          "expr": "avg((dashbase_total_payload_bytes{table=~'${table:pipe}',app='$app'} + dashbase_total_index_bytes{table=~'${table:pipe}',app='$app'}) / on(instance,table) dashbase_total_raw_bytes{table=~'${table:pipe}',app='$app'}) by ($per)",
+          "expr": "avg((dashbase_total_payload_bytes{table=~'${table:pipe}',app='$app',container!='set-vm-max-map-count'} + dashbase_total_index_bytes{table=~'${table:pipe}',app='$app',container!='set-vm-max-map-count'}) / on(instance,table) dashbase_total_raw_bytes{table=~'${table:pipe}',app='$app',container!='set-vm-max-map-count'}) by ($per)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
