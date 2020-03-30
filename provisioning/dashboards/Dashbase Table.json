@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1575438162760,
+  "iteration": 1585591068415,
   "links": [],
   "panels": [
     {
@@ -73,28 +73,28 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_index_event_size_sum{app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by ($per)",
+          "expr": "sum(rate(dashbase_index_event_size_sum{component='table', app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "filebeat -> {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(dashbase_filebeat_parser_message_bytes_received{app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by ($per) > 0",
+          "expr": "sum(rate(dashbase_filebeat_parser_message_bytes_received{component='table', app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by ($per) > 0",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "filebeat -> {{$per}} (original)",
           "refId": "B"
         },
         {
-          "expr": "sum(dashbase_firehose_kafka_consumer_fetch_manager_metrics_bytes_consumed_rate{table=~'${table:pipe}',app='$app'}) by ($per)",
+          "expr": "sum(dashbase_firehose_kafka_consumer_fetch_manager_metrics_bytes_consumed_rate{component='table', table=~'${table:pipe}',app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "kafka -> {{$per}}",
           "refId": "C"
         },
         {
-          "expr": "sum(rate(dashbase_proxy_bytes_received{app=\"$app\",topic=\"$table\"}[$duration])) by ($per)",
+          "expr": "sum(rate(dashbase_proxy_bytes_received{component='table', app=\"$app\",topic=\"$table\"}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{$per}} -> kafka",
@@ -185,7 +185,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_ingestion_events_total{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "sum(rate(dashbase_ingestion_events_total{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -193,14 +193,14 @@
           "refId": "A"
         },
         {
-          "expr": "sum(rate(dashbase_indexer_events_total{table=~'${table:pipe}',app='$app',type='full'}[$duration])) by ($per)",
+          "expr": "sum(rate(dashbase_indexer_events_total{component='table', table=~'${table:pipe}',app='$app',type='full'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "indexed - {{$per}}",
           "refId": "B"
         },
         {
-          "expr": "sum(rate(dashbase_ingestion_bytes_total{table=~'${table:pipe}',app='$app'}[$duration])) by (instance)",
+          "expr": "sum(rate(dashbase_ingestion_bytes_total{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by (instance)",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 1,
@@ -208,7 +208,7 @@
           "refId": "D"
         },
         {
-          "expr": "sum(rate(dashbase_indexer_bytes_total{table=~'${table:pipe}',app='$app', type='full'}[$duration])) by (instance)",
+          "expr": "sum(rate(dashbase_indexer_bytes_total{component='table', table=~'${table:pipe}',app='$app', type='full'}[$duration])) by (instance)",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 1,
@@ -299,7 +299,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "max(rate(dashbase_indexer_full_latency_secs_sum{table=~'${table:pipe}',app='$app',type='full'}[$duration]) / rate(dashbase_indexer_full_latency_secs_count{table=~'${table:pipe}',app='$app',type='full'}[$duration])) by ($per)",
+          "expr": "max(rate(dashbase_indexer_full_latency_secs_sum{component='table', table=~'${table:pipe}',app='$app',type='full'}[$duration]) / rate(dashbase_indexer_full_latency_secs_count{component='table', table=~'${table:pipe}',app='$app',type='full'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{$per}}",
@@ -392,7 +392,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(dashbase_actual_retention_days{app=\"$app\",table=~\"${table}\"}) by ($per)",
+          "expr": "avg(dashbase_actual_retention_days{app=\"$app\",component='table', table=~\"${table}\"}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{$per}}",
@@ -482,7 +482,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_search_query_latency_secs_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "sum(rate(dashbase_search_query_latency_secs_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{$per}}",
@@ -571,7 +571,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(dashbase_search_query_latency_secs_sum{table=~'${table:pipe}',app='$app'}[5m]) / rate(dashbase_search_query_latency_secs_count{table=~'${table:pipe}',app='$app'}[5m])) by ($per)",
+          "expr": "avg(rate(dashbase_search_query_latency_secs_sum{component='table', table=~'${table:pipe}',app='$app'}[5m]) / rate(dashbase_search_query_latency_secs_count{component='table', table=~'${table:pipe}',app='$app'}[5m])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{$per}}",
@@ -676,14 +676,14 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(dashbase_index_event_size_sum{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "sum(rate(dashbase_index_event_size_sum{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "bytes - {{$per}}",
               "refId": "A"
             },
             {
-              "expr": "sum(rate(dashbase_index_event_size_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "sum(rate(dashbase_index_event_size_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "events - {{$per}}",
@@ -769,7 +769,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(io_dashbase_elasticsearch_resource_IndexResource_bulkPost_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "sum(rate(io_dashbase_elasticsearch_resource_IndexResource_bulkPost_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{$per}}",
@@ -855,7 +855,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(io_dashbase_elasticsearch_resource_IndexResource_bulkPost{quantile='0.5',app='$app',table=~'${table:pipe}'}) by ($per)",
+              "expr": "avg(io_dashbase_elasticsearch_resource_IndexResource_bulkPost{quantile='0.5',component='table', app='$app',table=~'${table:pipe}'}) by ($per)",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -863,7 +863,7 @@
               "refId": "A"
             },
             {
-              "expr": "avg(io_dashbase_elasticsearch_resource_IndexResource_bulkPost{quantile='0.99',app='$app',table=~'${table:pipe}'}) by ($per)",
+              "expr": "avg(io_dashbase_elasticsearch_resource_IndexResource_bulkPost{quantile='0.99',component='table', app='$app',table=~'${table:pipe}'}) by ($per)",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -950,21 +950,21 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(dashbase_index_event_parse_error{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "sum(rate(dashbase_index_event_parse_error{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "parse error - {{$per}}",
               "refId": "A"
             },
             {
-              "expr": "sum(rate(dashbase_overflow_message{table=~'${table:pipe}',app='$app',component='table'}[$duration])) by ($per)",
+              "expr": "sum(rate(dashbase_overflow_message{component='table', table=~'${table:pipe}',app='$app',component='table'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "overflow - {{$per}}",
               "refId": "B"
             },
             {
-              "expr": "sum(rate(io_dashbase_elasticsearch_resource_IndexResource_bulkPost_exceptions_total{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "sum(rate(io_dashbase_elasticsearch_resource_IndexResource_bulkPost_exceptions_total{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "exception - {{$per}}",
@@ -1056,21 +1056,21 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(rate(dashbase_index_event_delay_sum{table=~'${table:pipe}',app='$app'}[$duration])/rate(dashbase_index_event_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "avg(rate(dashbase_index_event_delay_sum{component='table', table=~'${table:pipe}',app='$app'}[$duration])/rate(dashbase_index_event_delay_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "average - {{$per}}",
               "refId": "A"
             },
             {
-              "expr": "1 - avg(rate(dashbase_index_event_delay_bucket{table=~'${table:pipe}',app='$app',le=\"60.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "1 - avg(rate(dashbase_index_event_delay_bucket{component='table', table=~'${table:pipe}',app='$app',le=\"60.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_delay_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "% > 1m - {{$per}}",
               "refId": "B"
             },
             {
-              "expr": "1 - avg(rate(dashbase_index_event_delay_bucket{table=~'${table:pipe}',app='$app',le=\"3600.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "1 - avg(rate(dashbase_index_event_delay_bucket{component='table', table=~'${table:pipe}',app='$app',le=\"3600.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_delay_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "% > 1h - {{$per}}",
@@ -1162,21 +1162,21 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "floor(avg(rate(dashbase_index_event_size_sum{table=~'${table:pipe}',app='$app'}[$duration])/rate(dashbase_index_event_size_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per))",
+              "expr": "floor(avg(rate(dashbase_index_event_size_sum{component='table', table=~'${table:pipe}',app='$app'}[$duration])/rate(dashbase_index_event_size_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "avg - {{$per}}",
               "refId": "A"
             },
             {
-              "expr": "1 - avg(rate(dashbase_index_event_size_bucket{table=~'${table:pipe}',app='$app',le=\"1048576.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_size_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "1 - avg(rate(dashbase_index_event_size_bucket{component='table', table=~'${table:pipe}',app='$app',le=\"1048576.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_size_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "% > 1MB - {{$per}}",
               "refId": "B"
             },
             {
-              "expr": "1 - avg(rate(dashbase_index_event_size_bucket{table=~'${table:pipe}',app='$app',le=\"1.048576E7\"}[$duration])/ignoring(le) rate(dashbase_index_event_size_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "1 - avg(rate(dashbase_index_event_size_bucket{component='table', table=~'${table:pipe}',app='$app',le=\"1.048576E7\"}[$duration])/ignoring(le) rate(dashbase_index_event_size_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "% > 10MB - {{$per}}",
@@ -1452,7 +1452,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 40
+            "y": 31
           },
           "id": 68,
           "legend": {
@@ -1480,14 +1480,14 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(dashbase_index_chronicle_queue_read_sum{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "sum(rate(dashbase_index_chronicle_queue_read_sum{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "read - {{$per}}",
               "refId": "A"
             },
             {
-              "expr": "sum(rate(dashbase_index_chronicle_queue_write_sum{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "sum(rate(dashbase_index_chronicle_queue_write_sum{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "write - {{$per}}",
@@ -1545,7 +1545,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 40
+            "y": 31
           },
           "id": 70,
           "legend": {
@@ -1573,7 +1573,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(dashbase_index_chronicle_queue_num_entries{table=~'${table:pipe}',app='$app'}) by ($per)",
+              "expr": "sum(dashbase_index_chronicle_queue_num_entries{component='table', table=~'${table:pipe}',app='$app'}) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{$per}}",
@@ -1631,7 +1631,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 49
+            "y": 40
           },
           "id": 86,
           "legend": {
@@ -1659,7 +1659,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(dashbase_index_chronicle_queue_num_files{table=~'${table:pipe}',app='$app'}) by ($per)",
+              "expr": "sum(dashbase_index_chronicle_queue_num_files{component='table', table=~'${table:pipe}',app='$app'}) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{$per}}",
@@ -1717,7 +1717,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 49
+            "y": 40
           },
           "id": 88,
           "legend": {
@@ -1745,7 +1745,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(dashbase_index_chronicle_queue_health{table=~'${table:pipe}',app='$app'}) by ($per)",
+              "expr": "avg(dashbase_index_chronicle_queue_health{component='table', table=~'${table:pipe}',app='$app'}) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{$per}}",
@@ -1853,14 +1853,14 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(dashbase_ingestion_events_total{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "sum(rate(dashbase_ingestion_events_total{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "events - {{$per}}",
               "refId": "C"
             },
             {
-              "expr": "sum(rate(dashbase_ingestion_bytes_total{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "sum(rate(dashbase_ingestion_bytes_total{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": " bytes - {{$per}}",
@@ -1947,14 +1947,14 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(dashbase_parse_error_total{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "sum(rate(dashbase_parse_error_total{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "parse error - {{$per}}",
               "refId": "A"
             },
             {
-              "expr": "sum(rate(dashbase_parse_skipped_total{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "sum(rate(dashbase_parse_skipped_total{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "skipped - {{$per}}",
@@ -2027,7 +2027,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 42
+            "y": 33
           },
           "id": 26,
           "legend": {
@@ -2057,7 +2057,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(dashbase_search_query_latency_secs_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+              "expr": "sum(rate(dashbase_search_query_latency_secs_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{$per}}",
@@ -2116,7 +2116,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 42
+            "y": 33
           },
           "id": 27,
           "legend": {
@@ -2146,14 +2146,14 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(rate(dashbase_search_query_latency_secs_sum{table=~'${table:pipe}',app='$app'}[5m]) / rate(dashbase_search_query_latency_secs_count{table=~'${table:pipe}',app='$app'}[5m])) by ($per)",
+              "expr": "avg(rate(dashbase_search_query_latency_secs_sum{component='table', table=~'${table:pipe}',app='$app'}[5m]) / rate(dashbase_search_query_latency_secs_count{component='table', table=~'${table:pipe}',app='$app'}[5m])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "average - {{$per}}",
               "refId": "A"
             },
             {
-              "expr": "avg(histogram_quantile(0.99, rate(dashbase_search_query_latency_secs_bucket{table=~'${table:pipe}',app='$app'}[5m]))) by ($per)",
+              "expr": "avg(histogram_quantile(0.99, rate(dashbase_search_query_latency_secs_bucket{component='table', table=~'${table:pipe}',app='$app'}[5m]))) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "p99 - {{$per}}",
@@ -2212,7 +2212,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 51
+            "y": 42
           },
           "id": 85,
           "legend": {
@@ -2308,7 +2308,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 51
+            "y": 42
           },
           "id": 33,
           "legend": {
@@ -2416,7 +2416,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 70
+            "y": 34
           },
           "id": 31,
           "legend": {
@@ -2511,7 +2511,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 70
+            "y": 34
           },
           "id": 53,
           "legend": {
@@ -2598,7 +2598,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 78
+            "y": 42
           },
           "id": 103,
           "legend": {
@@ -2628,14 +2628,14 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(rate(dashbase_indexer_time_slice_range_secs_sum{table=~'${table:pipe}',app='$app',type='full'}[$duration]) / rate(dashbase_indexer_time_slice_range_secs_count{table=~'${table:pipe}',app='$app',type='full'}[$duration])) by ($per)",
+              "expr": "avg(rate(dashbase_indexer_time_slice_range_secs_sum{component='table', table=~'${table:pipe}',app='$app',type='full'}[$duration]) / rate(dashbase_indexer_time_slice_range_secs_count{component='table', table=~'${table:pipe}',app='$app',type='full'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{$per}}",
               "refId": "A"
             },
             {
-              "expr": "avg(histogram_quantile(0.99, rate(dashbase_indexer_time_slice_range_secs_bucket{table=~'${table:pipe}',app='$app',type='full'}[10m]))) by ($per)",
+              "expr": "avg(histogram_quantile(0.99, rate(dashbase_indexer_time_slice_range_secs_bucket{component='table', table=~'${table:pipe}',app='$app',type='full'}[10m]))) by ($per)",
               "format": "time_series",
               "hide": true,
               "intervalFactor": 1,
@@ -2695,7 +2695,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 78
+            "y": 42
           },
           "id": 51,
           "legend": {
@@ -2725,7 +2725,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(histogram_quantile(0.99, rate(dashbase_indexer_time_slice_range_secs_bucket{table=~'${table:pipe}',app='$app',type='full'}[10m]))) by ($per)",
+              "expr": "avg(histogram_quantile(0.99, rate(dashbase_indexer_time_slice_range_secs_bucket{component='table', table=~'${table:pipe}',app='$app',type='full'}[10m]))) by ($per)",
               "format": "time_series",
               "hide": true,
               "intervalFactor": 1,
@@ -2733,7 +2733,7 @@
               "refId": "B"
             },
             {
-              "expr": "avg(rate(dashbase_indexer_time_slice_range_secs_sum{table=~'${table:pipe}',app='$app',type='realtime'}[$duration]) / rate(dashbase_indexer_time_slice_range_secs_count{table=~'${table:pipe}',app='$app',type='realtime'}[$duration])) by ($per)",
+              "expr": "avg(rate(dashbase_indexer_time_slice_range_secs_sum{component='table', table=~'${table:pipe}',app='$app',type='realtime'}[$duration]) / rate(dashbase_indexer_time_slice_range_secs_count{component='table', table=~'${table:pipe}',app='$app',type='realtime'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{$per}}",
@@ -2793,7 +2793,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 87
+            "y": 51
           },
           "id": 49,
           "legend": {
@@ -2823,7 +2823,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(rate(dashbase_indexer_full_latency_secs_sum{table=~'${table:pipe}',app='$app',type='full'}[$duration]) / rate(dashbase_indexer_full_latency_secs_count{table=~'${table:pipe}',app='$app',type='full'}[$duration])) by ($per)",
+              "expr": "avg(rate(dashbase_indexer_full_latency_secs_sum{component='table', table=~'${table:pipe}',app='$app',type='full'}[$duration]) / rate(dashbase_indexer_full_latency_secs_count{component='table', table=~'${table:pipe}',app='$app',type='full'}[$duration])) by ($per)",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -2831,7 +2831,7 @@
               "refId": "A"
             },
             {
-              "expr": "avg(histogram_quantile(0.99, rate(dashbase_indexer_full_latency_secs_bucket{table=~'${table:pipe}',app='$app',type='full'}[$duration]))) by ($per)",
+              "expr": "avg(histogram_quantile(0.99, rate(dashbase_indexer_full_latency_secs_bucket{component='table', table=~'${table:pipe}',app='$app',type='full'}[$duration]))) by ($per)",
               "format": "time_series",
               "hide": true,
               "intervalFactor": 1,
@@ -2892,7 +2892,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 87
+            "y": 51
           },
           "id": 104,
           "legend": {
@@ -2922,7 +2922,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(rate(dashbase_indexer_full_latency_secs_sum{table=~'${table:pipe}',app='$app',type='realtime'}[$duration]) / rate(dashbase_indexer_full_latency_secs_count{table=~'${table:pipe}',app='$app',type='realtime'}[$duration])) by ($per)",
+              "expr": "avg(rate(dashbase_indexer_full_latency_secs_sum{component='table', table=~'${table:pipe}',app='$app',type='realtime'}[$duration]) / rate(dashbase_indexer_full_latency_secs_count{component='table', table=~'${table:pipe}',app='$app',type='realtime'}[$duration])) by ($per)",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -2930,7 +2930,7 @@
               "refId": "A"
             },
             {
-              "expr": "avg(histogram_quantile(0.99, rate(dashbase_indexer_full_latency_secs_bucket{table=~'${table:pipe}',app='$app',type='realtime'}[$duration]))) by ($per)",
+              "expr": "avg(histogram_quantile(0.99, rate(dashbase_indexer_full_latency_secs_bucket{component='table', table=~'${table:pipe}',app='$app',type='realtime'}[$duration]))) by ($per)",
               "format": "time_series",
               "hide": true,
               "intervalFactor": 1,
@@ -2990,7 +2990,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 96
+            "y": 60
           },
           "id": 52,
           "legend": {
@@ -3020,7 +3020,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg((dashbase_total_index_bytes{table=~'${table:pipe}',app='$app'} + dashbase_total_payload_bytes{table=~'${table:pipe}',app='$app'})/dashbase_index_timeslice_count{table=~'${table:pipe}',app='$app'}) by ($per)",
+              "expr": "avg((dashbase_total_index_bytes{component='table', table=~'${table:pipe}',app='$app'} + dashbase_total_payload_bytes{component='table', table=~'${table:pipe}',app='$app'})/dashbase_index_timeslice_count{component='table', table=~'${table:pipe}',app='$app'}) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{$per}}",
@@ -3079,7 +3079,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 96
+            "y": 60
           },
           "id": 101,
           "legend": {
@@ -3109,7 +3109,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(dashbase_total_raw_bytes{table=~'${table:pipe}',app='$app'}/dashbase_index_timeslice_count{table=~'${table:pipe}',app='$app'}) by ($per)",
+              "expr": "avg(dashbase_total_raw_bytes{component='table', table=~'${table:pipe}',app='$app'}/dashbase_index_timeslice_count{component='table', table=~'${table:pipe}',app='$app'}) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{$per}}",
@@ -3168,7 +3168,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 105
+            "y": 69
           },
           "id": 102,
           "legend": {
@@ -3198,7 +3198,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(rate(dashbase_indexer_flush_bytes_sum{table=~'${table:pipe}',app='$app',type='full'}[$duration])/rate(dashbase_indexer_flush_bytes_count{table=~'${table:pipe}',app='$app',type='full'}[$duration])) by ($per)",
+              "expr": "avg(rate(dashbase_indexer_flush_bytes_sum{component='table', table=~'${table:pipe}',app='$app',type='full'}[$duration])/rate(dashbase_indexer_flush_bytes_count{component='table', table=~'${table:pipe}',app='$app',type='full'}[$duration])) by ($per)",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -3258,7 +3258,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 105
+            "y": 69
           },
           "id": 105,
           "legend": {
@@ -3288,7 +3288,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(rate(dashbase_indexer_flush_bytes_sum{table=~'${table:pipe}',app='$app',type='realtime'}[$duration])/rate(dashbase_indexer_flush_bytes_count{table=~'${table:pipe}',app='$app',type='realtime'}[$duration])) by ($per)",
+              "expr": "avg(rate(dashbase_indexer_flush_bytes_sum{component='table', table=~'${table:pipe}',app='$app',type='realtime'}[$duration])/rate(dashbase_indexer_flush_bytes_count{component='table', table=~'${table:pipe}',app='$app',type='realtime'}[$duration])) by ($per)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{$per}}",
@@ -3360,7 +3360,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 115
+            "y": 79
           },
           "id": 41,
           "legend": {
@@ -3448,7 +3448,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 115
+            "y": 79
           },
           "id": 42,
           "legend": {
@@ -3536,7 +3536,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 124
+            "y": 88
           },
           "id": 43,
           "legend": {
@@ -3624,7 +3624,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 124
+            "y": 88
           },
           "id": 44,
           "legend": {
@@ -3712,7 +3712,7 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 133
+            "y": 97
           },
           "id": 45,
           "legend": {
@@ -3800,7 +3800,7 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 133
+            "y": 97
           },
           "id": 46,
           "legend": {
@@ -3888,7 +3888,7 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 133
+            "y": 97
           },
           "id": 47,
           "legend": {
@@ -4403,21 +4403,21 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(dashbase_disk_used_bytes{table=~'${table:pipe}',app='$app'}) by ($per)",
+          "expr": "sum(dashbase_disk_used_bytes{component='table', table=~'${table:pipe}',app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "reported used bytes - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "sum(dashbase_disk_total_bytes{table=~'${table:pipe}',app='$app'} - dashbase_disk_available_bytes{table=~'${table:pipe}',app='$app'}) by ($per)",
+          "expr": "sum(dashbase_disk_total_bytes{component='table', table=~'${table:pipe}',app='$app'} - dashbase_disk_available_bytes{component='table', table=~'${table:pipe}',app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "actual used bytes - {{$per}}",
           "refId": "B"
         },
         {
-          "expr": "sum(dashbase_disk_total_bytes{table=~'${table:pipe}',app='$app'}) by ($per)",
+          "expr": "sum(dashbase_disk_total_bytes{component='table', table=~'${table:pipe}',app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "total bytes - {{$per}}",
@@ -4542,7 +4542,7 @@
           "refId": "D"
         },
         {
-          "expr": "avg(dashbase_disk_available_bytes{table=~'${table:pipe}',app='$app'} / on(instance,table) dashbase_disk_total_bytes{table=~'${table:pipe}',app='$app'}) by ($per)",
+          "expr": "avg(dashbase_disk_available_bytes{component='table', table=~'${table:pipe}',app='$app'} / on(instance,table) dashbase_disk_total_bytes{component='table', table=~'${table:pipe}',app='$app'}) by ($per)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -4608,8 +4608,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "dashbase",
-          "value": "dashbase"
+          "text": "staging",
+          "value": "staging"
         },
         "datasource": "Prometheus",
         "definition": "",
@@ -4756,5 +4756,5 @@
   "timezone": "",
   "title": "Dashbase Table",
   "uid": "YhMqAJtmk",
-  "version": 14
+  "version": 1
 }
