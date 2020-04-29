@@ -16,7 +16,7 @@
     "gnetId": null,
     "graphTooltip": 0,
     "id": 14,
-    "iteration": 1588167880113,
+    "iteration": 1588172000332,
     "links": [],
     "panels": [
       {
@@ -54,7 +54,8 @@
           "current": false,
           "max": false,
           "min": false,
-          "show": false,
+          "rightSide": true,
+          "show": true,
           "total": false,
           "values": false
         },
@@ -74,16 +75,28 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "bytesSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+            "expr": "bytesSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
             "interval": "",
-            "legendFormat": "Sent",
+            "legendFormat": "Sent - Audio",
             "refId": "A"
           },
           {
-            "expr": "bytesReceived{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+            "expr": "bytesReceived{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
             "interval": "",
-            "legendFormat": "Received",
+            "legendFormat": "Received - Audio",
             "refId": "B"
+          },
+          {
+            "expr": "bytesSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+            "interval": "",
+            "legendFormat": "Sent - Video",
+            "refId": "C"
+          },
+          {
+            "expr": "bytesReceived{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+            "interval": "",
+            "legendFormat": "Received - Video",
+            "refId": "D"
           }
         ],
         "thresholds": [],
@@ -148,7 +161,8 @@
           "current": false,
           "max": false,
           "min": false,
-          "show": false,
+          "rightSide": true,
+          "show": true,
           "total": false,
           "values": false
         },
@@ -168,23 +182,35 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "rate(bytesSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])",
+            "expr": "rate(bytesSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])",
             "interval": "",
-            "legendFormat": "Sent",
+            "legendFormat": "Bytes Sent",
             "refId": "A"
           },
           {
-            "expr": "rate(bytesReceived{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])",
+            "expr": "rate(bytesReceived{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])",
             "interval": "",
-            "legendFormat": "Received",
+            "legendFormat": "Bytes Received",
             "refId": "B"
+          },
+          {
+            "expr": "rate(bytesSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])*8",
+            "interval": "",
+            "legendFormat": "Bits Sent",
+            "refId": "C"
+          },
+          {
+            "expr": "rate(bytesReceived{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])*8",
+            "interval": "",
+            "legendFormat": "Bits Received",
+            "refId": "D"
           }
         ],
         "thresholds": [],
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "Bytes per second",
+        "title": "Data Rate - Audio",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -236,13 +262,14 @@
           "y": 1
         },
         "hiddenSeries": false,
-        "id": 13,
+        "id": 153,
         "legend": {
           "avg": false,
           "current": false,
           "max": false,
           "min": false,
-          "show": false,
+          "rightSide": true,
+          "show": true,
           "total": false,
           "values": false
         },
@@ -262,23 +289,35 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "rate(bytesSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])*8",
+            "expr": "rate(bytesSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])",
             "interval": "",
-            "legendFormat": "Sent",
+            "legendFormat": "Bytes Sent",
             "refId": "A"
           },
           {
-            "expr": "rate(bytesReceived{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])*8",
+            "expr": "rate(bytesReceived{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])",
             "interval": "",
-            "legendFormat": "Reeceived",
+            "legendFormat": "Bytes Received",
             "refId": "B"
+          },
+          {
+            "expr": "rate(bytesSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])*8",
+            "interval": "",
+            "legendFormat": "Bits Sent",
+            "refId": "C"
+          },
+          {
+            "expr": "rate(bytesReceived{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])*8",
+            "interval": "",
+            "legendFormat": "Bits Received",
+            "refId": "D"
           }
         ],
         "thresholds": [],
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "Bits per second",
+        "title": "Data Rate - Video",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -294,7 +333,7 @@
         },
         "yaxes": [
           {
-            "format": "bps",
+            "format": "Bps",
             "label": null,
             "logBase": 1,
             "max": null,
@@ -336,7 +375,8 @@
           "current": false,
           "max": false,
           "min": false,
-          "show": false,
+          "rightSide": true,
+          "show": true,
           "total": false,
           "values": false
         },
@@ -356,10 +396,16 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "requestsSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+            "expr": "requestsSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
             "interval": "",
-            "legendFormat": "requests sent",
+            "legendFormat": "audio",
             "refId": "A"
+          },
+          {
+            "expr": "requestsSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+            "interval": "",
+            "legendFormat": " video",
+            "refId": "B"
           }
         ],
         "thresholds": [],
@@ -424,7 +470,8 @@
           "current": false,
           "max": false,
           "min": false,
-          "show": false,
+          "rightSide": true,
+          "show": true,
           "total": false,
           "values": false
         },
@@ -444,10 +491,16 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "requestsReceived{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+            "expr": "requestsReceived{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
             "interval": "",
-            "legendFormat": "requests received",
+            "legendFormat": "audio",
             "refId": "A"
+          },
+          {
+            "expr": "requestsReceived{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+            "interval": "",
+            "legendFormat": "video",
+            "refId": "B"
           }
         ],
         "thresholds": [],
@@ -508,11 +561,13 @@
         "hiddenSeries": false,
         "id": 9,
         "legend": {
+          "alignAsTable": false,
           "avg": false,
           "current": false,
           "max": false,
           "min": false,
-          "show": false,
+          "rightSide": true,
+          "show": true,
           "total": false,
           "values": false
         },
@@ -532,10 +587,16 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "responsesSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+            "expr": "responsesSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
             "interval": "",
-            "legendFormat": "response sent",
+            "legendFormat": "audio",
             "refId": "A"
+          },
+          {
+            "expr": "responsesSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+            "interval": "",
+            "legendFormat": "video",
+            "refId": "B"
           }
         ],
         "thresholds": [],
@@ -600,7 +661,8 @@
           "current": false,
           "max": false,
           "min": false,
-          "show": false,
+          "rightSide": true,
+          "show": true,
           "total": false,
           "values": false
         },
@@ -620,10 +682,16 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "responsesReceived{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+            "expr": "responsesReceived{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
             "interval": "",
-            "legendFormat": "response received",
+            "legendFormat": "audio",
             "refId": "A"
+          },
+          {
+            "expr": "responsesReceived{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+            "interval": "",
+            "legendFormat": "video",
+            "refId": "B"
           }
         ],
         "thresholds": [],
@@ -688,7 +756,8 @@
           "current": false,
           "max": false,
           "min": false,
-          "show": false,
+          "rightSide": true,
+          "show": true,
           "total": false,
           "values": false
         },
@@ -708,10 +777,16 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "consentRequestsSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+            "expr": "consentRequestsSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
             "interval": "",
-            "legendFormat": "consent reqs sent",
+            "legendFormat": "audio",
             "refId": "A"
+          },
+          {
+            "expr": "consentRequestsSent{call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+            "interval": "",
+            "legendFormat": "video",
+            "refId": "B"
           }
         ],
         "thresholds": [],
@@ -6491,16 +6566,15 @@
       "list": [
         {
           "current": {
-            "selected": false,
-            "text": "",
-            "value": ""
+            "text": "5676008078508032",
+            "value": "5676008078508032"
           },
           "hide": 2,
           "label": "Call ID",
           "name": "call_id",
           "options": [
             {
-              "selected": true,
+              "selected": false,
               "text": "",
               "value": ""
             }
@@ -6601,7 +6675,7 @@
         },
         {
           "current": {
-            "selected": false,
+            "selected": true,
             "text": "logs",
             "value": "logs"
           },
