@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1582324562314,
+  "iteration": 1589325314292,
   "links": [],
   "panels": [
     {
@@ -158,8 +158,22 @@
           "expr": "avg(rate(dashbase_table_manager_query_latency_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_table_manager_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{$per}}",
+          "legendFormat": "{{$per}} - avg",
           "refId": "A"
+        },
+        {
+          "expr": "quantile(0.90, rate(dashbase_table_manager_query_latency_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_table_manager_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{$per}} - p90",
+          "refId": "B"
+        },
+        {
+          "expr": "quantile(0.99, rate(dashbase_table_manager_query_latency_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_table_manager_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{$per}} - p99",
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -1112,8 +1126,8 @@
       {
         "allValue": ".*",
         "current": {
-          "text": "filebeat",
-          "value": "filebeat"
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": "Prometheus",
         "definition": "label_values(jvm_attribute_uptime{app='$app'}, table)",
@@ -1233,5 +1247,5 @@
   "timezone": "",
   "title": "Dashbase Table Manager",
   "uid": "bUtzhk8Zk",
-  "version": 8
+  "version": 1
 }

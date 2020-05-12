@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1562869516246,
+  "iteration": 1589325403273,
   "links": [],
   "panels": [
     {
@@ -325,6 +325,20 @@
           "intervalFactor": 1,
           "legendFormat": "average",
           "refId": "A"
+        },
+        {
+          "expr": "quantile(0.90,rate(query_latency_ms_sum{app=\"$app\",component=\"api\"}[$duration]) / rate(query_latency_ms_count{app=\"$app\",component=\"api\"}[$duration]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p90",
+          "refId": "B"
+        },
+        {
+          "expr": "quantile(0.99,rate(query_latency_ms_sum{app=\"$app\",component=\"api\"}[$duration]) / rate(query_latency_ms_count{app=\"$app\",component=\"api\"}[$duration]))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "p99",
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -836,8 +850,9 @@
       {
         "allValue": null,
         "current": {
-          "text": "staging",
-          "value": "staging"
+          "isNone": true,
+          "text": "None",
+          "value": ""
         },
         "datasource": "Prometheus",
         "definition": "",
@@ -895,12 +910,9 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
-          "text": "nginx-json + logmatters",
-          "value": [
-            "nginx-json",
-            "logmatters"
-          ]
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": "Prometheus",
         "definition": "label_values(dashbase_table_info, table)",
@@ -955,5 +967,5 @@
   "timezone": "",
   "title": "Dashbase API",
   "uid": "0yjWFPgZk",
-  "version": 10
+  "version": 1
 }
