@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1581537274263,
+  "iteration": 1589301310490,
   "links": [],
   "panels": [
     {
@@ -164,16 +164,34 @@
         {
           "expr": "avg(rate(dashbase_searcher_query_latency_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_searcher_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
+          "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "full - {{$per}}",
+          "legendFormat": "full - {{$per}} - avg",
           "refId": "A"
         },
         {
           "expr": "avg(rate(dashbase_realtime_searcher_query_latency_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_realtime_searcher_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
+          "hide": false,
           "intervalFactor": 1,
           "legendFormat": "realtime - {{$per}}",
           "refId": "B"
+        },
+        {
+          "expr": "quantile(0.99, rate(dashbase_searcher_query_latency_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_searcher_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "full - {{$per}} - p99",
+          "refId": "C"
+        },
+        {
+          "expr": "quantile(0.90, rate(dashbase_searcher_query_latency_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_searcher_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "full - {{$per}} - p90",
+          "refId": "D"
         }
       ],
       "thresholds": [],
@@ -984,5 +1002,5 @@
   "timezone": "",
   "title": "Dashbase Searcher",
   "uid": "cAKMbk8Wz",
-  "version": 8
+  "version": 1
 }
