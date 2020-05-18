@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1589301310490,
+  "iteration": 1589821614176,
   "links": [],
   "panels": [
     {
@@ -385,11 +385,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(dashbase_searcher_reader_cache_count{app=\"$app\",table=~'${table:pipe}'}) by ($per)",
+          "expr": "sum(dashbase_searcher_reader_cache_count{app=\"$app\",table=~'${table:pipe}',component='searcher'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "segment reader - {{$per}}",
+          "legendFormat": "segment - full - {{$per}}",
           "refId": "A"
+        },
+        {
+          "expr": "sum(dashbase_searcher_reader_cache_count{app=\"$app\",table=~'${table:pipe}',component='indexer'}) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "segment - realtime - {{$per}}",
+          "refId": "E"
         },
         {
           "expr": "sum(caffeine_cache_estimated_size{component=\"searcher\",app=\"$app\",cache=\"searcher_bloom_filter\"})",
@@ -854,8 +861,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "dashbase",
-          "value": "dashbase"
+          "text": "staging",
+          "value": "staging"
         },
         "datasource": "Prometheus",
         "definition": "label_values(jvm_attribute_uptime, app)",
@@ -1002,5 +1009,5 @@
   "timezone": "",
   "title": "Dashbase Searcher",
   "uid": "cAKMbk8Wz",
-  "version": 1
+  "version": 2
 }
