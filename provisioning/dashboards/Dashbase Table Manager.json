@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1589325314292,
+  "iteration": 1590086649798,
   "links": [],
   "panels": [
     {
@@ -155,21 +155,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(dashbase_table_manager_query_latency_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_table_manager_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "histogram_quantile(0.50, sum(rate(dashbase_table_manager_query_latency_bucket{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, le))",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{$per}} - avg",
-          "refId": "A"
-        },
-        {
-          "expr": "quantile(0.90, rate(dashbase_table_manager_query_latency_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_table_manager_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{$per}} - p90",
+          "legendFormat": "{{$per}} - p50",
           "refId": "B"
         },
         {
-          "expr": "quantile(0.99, rate(dashbase_table_manager_query_latency_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_table_manager_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "histogram_quantile(0.99, sum(rate(dashbase_table_manager_query_latency_bucket{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, le))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{$per}} - p99",
@@ -1101,8 +1094,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "dashbase",
-          "value": "dashbase"
+          "text": "staging",
+          "value": "staging"
         },
         "datasource": "Prometheus",
         "definition": "label_values(jvm_attribute_uptime, app)",
@@ -1247,5 +1240,5 @@
   "timezone": "",
   "title": "Dashbase Table Manager",
   "uid": "bUtzhk8Zk",
-  "version": 1
+  "version": 2
 }

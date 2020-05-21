@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1589821614176,
+  "iteration": 1590084041870,
   "links": [],
   "panels": [
     {
@@ -68,14 +68,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(dashbase_searcher_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "avg(rate(dashbase_searcher_query_latency_count{table=~'${table:pipe}',app='$app',type='filter'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "full - {{$per}}",
+          "legendFormat": "filter - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "avg(rate(dashbase_realtime_searcher_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "avg(rate(dashbase_realtime_searcher_query_latency_count{table=~'${table:pipe}',app='$app',type='filter'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "realtime - {{$per}}",
@@ -86,7 +86,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Query Rate",
+      "title": "Filter Query Rate",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -162,23 +162,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(dashbase_searcher_query_latency_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_searcher_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
-          "format": "time_series",
-          "hide": false,
-          "intervalFactor": 1,
-          "legendFormat": "full - {{$per}} - avg",
-          "refId": "A"
-        },
-        {
-          "expr": "avg(rate(dashbase_realtime_searcher_query_latency_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_realtime_searcher_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
-          "format": "time_series",
-          "hide": false,
-          "intervalFactor": 1,
-          "legendFormat": "realtime - {{$per}}",
-          "refId": "B"
-        },
-        {
-          "expr": "quantile(0.99, rate(dashbase_searcher_query_latency_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_searcher_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "histogram_quantile(0.99, sum(rate(dashbase_searcher_query_latency_bucket{table=~'${table:pipe}',app='$app',type='filter'}[$duration])) by (le, $per))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -186,19 +170,241 @@
           "refId": "C"
         },
         {
-          "expr": "quantile(0.90, rate(dashbase_searcher_query_latency_sum{table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_searcher_query_latency_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "histogram_quantile(0.50, sum(rate(dashbase_searcher_query_latency_bucket{table=~'${table:pipe}',app='$app',type='filter'}[$duration])) by (le, $per))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "full - {{$per}} - p90",
+          "legendFormat": "full - {{$per}} - p50",
           "refId": "D"
+        },
+        {
+          "expr": "histogram_quantile(0.99, sum(rate(dashbase_realtime_searcher_query_latency_bucket{table=~'${table:pipe}',app='$app',type='filter'}[$duration])) by (le, $per))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "realtime - {{$per}} - p99",
+          "refId": "E"
+        },
+        {
+          "expr": "histogram_quantile(0.50, sum(rate(dashbase_realtime_searcher_query_latency_bucket{table=~'${table:pipe}',app='$app',type='filter'}[$duration])) by (le, $per))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "realtime - {{$per}} - p50",
+          "refId": "F"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Query Response Time",
+      "title": "Filter Query Response Time",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 10
+      },
+      "id": 27,
+      "interval": "",
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(rate(dashbase_searcher_query_latency_count{table=~'${table:pipe}',app='$app',type='aggregation'}[$duration])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "filter - {{$per}}",
+          "refId": "A"
+        },
+        {
+          "expr": "avg(rate(dashbase_realtime_searcher_query_latency_count{table=~'${table:pipe}',app='$app',type='aggregation'}[$duration])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "realtime - {{$per}}",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Aggregation Query Rate",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "reqps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 10
+      },
+      "id": 29,
+      "interval": "",
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.99, sum(rate(dashbase_searcher_query_latency_bucket{table=~'${table:pipe}',app='$app',type='aggregation'}[$duration])) by (le, $per))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "full - {{$per}} - p99",
+          "refId": "C"
+        },
+        {
+          "expr": "histogram_quantile(0.50, sum(rate(dashbase_searcher_query_latency_bucket{table=~'${table:pipe}',app='$app',type='aggregation'}[$duration])) by (le, $per))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "full - {{$per}} - p50",
+          "refId": "D"
+        },
+        {
+          "expr": "histogram_quantile(0.99, sum(rate(dashbase_realtime_searcher_query_latency_bucket{table=~'${table:pipe}',app='$app',type='aggregation'}[$duration])) by (le, $per))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "realtime - {{$per}} - p99",
+          "refId": "E"
+        },
+        {
+          "expr": "histogram_quantile(0.50, sum(rate(dashbase_realtime_searcher_query_latency_bucket{table=~'${table:pipe}',app='$app',type='aggregation'}[$duration])) by (le, $per))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "realtime - {{$per}} - p50",
+          "refId": "F"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Aggregation Query Response Time",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -245,7 +451,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 10
+        "y": 19
       },
       "id": 25,
       "legend": {
@@ -357,7 +563,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 10
+        "y": 19
       },
       "id": 11,
       "legend": {
@@ -399,20 +605,20 @@
           "refId": "E"
         },
         {
-          "expr": "sum(caffeine_cache_estimated_size{component=\"searcher\",app=\"$app\",cache=\"searcher_bloom_filter\"})",
-          "format": "time_series",
-          "hide": true,
-          "intervalFactor": 1,
-          "legendFormat": "bloom filter",
-          "refId": "B"
-        },
-        {
-          "expr": "sum(caffeine_cache_estimated_size{component=\"searcher\",app=\"$app\",cache=\"payload\"})",
+          "expr": "sum(dashbase_searcher_payload_cache_size{component=\"searcher\",app=\"$app\"})",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "payload",
+          "legendFormat": "payload - full",
           "refId": "C"
+        },
+        {
+          "expr": "sum(dashbase_searcher_payload_cache_size{component=\"indexer\",app=\"$app\"}) by ($per)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "payload - realtime - {{$per}}",
+          "refId": "B"
         },
         {
           "expr": "sum(dashbase_searcher_num_bloom_filters_loaded{app=\"$app\",table=~'${table:pipe}'}) by ($per)",
@@ -470,7 +676,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 18
+        "y": 27
       },
       "id": 23,
       "panels": [],
@@ -488,7 +694,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 19
+        "y": 28
       },
       "id": 15,
       "legend": {
@@ -577,7 +783,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 19
+        "y": 28
       },
       "id": 17,
       "legend": {
@@ -666,7 +872,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 28
+        "y": 37
       },
       "id": 19,
       "legend": {
@@ -767,7 +973,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 28
+        "y": 37
       },
       "id": 21,
       "legend": {
@@ -1009,5 +1215,5 @@
   "timezone": "",
   "title": "Dashbase Searcher",
   "uid": "cAKMbk8Wz",
-  "version": 2
+  "version": 3
 }
