@@ -15,7 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1588718026350,
+  "id": 22,
+  "iteration": 1591163445960,
   "links": [],
   "panels": [
     {
@@ -6614,12 +6615,12 @@
         "name": "table",
         "options": [
           {
-            "selected": false,
-            "text": "logs",
-            "value": "logs"
+            "selected": true,
+            "text": "webrtc",
+            "value": "webrtc"
           }
         ],
-        "query": "logs",
+        "query": "webrtc",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -6630,7 +6631,7 @@
     "to": "2020-04-21T21:13:51.000Z"
   },
   "timepicker": {
-    "hidden": false,
+    "hidden": true,
     "refresh_intervals": [
       "5s",
       "10s",
@@ -6658,5 +6659,5 @@
   "timezone": "",
   "title": "WebRTC",
   "uid": "aNjqqWkC2",
-  "version": 1
+  "version": 2
 }
