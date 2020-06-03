@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 22,
-  "iteration": 1591163445960,
+  "iteration": 1591165401958,
   "links": [],
   "panels": [
     {
@@ -6607,6 +6607,7 @@
       },
       {
         "current": {
+          "selected": true,
           "text": "webrtc",
           "value": "webrtc"
         },
@@ -6629,7 +6630,7 @@
           "text": "",
           "value": ""
         },
-        "hide": 0,
+        "hide": 2,
         "label": null,
         "name": "from",
         "options": [
@@ -6648,7 +6649,7 @@
           "text": "",
           "value": ""
         },
-        "hide": 0,
+        "hide": 2,
         "label": null,
         "name": "to",
         "options": [
@@ -6697,5 +6698,5 @@
   "timezone": "",
   "title": "WebRTC",
   "uid": "aNjqqWkC2",
-  "version": 2
+  "version": 3
 }
