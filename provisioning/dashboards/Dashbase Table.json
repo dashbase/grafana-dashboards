@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1591826306391,
+  "iteration": 1591832592843,
   "links": [],
   "panels": [
     {
@@ -1054,7 +1054,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "ceil(avg(sum(dashbase_index_bulk_size_sum{component='table', app=\"$app\",table=~\"${table:pipe}\"}) / sum(dashbase_index_bulk_size_count{component='table', app=\"$app\",table=~\"${table:pipe}\"})) by ($per))",
+          "expr": "ceil(avg(rate(dashbase_index_bulk_size_sum{component='table', app=\"$app\",table=~\"${table:pipe}\"}[$duration]) \n       / rate(dashbase_index_bulk_size_count{component='table', app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by ($per))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "avg - {{$per}}",
@@ -1146,7 +1146,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "floor(avg(rate(dashbase_index_event_size_sum{component='table', table=~'${table:pipe}',app='$app'}[$duration])/rate(dashbase_index_event_size_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per))",
+          "expr": "floor(sum(rate(dashbase_index_event_size_sum{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)\n    / sum(rate(dashbase_index_event_size_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "avg - {{$per}}",
@@ -4778,8 +4778,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "dashbase",
-          "value": "dashbase"
+          "text": "staging",
+          "value": "staging"
         },
         "datasource": "Prometheus",
         "definition": "",
@@ -4830,7 +4830,6 @@
         "auto_count": 30,
         "auto_min": "1m",
         "current": {
-          "tags": [],
           "text": "auto",
           "value": "$__auto_interval_duration"
         },
@@ -4927,5 +4926,5 @@
   "timezone": "",
   "title": "Dashbase Table",
   "uid": "YhMqAJtmk",
-  "version": 1
+  "version": 4
 }
