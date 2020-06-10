@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1574116410391,
+  "iteration": 1591828004350,
   "links": [],
   "panels": [
     {
@@ -1016,19 +1016,19 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
+          "tags": [],
           "text": "dashbase",
           "value": "dashbase"
         },
         "datasource": "Prometheus",
-        "definition": "",
+        "definition": "label_values(jvm_attribute_uptime, app)",
         "hide": 0,
         "includeAll": false,
         "label": "cluster",
         "multi": false,
         "name": "app",
         "options": [],
-        "query": "label_values(dashbase_table_info, app)",
+        "query": "label_values(jvm_attribute_uptime, app)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1042,22 +1042,20 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
-          "tags": [],
           "text": "All",
           "value": [
             "$__all"
           ]
         },
         "datasource": "Prometheus",
-        "definition": "label_values(dashbase_table_info{app='$app'}, table)",
+        "definition": "label_values(jvm_attribute_uptime{app='$app'}, table)",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "table",
         "options": [],
-        "query": "label_values(dashbase_table_info{app='$app'}, table)",
+        "query": "label_values(jvm_attribute_uptime{app='$app'}, table)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1071,7 +1069,6 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": true,
           "text": "All",
           "value": "$__all"
         },
@@ -1161,5 +1158,5 @@
   "timezone": "",
   "title": "Dashbase Overview",
   "uid": "qwOotTpik",
-  "version": 15
+  "version": 1
 }
