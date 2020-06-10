@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1589325403273,
+  "iteration": 1591827872457,
   "links": [],
   "panels": [
     {
@@ -850,19 +850,19 @@
       {
         "allValue": null,
         "current": {
-          "isNone": true,
-          "text": "None",
-          "value": ""
+          "tags": [],
+          "text": "dashbase",
+          "value": "dashbase"
         },
         "datasource": "Prometheus",
-        "definition": "",
+        "definition": "label_values(jvm_attribute_uptime, app)",
         "hide": 0,
         "includeAll": false,
         "label": null,
         "multi": false,
         "name": "app",
         "options": [],
-        "query": "label_values(dashbase_table_info, app)",
+        "query": "label_values(jvm_attribute_uptime, app)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -910,19 +910,18 @@
       {
         "allValue": null,
         "current": {
-          "selected": false,
           "text": "All",
           "value": "$__all"
         },
         "datasource": "Prometheus",
-        "definition": "label_values(dashbase_table_info, table)",
+        "definition": "label_values(jvm_attribute_uptime{app='$app'}, table)",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "table",
         "options": [],
-        "query": "label_values(dashbase_table_info, table)",
+        "query": "label_values(jvm_attribute_uptime{app='$app'}, table)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -936,7 +935,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
