@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1591826860807,
+  "iteration": 1591832184203,
   "links": [],
   "panels": [
     {
@@ -461,7 +461,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "ceil(avg(sum(dashbase_index_bulk_size_sum{component='indexer', app=\"$app\",table=~\"${table:pipe}\"}) / sum(dashbase_index_bulk_size_count{component='indexer', app=\"$app\",table=~\"${table:pipe}\"})) by ($per))",
+          "expr": "ceil(avg(rate(dashbase_index_bulk_size_sum{component='indexer', app=\"$app\",table=~\"${table:pipe}\"}[$duration]) \n       / rate(dashbase_index_bulk_size_count{component='indexer', app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by ($per))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "avg - {{$per}}",
@@ -2574,8 +2574,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "dashbase",
-          "value": "dashbase"
+          "text": "staging",
+          "value": "staging"
         },
         "datasource": "Prometheus",
         "definition": "label_values(jvm_attribute_uptime, app)",
@@ -2722,5 +2722,5 @@
   "timezone": "",
   "title": "Dashbase Indexer",
   "uid": "2kC2zlsZz",
-  "version": 2
+  "version": 5
 }
