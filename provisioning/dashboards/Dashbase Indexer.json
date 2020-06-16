@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1591832184203,
+  "iteration": 1592349092204,
   "links": [],
   "panels": [
     {
@@ -1435,7 +1435,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_indexer_events_dropped{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "sum(rate(dashbase_indexer_events_dropped{component='indexer', table=~'${table:pipe}',app='$app',type='full'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "evets dropped - {{$per}}",
@@ -2722,5 +2722,5 @@
   "timezone": "",
   "title": "Dashbase Indexer",
   "uid": "2kC2zlsZz",
-  "version": 5
+  "version": 6
 }
