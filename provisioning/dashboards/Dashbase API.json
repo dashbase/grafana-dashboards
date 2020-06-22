@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1591827872457,
+  "iteration": 1592866484957,
   "links": [],
   "panels": [
     {
@@ -383,12 +383,112 @@
       }
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 19
+      },
+      "id": 39,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(\n  rate(dashbase_api_root_timeouts_total{app=\"$app\", component=\"api\",table=~'${table:pipe}'}[$duration])\n+ rate(dashbase_api_root_errors_total{app=\"$app\", component=\"api\",table=~'${table:pipe}'}[$duration])\n) by (root)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{root}}",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(\n  rate(dashbase_api_partition_timeouts_total{app=\"$app\", component=\"api\"}[$duration])\n+ rate(dashbase_api_partition_errors_total{app=\"$app\", component=\"api\"}[$duration])\n) by (root, partition)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{root}} - {{partition}}",
+          "refId": "B"
+        },
+        {
+          "expr": "sum(rate(dashbase_federated_failed_request{app=\"$app\", component=\"api\"}[$duration])) by (api)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "federation - {{api}}",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Query Error",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 27
       },
       "id": 16,
       "panels": [],
@@ -417,7 +517,7 @@
         "h": 9,
         "w": 6,
         "x": 0,
-        "y": 20
+        "y": 28
       },
       "id": 29,
       "interval": null,
@@ -488,7 +588,7 @@
         "h": 9,
         "w": 18,
         "x": 6,
-        "y": 20
+        "y": 28
       },
       "id": 2,
       "legend": {
@@ -587,7 +687,7 @@
         "h": 9,
         "w": 6,
         "x": 0,
-        "y": 29
+        "y": 37
       },
       "id": 20,
       "interval": null,
@@ -657,7 +757,7 @@
         "h": 9,
         "w": 18,
         "x": 6,
-        "y": 29
+        "y": 37
       },
       "id": 26,
       "legend": {
@@ -751,7 +851,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 38
+        "y": 46
       },
       "id": 4,
       "legend": {
@@ -850,9 +950,8 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
-          "text": "dashbase",
-          "value": "dashbase"
+          "text": "staging",
+          "value": "staging"
         },
         "datasource": "Prometheus",
         "definition": "label_values(jvm_attribute_uptime, app)",
@@ -966,5 +1065,5 @@
   "timezone": "",
   "title": "Dashbase API",
   "uid": "0yjWFPgZk",
-  "version": 1
+  "version": 3
 }
