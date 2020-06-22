@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1590086649798,
+  "iteration": 1592867024424,
   "links": [],
   "panels": [
     {
@@ -217,9 +217,95 @@
       "dashes": false,
       "fill": 1,
       "gridPos": {
-        "h": 8,
-        "w": 24,
+        "h": 9,
+        "w": 9,
         "x": 0,
+        "y": 10
+      },
+      "id": 27,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(rate(dashbase_table_manager_failed_request{table=~'${table:pipe}',app='$app'}[$duration])) by (pod)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{pod}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Query Failure",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 15,
+        "x": 9,
         "y": 10
       },
       "id": 25,
@@ -332,7 +418,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 18
+        "y": 19
       },
       "id": 11,
       "legend": {
@@ -426,7 +512,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 18
+        "y": 19
       },
       "id": 13,
       "legend": {
@@ -516,7 +602,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 26
+        "y": 27
       },
       "id": 7,
       "panels": [],
@@ -533,7 +619,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 27
+        "y": 28
       },
       "id": 8,
       "interval": "",
@@ -620,7 +706,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 27
+        "y": 28
       },
       "id": 9,
       "interval": "",
@@ -703,7 +789,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 37
       },
       "id": 23,
       "panels": [],
@@ -721,7 +807,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 37
+        "y": 38
       },
       "id": 15,
       "legend": {
@@ -810,7 +896,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 37
+        "y": 38
       },
       "id": 17,
       "legend": {
@@ -899,7 +985,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 46
+        "y": 47
       },
       "id": 19,
       "legend": {
@@ -1000,7 +1086,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 46
+        "y": 47
       },
       "id": 21,
       "legend": {
@@ -1240,5 +1326,5 @@
   "timezone": "",
   "title": "Dashbase Table Manager",
   "uid": "bUtzhk8Zk",
-  "version": 2
+  "version": 3
 }
