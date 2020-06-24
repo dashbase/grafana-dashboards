@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1593012440500,
+  "iteration": 1593018320179,
   "links": [],
   "panels": [
     {
@@ -262,7 +262,8 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "description": "Difference (in seconds) of the current time and @timestamp field (= when collector harvested the message)",
+      "decimals": null,
+      "description": "Delay from event produce until received by Dashbase",
       "fill": 1,
       "gridPos": {
         "h": 9,
@@ -270,7 +271,7 @@
         "x": 0,
         "y": 10
       },
-      "id": 109,
+      "id": 92,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -279,40 +280,49 @@
         "min": false,
         "rightSide": true,
         "show": true,
+        "sort": "current",
+        "sortDesc": true,
         "total": false,
         "values": true
       },
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "maxPerRow": 4,
       "nullPointMode": "null",
       "percentage": false,
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "repeatDirection": "v",
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(dashbase_filebeat_parser_harvest_delay_count{component='table', app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by ($per)",
+          "expr": "avg(rate(dashbase_filebeat_parser_harvest_delay_sum{component='table', table=~'${table:pipe}',app='$app'}[$duration]) /rate(dashbase_filebeat_parser_harvest_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
+          "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "collector -> {{$per}}",
+          "legendFormat": "harvest - {{$per}}",
           "refId": "A"
+        },
+        {
+          "expr": "avg(rate(dashbase_filebeat_parser_message_delay_sum{component='table', table=~'${table:pipe}',app='$app'}[$duration]) /rate(dashbase_filebeat_parser_message_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "message - {{$per}}",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Harvest Delay",
+      "title": "Event Delay",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
@@ -333,96 +343,7 @@
           "show": true
         },
         {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "description": "Difference (in seconds) of the current time and a timestamp in the message field",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 10
-      },
-      "id": 110,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": false,
-      "linewidth": 1,
-      "links": [],
-      "maxPerRow": 4,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": true,
-      "renderer": "flot",
-      "repeatDirection": "v",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "max(rate(dashbase_filebeat_parser_message_delay{component='table', app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by ($per)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "source -> {{$per}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Message Delay",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
           "format": "s",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -446,10 +367,10 @@
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 0,
-        "y": 19
+        "x": 12,
+        "y": 10
       },
-      "id": 92,
+      "id": 109,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -513,6 +434,95 @@
         },
         {
           "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 19
+      },
+      "id": 82,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(rate(dashbase_search_query_latency_secs_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{$per}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Query Rate",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "Query Per Second",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -607,95 +617,6 @@
         },
         {
           "format": "s",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 28
-      },
-      "id": 82,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sort": "current",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(rate(dashbase_search_query_latency_secs_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{$per}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Query Rate",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": "Query Per Second",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -5046,8 +4967,8 @@
         "current": {
           "selected": true,
           "tags": [],
-          "text": "instance",
-          "value": "instance"
+          "text": "table",
+          "value": "table"
         },
         "hide": 0,
         "includeAll": false,
@@ -5056,12 +4977,12 @@
         "name": "per",
         "options": [
           {
-            "selected": false,
+            "selected": true,
             "text": "table",
             "value": "table"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "instance",
             "value": "instance"
           }
