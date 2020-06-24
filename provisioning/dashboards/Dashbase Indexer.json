@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1592349092204,
+  "iteration": 1593016681070,
   "links": [],
   "panels": [
     {
@@ -239,7 +239,7 @@
         "x": 0,
         "y": 10
       },
-      "id": 64,
+      "id": 115,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -259,33 +259,40 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "/bytes/",
+          "yaxis": 2
+        },
+        {
+          "alias": "/events/",
+          "fill": 0
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "histogram_quantile(0.5, sum(rate(dashbase_index_bulk_latency_bucket{component='indexer', app='$app',table=~'${table:pipe}'}[$duration])) by (le, $per))",
+          "expr": "avg(rate(dashbase_filebeat_parser_harvest_delay_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration]) /rate(dashbase_filebeat_parser_harvest_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
-          "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "p50 - {{$per}}",
-          "refId": "A"
+          "legendFormat": "harvest - {{$per}}",
+          "refId": "B"
         },
         {
-          "expr": "histogram_quantile(0.99, sum(rate(dashbase_index_bulk_latency_bucket{component='indexer', app='$app',table=~'${table:pipe}'}[$duration])) by (le, $per))",
+          "expr": "avg(rate(dashbase_filebeat_parser_message_delay_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration]) /rate(dashbase_filebeat_parser_message_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
-          "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "p99 - {{$per}}",
-          "refId": "B"
+          "legendFormat": "message - {{$per}}",
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Latency",
+      "title": "Event Delay",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -309,12 +316,12 @@
           "show": true
         },
         {
-          "format": "short",
+          "format": "Bps",
           "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -427,7 +434,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "description": "# of events in each bulk request",
       "fill": 1,
       "gridPos": {
         "h": 9,
@@ -435,7 +441,7 @@
         "x": 0,
         "y": 19
       },
-      "id": 114,
+      "id": 64,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -452,7 +458,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pointradius": 2,
+      "pointradius": 5,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [],
@@ -461,18 +467,27 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "ceil(avg(rate(dashbase_index_bulk_size_sum{component='indexer', app=\"$app\",table=~\"${table:pipe}\"}[$duration]) \n       / rate(dashbase_index_bulk_size_count{component='indexer', app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by ($per))",
+          "expr": "histogram_quantile(0.5, sum(rate(dashbase_index_bulk_latency_bucket{component='indexer', app='$app',table=~'${table:pipe}'}[$duration])) by (le, $per))",
           "format": "time_series",
+          "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "avg - {{$per}}",
+          "legendFormat": "p50 - {{$per}}",
           "refId": "A"
+        },
+        {
+          "expr": "histogram_quantile(0.99, sum(rate(dashbase_index_bulk_latency_bucket{component='indexer', app='$app',table=~'${table:pipe}'}[$duration])) by (le, $per))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "p99 - {{$per}}",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Bulk Size",
+      "title": "Latency",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -488,7 +503,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -620,11 +635,98 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "description": "# of events in each bulk request",
       "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
+        "y": 28
+      },
+      "id": 114,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "ceil(avg(rate(dashbase_index_bulk_size_sum{component='indexer', app=\"$app\",table=~\"${table:pipe}\"}[$duration]) \n       / rate(dashbase_index_bulk_size_count{component='indexer', app=\"$app\",table=~\"${table:pipe}\"}[$duration])) by ($per))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "avg - {{$per}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Bulk Size",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
         "y": 28
       },
       "id": 74,
@@ -2722,5 +2824,5 @@
   "timezone": "",
   "title": "Dashbase Indexer",
   "uid": "2kC2zlsZz",
-  "version": 6
+  "version": 7
 }

@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1591832592843,
+  "iteration": 1593018320179,
   "links": [],
   "panels": [
     {
@@ -263,7 +263,7 @@
       "dashLength": 10,
       "dashes": false,
       "decimals": null,
-      "description": "Delay from event produce until searchable",
+      "description": "Delay from event produce until received by Dashbase",
       "fill": 1,
       "gridPos": {
         "h": 9,
@@ -272,6 +272,105 @@
         "y": 10
       },
       "id": 92,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(rate(dashbase_filebeat_parser_harvest_delay_sum{component='table', table=~'${table:pipe}',app='$app'}[$duration]) /rate(dashbase_filebeat_parser_harvest_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "harvest - {{$per}}",
+          "refId": "A"
+        },
+        {
+          "expr": "avg(rate(dashbase_filebeat_parser_message_delay_sum{component='table', table=~'${table:pipe}',app='$app'}[$duration]) /rate(dashbase_filebeat_parser_message_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "message - {{$per}}",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Event Delay",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "decimals": null,
+      "description": "Delay from event produce until searchable",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 10
+      },
+      "id": 109,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -328,100 +427,6 @@
         {
           "format": "s",
           "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "s",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "cacheTimeout": null,
-      "dashLength": 10,
-      "dashes": false,
-      "decimals": null,
-      "description": "How long ago the oldest segment in Table was built.",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 10
-      },
-      "id": 98,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "hideEmpty": false,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sort": "current",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeatDirection": "v",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "avg(dashbase_actual_retention_days{app=\"$app\",component='table', table=~\"${table}\"}) by ($per)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{$per}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Retention in Days",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": -1,
-          "format": "short",
-          "label": "Days",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -533,6 +538,100 @@
     {
       "aliasColors": {},
       "bars": false,
+      "cacheTimeout": null,
+      "dashLength": 10,
+      "dashes": false,
+      "decimals": null,
+      "description": "How long ago the oldest segment in Table was built.",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 19
+      },
+      "id": 98,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "hideEmpty": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "repeatDirection": "v",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(dashbase_actual_retention_days{app=\"$app\",component='table', table=~\"${table}\"}) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{$per}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Retention in Days",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": -1,
+          "format": "short",
+          "label": "Days",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
@@ -541,7 +640,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 19
+        "y": 28
       },
       "id": 84,
       "legend": {
@@ -625,7 +724,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 37
       },
       "id": 58,
       "panels": [],
@@ -642,7 +741,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 29
+        "y": 38
       },
       "id": 60,
       "legend": {
@@ -744,7 +843,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 29
+        "y": 38
       },
       "id": 62,
       "legend": {
@@ -830,7 +929,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 38
+        "y": 47
       },
       "id": 64,
       "legend": {
@@ -925,7 +1024,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 38
+        "y": 47
       },
       "id": 72,
       "legend": {
@@ -1026,7 +1125,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 47
+        "y": 56
       },
       "id": 108,
       "legend": {
@@ -1112,7 +1211,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 47
+        "y": 56
       },
       "id": 76,
       "legend": {
@@ -1218,7 +1317,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 56
+        "y": 65
       },
       "id": 74,
       "legend": {
@@ -1320,7 +1419,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 65
+        "y": 74
       },
       "id": 16,
       "panels": [
@@ -1524,7 +1623,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 66
+        "y": 75
       },
       "id": 66,
       "panels": [],
@@ -1541,7 +1640,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 67
+        "y": 76
       },
       "id": 68,
       "legend": {
@@ -1634,7 +1733,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 67
+        "y": 76
       },
       "id": 70,
       "legend": {
@@ -1720,7 +1819,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 76
+        "y": 85
       },
       "id": 86,
       "legend": {
@@ -1806,7 +1905,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 76
+        "y": 85
       },
       "id": 88,
       "legend": {
@@ -1888,7 +1987,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 85
+        "y": 94
       },
       "id": 12,
       "panels": [],
@@ -1906,7 +2005,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 86
+        "y": 95
       },
       "id": 10,
       "legend": {
@@ -2007,7 +2106,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 86
+        "y": 95
       },
       "id": 18,
       "legend": {
@@ -2102,7 +2201,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 95
+        "y": 104
       },
       "id": 106,
       "legend": {
@@ -2184,7 +2283,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 104
+        "y": 113
       },
       "id": 29,
       "panels": [],
@@ -2202,7 +2301,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 105
+        "y": 114
       },
       "id": 26,
       "legend": {
@@ -2291,7 +2390,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 105
+        "y": 114
       },
       "id": 27,
       "legend": {
@@ -2387,7 +2486,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 114
+        "y": 123
       },
       "id": 85,
       "legend": {
@@ -2483,7 +2582,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 114
+        "y": 123
       },
       "id": 33,
       "legend": {
@@ -2572,7 +2671,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 123
+        "y": 132
       },
       "id": 35,
       "panels": [],
@@ -2590,7 +2689,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 124
+        "y": 133
       },
       "id": 31,
       "legend": {
@@ -2685,7 +2784,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 124
+        "y": 133
       },
       "id": 53,
       "legend": {
@@ -2772,7 +2871,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 132
+        "y": 141
       },
       "id": 103,
       "legend": {
@@ -2869,7 +2968,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 132
+        "y": 141
       },
       "id": 51,
       "legend": {
@@ -2967,7 +3066,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 141
+        "y": 150
       },
       "id": 49,
       "legend": {
@@ -3066,7 +3165,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 141
+        "y": 150
       },
       "id": 104,
       "legend": {
@@ -3164,7 +3263,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 150
+        "y": 159
       },
       "id": 52,
       "legend": {
@@ -3253,7 +3352,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 150
+        "y": 159
       },
       "id": 101,
       "legend": {
@@ -3342,7 +3441,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 159
+        "y": 168
       },
       "id": 102,
       "legend": {
@@ -3432,7 +3531,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 159
+        "y": 168
       },
       "id": 105,
       "legend": {
@@ -3516,7 +3615,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 168
+        "y": 177
       },
       "id": 39,
       "panels": [
@@ -4146,7 +4245,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 169
+        "y": 178
       },
       "id": 14,
       "panels": [],
@@ -4164,7 +4263,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 170
+        "y": 179
       },
       "id": 37,
       "legend": {
@@ -4253,7 +4352,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 170
+        "y": 179
       },
       "id": 2,
       "legend": {
@@ -4342,7 +4441,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 179
+        "y": 188
       },
       "id": 4,
       "legend": {
@@ -4443,7 +4542,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 179
+        "y": 188
       },
       "id": 55,
       "legend": {
@@ -4538,7 +4637,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 188
+        "y": 197
       },
       "id": 6,
       "legend": {
@@ -4646,7 +4745,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 188
+        "y": 197
       },
       "id": 36,
       "legend": {
@@ -4926,5 +5025,5 @@
   "timezone": "",
   "title": "Dashbase Table",
   "uid": "YhMqAJtmk",
-  "version": 4
+  "version": 5
 }
