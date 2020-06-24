@@ -274,14 +274,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(dashbase_filebeat_parser_harvest_delay_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration]) /rate(dashbase_filebeat_parser_harvest_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, index)",
+          "expr": "avg(rate(dashbase_filebeat_parser_harvest_delay_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration]) /rate(dashbase_filebeat_parser_harvest_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "harvest - {{$per}}",
           "refId": "B"
         },
         {
-          "expr": "avg(rate(dashbase_filebeat_parser_message_delay_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration]) /rate(dashbase_filebeat_parser_message_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, index)",
+          "expr": "avg(rate(dashbase_filebeat_parser_message_delay_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration]) /rate(dashbase_filebeat_parser_message_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "message - {{$per}}",
