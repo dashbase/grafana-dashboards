@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1593018320179,
+  "iteration": 1593125856342,
   "links": [],
   "panels": [
     {
@@ -1071,6 +1071,22 @@
           "intervalFactor": 1,
           "legendFormat": "exception - {{$per}}",
           "refId": "C"
+        },
+        {
+          "expr": "sum(rate(dashbase_filebeat_message_parser_misconfigured{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per, host)",
+          "format": "time_series",
+          "hide": true,
+          "intervalFactor": 1,
+          "legendFormat": "message parser misconfigured - {{$per}} - {{host}}",
+          "refId": "D"
+        },
+        {
+          "expr": "sum(rate(dashbase_filebeat_message_parser_failure{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per, host)",
+          "format": "time_series",
+          "hide": true,
+          "intervalFactor": 1,
+          "legendFormat": "message parser failure - {{$per}} - {{host}}",
+          "refId": "E"
         }
       ],
       "thresholds": [],
@@ -5025,5 +5041,5 @@
   "timezone": "",
   "title": "Dashbase Table",
   "uid": "YhMqAJtmk",
-  "version": 5
+  "version": 6
 }
