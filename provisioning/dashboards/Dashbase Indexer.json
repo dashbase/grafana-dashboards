@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1593016681070,
+  "iteration": 1593125546916,
   "links": [],
   "panels": [
     {
@@ -386,6 +386,22 @@
           "intervalFactor": 1,
           "legendFormat": "exception - {{$per}}",
           "refId": "C"
+        },
+        {
+          "expr": "sum(rate(dashbase_filebeat_message_parser_misconfigured{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])) by ($per,host)",
+          "format": "time_series",
+          "hide": true,
+          "intervalFactor": 1,
+          "legendFormat": "message parser misconfigured  - {{$per}} - {{host}}",
+          "refId": "D"
+        },
+        {
+          "expr": "sum(rate(dashbase_filebeat_message_parser_failure{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])) by ($per,host)",
+          "format": "time_series",
+          "hide": true,
+          "intervalFactor": 1,
+          "legendFormat": "message parser failure - {{$per}} - {{host}}",
+          "refId": "E"
         }
       ],
       "thresholds": [],
@@ -2824,5 +2840,5 @@
   "timezone": "",
   "title": "Dashbase Indexer",
   "uid": "2kC2zlsZz",
-  "version": 7
+  "version": 8
 }
