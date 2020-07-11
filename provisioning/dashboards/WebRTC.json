@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 22,
-  "iteration": 1594507696224,
+  "iteration": 1594508629282,
   "links": [],
   "panels": [
     {
@@ -1191,7 +1190,7 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 8,
         "x": 0,
         "y": 47
       },
@@ -1223,7 +1222,9 @@
       "targets": [
         {
           "expr": "packetsLost{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPAudioStream\"}",
+          "format": "time_series",
           "interval": "",
+          "intervalFactor": 1,
           "legendFormat": "packets lost",
           "refId": "A"
         }
@@ -1278,8 +1279,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 8,
         "y": 47
       },
       "hiddenSeries": false,
@@ -1310,7 +1311,9 @@
       "targets": [
         {
           "expr": "packetsReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPAudioStream\"}",
+          "format": "time_series",
           "interval": "",
+          "intervalFactor": 1,
           "legendFormat": "packets received",
           "refId": "A"
         }
@@ -1320,6 +1323,96 @@
       "timeRegions": [],
       "timeShift": null,
       "title": "Packets Received",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 47
+      },
+      "hiddenSeries": false,
+      "id": 156,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "(packetsLost{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPAudioStream\"}/packetsReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPAudioStream\"})*100.0",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "packets received",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Packets Lost %",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1813,7 +1906,7 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 9,
-        "w": 6,
+        "w": 8,
         "x": 0,
         "y": 75
       },
@@ -1900,8 +1993,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 9,
-        "w": 6,
-        "x": 6,
+        "w": 8,
+        "x": 8,
         "y": 75
       },
       "hiddenSeries": false,
@@ -1987,8 +2080,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 9,
-        "w": 6,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 75
       },
       "hiddenSeries": false,
@@ -2074,9 +2167,9 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 9,
-        "w": 6,
-        "x": 18,
-        "y": 75
+        "w": 8,
+        "x": 0,
+        "y": 84
       },
       "hiddenSeries": false,
       "id": 46,
@@ -2161,9 +2254,189 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 9,
+        "w": 8,
+        "x": 8,
+        "y": 84
+      },
+      "hiddenSeries": false,
+      "id": 154,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "packetsReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Packets Lost",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Packets Received",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 84
+      },
+      "hiddenSeries": false,
+      "id": 155,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "packetsLost{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}/packetsReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}*100.0",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Packets Lost",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Packets Lost %",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
         "w": 6,
         "x": 0,
-        "y": 84
+        "y": 93
       },
       "hiddenSeries": false,
       "id": 48,
@@ -2250,7 +2523,7 @@
         "h": 9,
         "w": 6,
         "x": 6,
-        "y": 84
+        "y": 93
       },
       "hiddenSeries": false,
       "id": 50,
@@ -2337,7 +2610,7 @@
         "h": 9,
         "w": 6,
         "x": 12,
-        "y": 84
+        "y": 93
       },
       "hiddenSeries": false,
       "id": 52,
@@ -2424,7 +2697,7 @@
         "h": 9,
         "w": 6,
         "x": 18,
-        "y": 84
+        "y": 93
       },
       "hiddenSeries": false,
       "id": 54,
@@ -2511,7 +2784,7 @@
         "h": 9,
         "w": 6,
         "x": 0,
-        "y": 93
+        "y": 102
       },
       "hiddenSeries": false,
       "id": 56,
@@ -2600,7 +2873,7 @@
         "h": 9,
         "w": 6,
         "x": 6,
-        "y": 93
+        "y": 102
       },
       "hiddenSeries": false,
       "id": 58,
@@ -2690,7 +2963,7 @@
         "h": 9,
         "w": 6,
         "x": 12,
-        "y": 93
+        "y": 102
       },
       "hiddenSeries": false,
       "id": 60,
@@ -2777,7 +3050,7 @@
         "h": 9,
         "w": 6,
         "x": 18,
-        "y": 93
+        "y": 102
       },
       "hiddenSeries": false,
       "id": 62,
@@ -2864,7 +3137,7 @@
         "h": 9,
         "w": 8,
         "x": 0,
-        "y": 102
+        "y": 111
       },
       "hiddenSeries": false,
       "id": 64,
@@ -2951,7 +3224,7 @@
         "h": 9,
         "w": 8,
         "x": 8,
-        "y": 102
+        "y": 111
       },
       "hiddenSeries": false,
       "id": 66,
@@ -3038,7 +3311,7 @@
         "h": 9,
         "w": 8,
         "x": 16,
-        "y": 102
+        "y": 111
       },
       "hiddenSeries": false,
       "id": 68,
@@ -3120,7 +3393,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 111
+        "y": 120
       },
       "id": 70,
       "panels": [],
@@ -3138,7 +3411,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 112
+        "y": 121
       },
       "hiddenSeries": false,
       "id": 84,
@@ -3225,7 +3498,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 112
+        "y": 121
       },
       "hiddenSeries": false,
       "id": 86,
@@ -3318,7 +3591,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 121
+        "y": 130
       },
       "hiddenSeries": false,
       "id": 80,
@@ -3405,7 +3678,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 121
+        "y": 130
       },
       "hiddenSeries": false,
       "id": 82,
@@ -3492,7 +3765,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 130
+        "y": 139
       },
       "hiddenSeries": false,
       "id": 76,
@@ -3579,7 +3852,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 130
+        "y": 139
       },
       "hiddenSeries": false,
       "id": 78,
@@ -3668,7 +3941,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 139
+        "y": 148
       },
       "hiddenSeries": false,
       "id": 72,
@@ -3755,7 +4028,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 139
+        "y": 148
       },
       "hiddenSeries": false,
       "id": 74,
@@ -3837,7 +4110,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 148
+        "y": 157
       },
       "id": 88,
       "panels": [],
@@ -3855,7 +4128,7 @@
         "h": 9,
         "w": 8,
         "x": 0,
-        "y": 149
+        "y": 158
       },
       "hiddenSeries": false,
       "id": 128,
@@ -3942,7 +4215,7 @@
         "h": 9,
         "w": 8,
         "x": 8,
-        "y": 149
+        "y": 158
       },
       "hiddenSeries": false,
       "id": 130,
@@ -4029,7 +4302,7 @@
         "h": 9,
         "w": 8,
         "x": 16,
-        "y": 149
+        "y": 158
       },
       "hiddenSeries": false,
       "id": 132,
@@ -4116,7 +4389,7 @@
         "h": 9,
         "w": 6,
         "x": 0,
-        "y": 158
+        "y": 167
       },
       "hiddenSeries": false,
       "id": 120,
@@ -4203,7 +4476,7 @@
         "h": 9,
         "w": 6,
         "x": 6,
-        "y": 158
+        "y": 167
       },
       "hiddenSeries": false,
       "id": 122,
@@ -4290,7 +4563,7 @@
         "h": 9,
         "w": 6,
         "x": 12,
-        "y": 158
+        "y": 167
       },
       "hiddenSeries": false,
       "id": 124,
@@ -4377,7 +4650,7 @@
         "h": 9,
         "w": 6,
         "x": 18,
-        "y": 158
+        "y": 167
       },
       "hiddenSeries": false,
       "id": 126,
@@ -4464,7 +4737,7 @@
         "h": 9,
         "w": 6,
         "x": 0,
-        "y": 167
+        "y": 176
       },
       "hiddenSeries": false,
       "id": 112,
@@ -4551,7 +4824,7 @@
         "h": 9,
         "w": 6,
         "x": 6,
-        "y": 167
+        "y": 176
       },
       "hiddenSeries": false,
       "id": 114,
@@ -4638,7 +4911,7 @@
         "h": 9,
         "w": 6,
         "x": 12,
-        "y": 167
+        "y": 176
       },
       "hiddenSeries": false,
       "id": 116,
@@ -4725,7 +4998,7 @@
         "h": 9,
         "w": 6,
         "x": 18,
-        "y": 167
+        "y": 176
       },
       "hiddenSeries": false,
       "id": 118,
@@ -4812,7 +5085,7 @@
         "h": 9,
         "w": 8,
         "x": 0,
-        "y": 176
+        "y": 185
       },
       "hiddenSeries": false,
       "id": 106,
@@ -4899,7 +5172,7 @@
         "h": 9,
         "w": 8,
         "x": 8,
-        "y": 176
+        "y": 185
       },
       "hiddenSeries": false,
       "id": 108,
@@ -4986,7 +5259,7 @@
         "h": 9,
         "w": 8,
         "x": 16,
-        "y": 176
+        "y": 185
       },
       "hiddenSeries": false,
       "id": 110,
@@ -5073,7 +5346,7 @@
         "h": 9,
         "w": 6,
         "x": 0,
-        "y": 185
+        "y": 194
       },
       "hiddenSeries": false,
       "id": 98,
@@ -5160,7 +5433,7 @@
         "h": 9,
         "w": 6,
         "x": 6,
-        "y": 185
+        "y": 194
       },
       "hiddenSeries": false,
       "id": 100,
@@ -5247,7 +5520,7 @@
         "h": 9,
         "w": 6,
         "x": 12,
-        "y": 185
+        "y": 194
       },
       "hiddenSeries": false,
       "id": 102,
@@ -5334,7 +5607,7 @@
         "h": 9,
         "w": 6,
         "x": 18,
-        "y": 185
+        "y": 194
       },
       "hiddenSeries": false,
       "id": 104,
@@ -5421,7 +5694,7 @@
         "h": 9,
         "w": 6,
         "x": 0,
-        "y": 194
+        "y": 203
       },
       "hiddenSeries": false,
       "id": 90,
@@ -5508,7 +5781,7 @@
         "h": 9,
         "w": 6,
         "x": 6,
-        "y": 194
+        "y": 203
       },
       "hiddenSeries": false,
       "id": 92,
@@ -5595,7 +5868,7 @@
         "h": 9,
         "w": 6,
         "x": 12,
-        "y": 194
+        "y": 203
       },
       "hiddenSeries": false,
       "id": 94,
@@ -5682,7 +5955,7 @@
         "h": 9,
         "w": 6,
         "x": 18,
-        "y": 194
+        "y": 203
       },
       "hiddenSeries": false,
       "id": 96,
@@ -5766,7 +6039,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 203
+        "y": 212
       },
       "id": 134,
       "panels": [],
@@ -5784,7 +6057,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 204
+        "y": 213
       },
       "hiddenSeries": false,
       "id": 140,
@@ -5871,7 +6144,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 204
+        "y": 213
       },
       "hiddenSeries": false,
       "id": 142,
@@ -5961,7 +6234,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 213
+        "y": 222
       },
       "hiddenSeries": false,
       "id": 136,
@@ -6048,7 +6321,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 213
+        "y": 222
       },
       "hiddenSeries": false,
       "id": 138,
@@ -6130,7 +6403,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 222
+        "y": 231
       },
       "id": 144,
       "panels": [],
@@ -6148,7 +6421,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 223
+        "y": 232
       },
       "hiddenSeries": false,
       "id": 150,
@@ -6235,7 +6508,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 223
+        "y": 232
       },
       "hiddenSeries": false,
       "id": 152,
@@ -6324,7 +6597,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 232
+        "y": 241
       },
       "hiddenSeries": false,
       "id": 146,
@@ -6411,7 +6684,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 232
+        "y": 241
       },
       "hiddenSeries": false,
       "id": 148,
@@ -6498,8 +6771,8 @@
     "list": [
       {
         "current": {
-          "text": "5676008078508032",
-          "value": "5676008078508032"
+          "text": "4613919909347328",
+          "value": "4613919909347328"
         },
         "hide": 2,
         "label": "Call ID",
@@ -6627,15 +6900,15 @@
       },
       {
         "current": {
-          "text": "",
-          "value": ""
+          "text": "1592964366937",
+          "value": "1592964366937"
         },
         "hide": 2,
         "label": null,
         "name": "from",
         "options": [
           {
-            "selected": true,
+            "selected": false,
             "text": "",
             "value": ""
           }
@@ -6646,15 +6919,15 @@
       },
       {
         "current": {
-          "text": "",
-          "value": ""
+          "text": "1592965737815",
+          "value": "1592965737815"
         },
         "hide": 2,
         "label": null,
         "name": "to",
         "options": [
           {
-            "selected": true,
+            "selected": false,
             "text": "",
             "value": ""
           }
@@ -6666,8 +6939,8 @@
     ]
   },
   "time": {
-    "from": "2020-04-21T20:00:09.000Z",
-    "to": "2020-04-21T21:13:51.000Z"
+    "from": "2020-06-24T02:06:06.937Z",
+    "to": "2020-06-24T02:28:57.815Z"
   },
   "timepicker": {
     "hidden": true,
@@ -6698,5 +6971,5 @@
   "timezone": "",
   "title": "WebRTC",
   "uid": "aNjqqWkC2",
-  "version": 4
+  "version": 1
 }
