@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 22,
-  "iteration": 1591165401958,
+  "iteration": 1594507696224,
   "links": [],
   "panels": [
     {
@@ -73,25 +73,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+          "expr": "bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
           "interval": "",
           "legendFormat": "Sent - Audio",
           "refId": "A"
         },
         {
-          "expr": "bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+          "expr": "bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
           "interval": "",
           "legendFormat": "Received - Audio",
           "refId": "B"
         },
         {
-          "expr": "bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+          "expr": "bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
           "interval": "",
           "legendFormat": "Sent - Video",
           "refId": "C"
         },
         {
-          "expr": "bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+          "expr": "bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
           "interval": "",
           "legendFormat": "Received - Video",
           "refId": "D"
@@ -179,25 +179,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])",
+          "expr": "rate(bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])",
           "interval": "",
           "legendFormat": "Bytes Sent",
           "refId": "A"
         },
         {
-          "expr": "rate(bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])",
+          "expr": "rate(bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])",
           "interval": "",
           "legendFormat": "Bytes Received",
           "refId": "B"
         },
         {
-          "expr": "rate(bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])*8",
+          "expr": "rate(bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])*8",
           "interval": "",
           "legendFormat": "Bits Sent",
           "refId": "C"
         },
         {
-          "expr": "rate(bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])*8",
+          "expr": "rate(bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])*8",
           "interval": "",
           "legendFormat": "Bits Received",
           "refId": "D"
@@ -285,25 +285,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])",
+          "expr": "rate(bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])",
           "interval": "",
           "legendFormat": "Bytes Sent",
           "refId": "A"
         },
         {
-          "expr": "rate(bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])",
+          "expr": "rate(bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])",
           "interval": "",
           "legendFormat": "Bytes Received",
           "refId": "B"
         },
         {
-          "expr": "rate(bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])*8",
+          "expr": "rate(bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])*8",
           "interval": "",
           "legendFormat": "Bits Sent",
           "refId": "C"
         },
         {
-          "expr": "rate(bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])*8",
+          "expr": "rate(bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}[5m])*8",
           "interval": "",
           "legendFormat": "Bits Received",
           "refId": "D"
@@ -391,13 +391,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "requestsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+          "expr": "requestsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
           "interval": "",
           "legendFormat": "audio",
           "refId": "A"
         },
         {
-          "expr": "requestsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+          "expr": "requestsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
           "interval": "",
           "legendFormat": " video",
           "refId": "B"
@@ -485,13 +485,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "requestsReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+          "expr": "requestsReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
           "interval": "",
           "legendFormat": "audio",
           "refId": "A"
         },
         {
-          "expr": "requestsReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+          "expr": "requestsReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
           "interval": "",
           "legendFormat": "video",
           "refId": "B"
@@ -580,13 +580,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "responsesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+          "expr": "responsesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
           "interval": "",
           "legendFormat": "audio",
           "refId": "A"
         },
         {
-          "expr": "responsesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+          "expr": "responsesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
           "interval": "",
           "legendFormat": "video",
           "refId": "B"
@@ -674,13 +674,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "responsesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+          "expr": "responsesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
           "interval": "",
           "legendFormat": "audio",
           "refId": "A"
         },
         {
-          "expr": "responsesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+          "expr": "responsesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
           "interval": "",
           "legendFormat": "video",
           "refId": "B"
@@ -768,13 +768,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "consentRequestsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+          "expr": "consentRequestsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_audio*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
           "interval": "",
           "legendFormat": "audio",
           "refId": "A"
         },
         {
-          "expr": "consentRequestsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+          "expr": "consentRequestsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",transportId=\"rtctransport_video*\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
           "interval": "",
           "legendFormat": "video",
           "refId": "B"
@@ -861,7 +861,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "totalRoundTripTime{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+          "expr": "totalRoundTripTime{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
           "interval": "",
           "legendFormat": "total rtt",
           "refId": "A"
@@ -948,7 +948,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "totalRoundTripTime{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}/responsesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
+          "expr": "totalRoundTripTime{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}/responsesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCIceCandidatePair\"}",
           "interval": "",
           "legendFormat": "rtt",
           "refId": "A"
@@ -1048,7 +1048,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPAudioStream\"}",
+          "expr": "bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPAudioStream\"}",
           "interval": "",
           "legendFormat": "bytes received",
           "refId": "A"
@@ -1135,7 +1135,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPAudioStream\"}[5m])*8",
+          "expr": "rate(bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPAudioStream\"}[5m])*8",
           "interval": "",
           "legendFormat": "bytes received / s",
           "refId": "A"
@@ -1222,7 +1222,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "packetsLost{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPAudioStream\"}",
+          "expr": "packetsLost{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPAudioStream\"}",
           "interval": "",
           "legendFormat": "packets lost",
           "refId": "A"
@@ -1309,7 +1309,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "packetsReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPAudioStream\"}",
+          "expr": "packetsReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPAudioStream\"}",
           "interval": "",
           "legendFormat": "packets received",
           "refId": "A"
@@ -1396,7 +1396,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "lastPacketReceivedTimestamp{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPAudioStream\"}",
+          "expr": "lastPacketReceivedTimestamp{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPAudioStream\"}",
           "interval": "",
           "legendFormat": "last packet rcvd timestamp",
           "refId": "A"
@@ -1483,7 +1483,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "jitter{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPAudioStream\"}",
+          "expr": "jitter{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPAudioStream\"}",
           "interval": "",
           "legendFormat": "jitter",
           "refId": "A"
@@ -1583,7 +1583,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
+          "expr": "bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "bytes received",
           "refId": "A"
@@ -1670,7 +1670,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}[5m])",
+          "expr": "rate(bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}[5m])",
           "interval": "",
           "legendFormat": "bytes received /s ",
           "refId": "A"
@@ -1757,7 +1757,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}[5m])*8",
+          "expr": "rate(bytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}[5m])*8",
           "interval": "",
           "legendFormat": "bits received / s",
           "refId": "A"
@@ -1844,7 +1844,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "firCount{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
+          "expr": "firCount{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "fir count",
           "refId": "A"
@@ -1931,7 +1931,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "nackCount{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
+          "expr": "nackCount{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "nack count",
           "refId": "A"
@@ -2018,7 +2018,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "pliCount{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
+          "expr": "pliCount{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "pli count",
           "refId": "A"
@@ -2105,7 +2105,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "packetsLost{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
+          "expr": "packetsLost{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "Packets Lost",
           "refId": "A"
@@ -2192,7 +2192,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "qpSum{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
+          "expr": "qpSum{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "qp sum",
           "refId": "A"
@@ -2279,7 +2279,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "qpSum{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"} / framesDecoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
+          "expr": "qpSum{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"} / framesDecoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "qp sum / frame decoded",
           "refId": "A"
@@ -2366,7 +2366,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "framesDecoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
+          "expr": "framesDecoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "frames decoded",
           "refId": "A"
@@ -2453,7 +2453,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(framesDecoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}[5m])",
+          "expr": "rate(framesDecoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}[5m])",
           "interval": "",
           "legendFormat": "frames decoded / s",
           "refId": "A"
@@ -2540,7 +2540,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "keyFramesDecoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
+          "expr": "keyFramesDecoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -2630,7 +2630,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(keyFramesDecoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}[5m])",
+          "expr": "rate(keyFramesDecoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -2719,7 +2719,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "totalDecodeTime{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
+          "expr": "totalDecodeTime{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "total decode time",
           "refId": "A"
@@ -2806,7 +2806,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "totalDecodeTime{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}/framesDecoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}*1000",
+          "expr": "totalDecodeTime{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}/framesDecoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}*1000",
           "interval": "",
           "legendFormat": "total decode time / frames decoded in ms",
           "refId": "A"
@@ -2893,7 +2893,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "headerBytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
+          "expr": "headerBytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "Header Bytes Received",
           "refId": "A"
@@ -2980,7 +2980,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(headerBytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}[5m])",
+          "expr": "rate(headerBytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}[5m])",
           "interval": "",
           "legendFormat": "header bytes received / s",
           "refId": "A"
@@ -3067,7 +3067,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(headerBytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}[5m])*8",
+          "expr": "rate(headerBytesReceived{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCInboundRTPVideoStream\"}[5m])*8",
           "interval": "",
           "legendFormat": "header bits received / s",
           "refId": "A"
@@ -3167,7 +3167,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}",
+          "expr": "bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}",
           "interval": "",
           "legendFormat": "bytes sent",
           "refId": "A"
@@ -3254,13 +3254,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}[5m])*8",
+          "expr": "rate(bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}[5m])*8",
           "interval": "",
           "legendFormat": "bits sent / s",
           "refId": "A"
         },
         {
-          "expr": "rate(bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}[5m])",
+          "expr": "rate(bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}[5m])",
           "interval": "",
           "legendFormat": "bytes sent / s",
           "refId": "B"
@@ -3347,7 +3347,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "packetsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}",
+          "expr": "packetsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}",
           "interval": "",
           "legendFormat": "packets sent",
           "refId": "A"
@@ -3434,7 +3434,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(packetsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}[5m])",
+          "expr": "rate(packetsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}[5m])",
           "interval": "",
           "legendFormat": "packets sent / s",
           "refId": "A"
@@ -3521,7 +3521,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "retransmittedPacketsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}",
+          "expr": "retransmittedPacketsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}",
           "interval": "",
           "legendFormat": "retransmitted packets sent",
           "refId": "A"
@@ -3608,7 +3608,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(retransmittedPacketsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}[5m])",
+          "expr": "rate(retransmittedPacketsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -3697,7 +3697,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "retransmittedBytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}",
+          "expr": "retransmittedBytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}",
           "interval": "",
           "legendFormat": "retransmitted bytes sent",
           "refId": "A"
@@ -3784,7 +3784,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(retransmittedBytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}[5m])",
+          "expr": "rate(retransmittedBytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPAudioStream\"}[5m])",
           "interval": "",
           "legendFormat": "retransmitted bytes sent / s",
           "refId": "A"
@@ -3884,7 +3884,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
+          "expr": "bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "bytes sent",
           "refId": "A"
@@ -3971,7 +3971,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}[5m])",
+          "expr": "rate(bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}[5m])",
           "interval": "",
           "legendFormat": "bytes sent / s",
           "refId": "A"
@@ -4058,7 +4058,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}[5m])*8",
+          "expr": "rate(bytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}[5m])*8",
           "interval": "",
           "legendFormat": "bits sent / s",
           "refId": "A"
@@ -4145,7 +4145,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "firCount{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
+          "expr": "firCount{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "fir count",
           "refId": "A"
@@ -4232,7 +4232,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "nackCount{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
+          "expr": "nackCount{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "nack count",
           "refId": "A"
@@ -4319,7 +4319,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "pliCount{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
+          "expr": "pliCount{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "pli count",
           "refId": "A"
@@ -4406,7 +4406,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "qualityLimitationResolutionChanges{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
+          "expr": "qualityLimitationResolutionChanges{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "quality limitation resolution changes",
           "refId": "A"
@@ -4493,7 +4493,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "qpSum{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
+          "expr": "qpSum{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "qp sum",
           "refId": "A"
@@ -4580,7 +4580,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "qpSum{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"} / framesEncoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
+          "expr": "qpSum{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"} / framesEncoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "qp sum / frame encoded",
           "refId": "A"
@@ -4667,7 +4667,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "framesEncoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
+          "expr": "framesEncoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "frames encoded",
           "refId": "A"
@@ -4754,7 +4754,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(framesEncoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}[5m])",
+          "expr": "rate(framesEncoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}[5m])",
           "interval": "",
           "legendFormat": "frames encoded / s",
           "refId": "A"
@@ -4841,7 +4841,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "keyFramesEncoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
+          "expr": "keyFramesEncoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "key frames encoded",
           "refId": "A"
@@ -4928,7 +4928,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "totalEncodeTime{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
+          "expr": "totalEncodeTime{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "total encode time",
           "refId": "A"
@@ -5015,7 +5015,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "totalEncodeTime{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}/framesEncoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}*1000",
+          "expr": "totalEncodeTime{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}/framesEncoded{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}*1000",
           "interval": "",
           "legendFormat": "total encode time / frames encoded in ms",
           "refId": "A"
@@ -5102,7 +5102,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "packetsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
+          "expr": "packetsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "packets sent",
           "refId": "A"
@@ -5189,7 +5189,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(packetsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}[5m])",
+          "expr": "rate(packetsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}[5m])",
           "interval": "",
           "legendFormat": "packets sent / s",
           "refId": "A"
@@ -5276,7 +5276,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "totalPacketSendDelay{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
+          "expr": "totalPacketSendDelay{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "total packets send delay",
           "refId": "A"
@@ -5363,7 +5363,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "totalPacketSendDelay{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"} / packetsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"} * 1000",
+          "expr": "totalPacketSendDelay{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"} / packetsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"} * 1000",
           "interval": "",
           "legendFormat": "total packets send delay / packets sent in ms",
           "refId": "A"
@@ -5450,7 +5450,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "retransmittedBytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
+          "expr": "retransmittedBytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "retransmitted bytes sent",
           "refId": "A"
@@ -5537,7 +5537,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(retransmittedBytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}[5m])*8",
+          "expr": "rate(retransmittedBytesSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}[5m])*8",
           "interval": "",
           "legendFormat": "retransmitted bits sent / s",
           "refId": "A"
@@ -5624,7 +5624,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "retransmittedPacketsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
+          "expr": "retransmittedPacketsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "retransmitted packets sent",
           "refId": "A"
@@ -5711,7 +5711,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(retransmittedPacketsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}[5m])",
+          "expr": "rate(retransmittedPacketsSent{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCOutboundRTPVideoStream\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -5813,7 +5813,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "packetsLost{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCRemoteInboundRTPAudioStream\"}",
+          "expr": "packetsLost{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCRemoteInboundRTPAudioStream\"}",
           "interval": "",
           "legendFormat": "packets lost",
           "refId": "A"
@@ -5901,7 +5901,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(packetsLost{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCRemoteInboundRTPAudioStream\"}[5m])",
+          "expr": "rate(packetsLost{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCRemoteInboundRTPAudioStream\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -5990,7 +5990,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "roundTripTime{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCRemoteInboundRTPAudioStream\"}",
+          "expr": "roundTripTime{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCRemoteInboundRTPAudioStream\"}",
           "interval": "",
           "legendFormat": "rtt",
           "refId": "A"
@@ -6077,7 +6077,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "jitter{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCRemoteInboundRTPAudioStream\"}",
+          "expr": "jitter{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCRemoteInboundRTPAudioStream\"}",
           "interval": "",
           "legendFormat": "jitter",
           "refId": "A"
@@ -6177,7 +6177,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "packetsLost{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCRemoteInboundRTPVideoStream\"}",
+          "expr": "packetsLost{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCRemoteInboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "packets lost",
           "refId": "A"
@@ -6264,7 +6264,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(packetsLost{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCRemoteInboundRTPVideoStream\"}[5m])",
+          "expr": "rate(packetsLost{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCRemoteInboundRTPVideoStream\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -6353,7 +6353,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "roundTripTime{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCRemoteInboundRTPVideoStream\"}",
+          "expr": "roundTripTime{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCRemoteInboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "rtt",
           "refId": "A"
@@ -6440,7 +6440,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "jitter{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",member_id=\"$member_id\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCRemoteInboundRTPVideoStream\"}",
+          "expr": "jitter{startMs=\"$from\",endMs=\"$to\",call_id=\"$call_id\",ssrc=\"$ssrc\",participant_id=\"$participant_id\",__query__=\"$query\",__table__=\"$table\",type=\"RTCRemoteInboundRTPVideoStream\"}",
           "interval": "",
           "legendFormat": "jitter",
           "refId": "A"
@@ -6563,9 +6563,9 @@
         "hide": 0,
         "includeAll": false,
         "index": -1,
-        "label": "Member ID",
+        "label": "ssrc",
         "multi": false,
-        "name": "member_id",
+        "name": "ssrc",
         "options": [
           {
             "isNone": true,
@@ -6698,5 +6698,5 @@
   "timezone": "",
   "title": "WebRTC",
   "uid": "aNjqqWkC2",
-  "version": 3
+  "version": 4
 }
