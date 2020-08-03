@@ -1452,34 +1452,47 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "/%/",
+          "stack": true,
+          "yaxis": 2
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_parse_error_total{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "avg(rate(parser_latency_nano_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])/rate(parser_latency_nano_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, index)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "parse error - {{$per}}",
+          "legendFormat": "avg  time - {{$per}} - {{index}}",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(dashbase_parse_skipped_total{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "avg(rate(parser_cpu_time_nano_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])/rate(parser_cpu_time_nano_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, index)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "skipped - {{$per}}",
-          "refId": "B"
+          "legendFormat": "avg  cpu time - {{$per}} - {{index}}",
+          "refId": "D"
+        },
+        {
+          "expr": "1 - avg(rate(parser_latency_nano_bucket{component='indexer', table=~'${table:pipe}',app='$app',le=\"100.0\"}[$duration])/ignoring(le) rate(parser_latency_nano_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "% > 1ms - {{$per}}",
+          "refId": "C"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Parse Error",
+      "title": "Parsing Delay",
       "tooltip": {
         "shared": true,
-        "sort": 2,
+        "sort": 0,
         "value_type": "individual"
       },
       "type": "graph",
@@ -1492,7 +1505,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "ns",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1500,7 +1513,7 @@
           "show": true
         },
         {
-          "format": "short",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1605,7 +1618,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
-      "description": "Due to unexpected errors, number of events are dropped by the indexer",
       "fill": 1,
       "gridPos": {
         "h": 9,
@@ -1613,7 +1625,7 @@
         "x": 12,
         "y": 75
       },
-      "id": 112,
+      "id": 18,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1639,18 +1651,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_indexer_events_dropped{component='indexer', table=~'${table:pipe}',app='$app',type='full'}[$duration])) by ($per)",
+          "expr": "sum(rate(dashbase_parse_error_total{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "evets dropped - {{$per}}",
+          "legendFormat": "parse error - {{$per}}",
           "refId": "A"
+        },
+        {
+          "expr": "sum(rate(dashbase_parse_skipped_total{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "skipped - {{$per}}",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Number of Events Dropped",
+      "title": "Parse Error",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -1781,6 +1800,8 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "Prometheus",
+      "description": "Due to unexpected errors, number of events are dropped by the indexer",
       "fill": 1,
       "gridPos": {
         "h": 9,
@@ -1788,59 +1809,47 @@
         "x": 12,
         "y": 84
       },
-      "id": 109,
+      "id": 112,
       "legend": {
         "alignAsTable": true,
         "avg": false,
-        "current": true,
+        "current": false,
         "max": false,
         "min": false,
         "rightSide": true,
         "show": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pointradius": 2,
+      "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "/time/",
-          "yaxis": 2
-        }
-      ],
+      "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(dashbase_indexer_concurrent_flush{component='indexer', table=~'${table:pipe}',app='$app'}) by ($per)",
+          "expr": "sum(rate(dashbase_indexer_events_dropped{component='indexer', table=~'${table:pipe}',app='$app',type='full'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "concurrent builds - {{$per}}",
+          "legendFormat": "evets dropped - {{$per}}",
           "refId": "A"
-        },
-        {
-          "expr": "avg(rate(dashbase_indexer_writer_waiting_time_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_indexer_writer_waiting_time_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "wait time - {{$per}}",
-          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "# Concurrent Builds",
+      "title": "Number of Events Dropped",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
@@ -1861,7 +1870,7 @@
           "show": true
         },
         {
-          "format": "s",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1977,7 +1986,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "description": "{newest timestamp in a segment} - {oldest timestamp in a segment}",
       "fill": 1,
       "gridPos": {
         "h": 9,
@@ -1985,7 +1993,7 @@
         "x": 12,
         "y": 93
       },
-      "id": 103,
+      "id": 109,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1994,8 +2002,6 @@
         "min": false,
         "rightSide": true,
         "show": true,
-        "sort": "current",
-        "sortDesc": true,
         "total": false,
         "values": true
       },
@@ -2004,47 +2010,42 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pointradius": 5,
+      "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "/time/",
+          "yaxis": 2
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(dashbase_indexer_time_slice_range_secs_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_indexer_time_slice_range_secs_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, type)",
+          "expr": "sum(dashbase_indexer_concurrent_flush{component='indexer', table=~'${table:pipe}',app='$app'}) by ($per)",
           "format": "time_series",
-          "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "{{type}} segments - {{$per}}",
+          "legendFormat": "concurrent builds - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "histogram_quantile(0.99, sum(rate(dashbase_indexer_time_slice_range_secs_bucket{component='indexer', table=~'${table:pipe}',app='$app'}[10m])) by ($per, le, type))",
+          "expr": "avg(rate(dashbase_indexer_writer_waiting_time_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_indexer_writer_waiting_time_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
-          "hide": true,
           "intervalFactor": 1,
-          "legendFormat": "p99 {{type}} - {{$per}}",
+          "legendFormat": "wait time - {{$per}}",
           "refId": "B"
-        },
-        {
-          "expr": "histogram_quantile(0.5, sum(rate(dashbase_indexer_time_slice_range_secs_bucket{component='indexer', table=~'${table:pipe}',app='$app'}[10m])) by ($per, le, type))",
-          "format": "time_series",
-          "hide": true,
-          "intervalFactor": 1,
-          "legendFormat": "p50 {{type}} - {{$per}}",
-          "refId": "C"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Range",
+      "title": "# Concurrent Builds",
       "tooltip": {
         "shared": true,
-        "sort": 2,
+        "sort": 0,
         "value_type": "individual"
       },
       "type": "graph",
@@ -2057,7 +2058,7 @@
       },
       "yaxes": [
         {
-          "format": "s",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -2190,13 +2191,119 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "description": "{newest timestamp in a segment} - {oldest timestamp in a segment}",
       "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
         "y": 102
+      },
+      "id": 103,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(rate(dashbase_indexer_time_slice_range_secs_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration]) / rate(dashbase_indexer_time_slice_range_secs_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, type)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{type}} segments - {{$per}}",
+          "refId": "A"
+        },
+        {
+          "expr": "histogram_quantile(0.99, sum(rate(dashbase_indexer_time_slice_range_secs_bucket{component='indexer', table=~'${table:pipe}',app='$app'}[10m])) by ($per, le, type))",
+          "format": "time_series",
+          "hide": true,
+          "intervalFactor": 1,
+          "legendFormat": "p99 {{type}} - {{$per}}",
+          "refId": "B"
+        },
+        {
+          "expr": "histogram_quantile(0.5, sum(rate(dashbase_indexer_time_slice_range_secs_bucket{component='indexer', table=~'${table:pipe}',app='$app'}[10m])) by ($per, le, type))",
+          "format": "time_series",
+          "hide": true,
+          "intervalFactor": 1,
+          "legendFormat": "p50 {{type}} - {{$per}}",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Range",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 111
       },
       "id": 107,
       "legend": {
@@ -2279,7 +2386,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 111
+        "y": 120
       },
       "id": 14,
       "panels": [],
@@ -2297,7 +2404,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 112
+        "y": 121
       },
       "id": 37,
       "legend": {
@@ -2386,7 +2493,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 112
+        "y": 121
       },
       "id": 2,
       "legend": {
@@ -2475,7 +2582,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 121
+        "y": 130
       },
       "id": 4,
       "legend": {
@@ -2576,7 +2683,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 121
+        "y": 130
       },
       "id": 55,
       "legend": {
@@ -2671,7 +2778,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 130
+        "y": 139
       },
       "id": 6,
       "legend": {
