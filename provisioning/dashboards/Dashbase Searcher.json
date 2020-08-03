@@ -813,7 +813,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "jvm_cpu_usage_percent{component='searcher',app='$app'}",
+          "expr": "max(jvm_cpu_usage_percent{component='searcher',app='$app'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
