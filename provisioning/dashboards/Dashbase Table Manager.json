@@ -926,7 +926,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(jvm_cpu_usage_percent{component='table-manager',table=~'${table:pipe}',app='$app'}) by ($per)",
+          "expr": "max(jvm_cpu_usage_percent{component='table-manager',table=~'${table:pipe}',app='$app'}) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{$per}}",
