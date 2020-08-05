@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1595573615437,
+  "iteration": 1596645932159,
   "links": [],
   "panels": [
     {
@@ -552,7 +552,7 @@
         "x": 12,
         "y": 19
       },
-      "id": 76,
+      "id": 118,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -572,44 +572,49 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "/%/",
-          "stack": true,
-          "yaxis": 2
-        }
-      ],
+      "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "floor(avg(rate(dashbase_index_event_size_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])/rate(dashbase_index_event_size_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, index))",
+          "expr": "histogram_quantile(0.99, sum(rate(parser_cpu_time_nano_bucket{component='indexer', app='$app',table=~'${table:pipe}'}[$duration])) by (le, $per))",
           "format": "time_series",
+          "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "avg - {{$per}} - {{index}}",
+          "legendFormat": "cpu time - p99 - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "1 - avg(rate(dashbase_index_event_size_bucket{component='indexer', table=~'${table:pipe}',app='$app',le=\"102400.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_size_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "histogram_quantile(0.5, sum(rate(parser_cpu_time_nano_bucket{component='indexer', app='$app',table=~'${table:pipe}'}[$duration])) by (le, $per))",
           "format": "time_series",
+          "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "% > 100KB - {{$per}}",
+          "legendFormat": "cpu time - p50- {{$per}}",
+          "refId": "C"
+        },
+        {
+          "expr": "histogram_quantile(0.99, sum(rate(parser_latency_nano_bucket{component='indexer', app='$app',table=~'${table:pipe}'}[$duration])) by (le, $per))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "user time - p99 - {{$per}}",
           "refId": "B"
         },
         {
-          "expr": "1 - avg(rate(dashbase_index_event_size_bucket{component='indexer', table=~'${table:pipe}',app='$app',le=\"512000.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_size_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "histogram_quantile(0.50, sum(rate(parser_latency_nano_bucket{component='indexer', app='$app',table=~'${table:pipe}'}[$duration])) by (le, $per))",
           "format": "time_series",
+          "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "% > 500KB - {{$per}}",
-          "refId": "C"
+          "legendFormat": "user time - p50 - {{$per}}",
+          "refId": "D"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Event Size",
+      "title": "Parser Performance",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -625,7 +630,7 @@
       },
       "yaxes": [
         {
-          "format": "bytes",
+          "format": "ns",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -633,7 +638,7 @@
           "show": true
         },
         {
-          "format": "percentunit",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -745,7 +750,7 @@
         "x": 12,
         "y": 28
       },
-      "id": 74,
+      "id": 76,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -777,24 +782,24 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(dashbase_index_event_delay_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])/rate(dashbase_index_event_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, index)",
+          "expr": "floor(avg(rate(dashbase_index_event_size_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])/rate(dashbase_index_event_size_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, index))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "avg - {{$per}} - {{index}}",
           "refId": "A"
         },
         {
-          "expr": "1 - avg(rate(dashbase_index_event_delay_bucket{component='indexer', table=~'${table:pipe}',app='$app',le=\"60.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "1 - avg(rate(dashbase_index_event_size_bucket{component='indexer', table=~'${table:pipe}',app='$app',le=\"102400.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_size_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "% > 1m - {{$per}}",
+          "legendFormat": "% > 100KB - {{$per}}",
           "refId": "B"
         },
         {
-          "expr": "1 - avg(rate(dashbase_index_event_delay_bucket{component='indexer', table=~'${table:pipe}',app='$app',le=\"3600.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "1 - avg(rate(dashbase_index_event_size_bucket{component='indexer', table=~'${table:pipe}',app='$app',le=\"512000.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_size_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "% > 1h - {{$per}}",
+          "legendFormat": "% > 500KB - {{$per}}",
           "refId": "C"
         }
       ],
@@ -802,7 +807,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Delay",
+      "title": "Event Size",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -818,7 +823,7 @@
       },
       "yaxes": [
         {
-          "format": "s",
+          "format": "bytes",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -913,6 +918,112 @@
         },
         {
           "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 37
+      },
+      "id": 74,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/%/",
+          "stack": true,
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(rate(dashbase_index_event_delay_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])/rate(dashbase_index_event_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, index)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "avg - {{$per}} - {{index}}",
+          "refId": "A"
+        },
+        {
+          "expr": "1 - avg(rate(dashbase_index_event_delay_bucket{component='indexer', table=~'${table:pipe}',app='$app',le=\"60.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "% > 1m - {{$per}}",
+          "refId": "B"
+        },
+        {
+          "expr": "1 - avg(rate(dashbase_index_event_delay_bucket{component='indexer', table=~'${table:pipe}',app='$app',le=\"3600.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "% > 1h - {{$per}}",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Delay",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -2895,7 +3006,7 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -2926,5 +3037,5 @@
   "timezone": "",
   "title": "Dashbase Indexer",
   "uid": "2kC2zlsZz",
-  "version": 9
+  "version": 11
 }
