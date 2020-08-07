@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1596646610500,
+  "iteration": 1595573959965,
   "links": [],
   "panels": [
     {
@@ -1026,17 +1026,17 @@
         "x": 12,
         "y": 47
       },
-      "id": 112,
+      "id": 72,
       "legend": {
         "alignAsTable": true,
         "avg": false,
-        "current": true,
+        "current": false,
         "max": false,
         "min": false,
         "rightSide": true,
         "show": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
       "linewidth": 1,
@@ -1052,43 +1052,48 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "histogram_quantile(0.99, sum(rate(parser_cpu_time_nano_bucket{component='indexer', app='$app',table=~'${table:pipe}'}[$duration])) by (le, $per))",
+          "expr": "sum(rate(dashbase_index_event_parse_error{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
-          "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "cpu time - p99 - {{$per}}",
+          "legendFormat": "parse error - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "histogram_quantile(0.50, sum(rate(parser_cpu_time_nano_bucket{component='indexer', app='$app',table=~'${table:pipe}'}[$duration])) by (le, $per))",
+          "expr": "sum(rate(dashbase_overflow_message{component='table', table=~'${table:pipe}',app='$app',component='table'}[$duration])) by ($per)",
           "format": "time_series",
-          "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "cpu time - p50 - {{$per}}",
+          "legendFormat": "overflow - {{$per}}",
           "refId": "B"
         },
         {
-          "expr": "histogram_quantile(0.99, sum(rate(parser_latency_nano_bucket{component='indexer', app='$app',table=~'${table:pipe}'}[$duration])) by (le, $per))",
+          "expr": "sum(rate(dashbase_index_bulk_exception{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
-          "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "user time - p99 - {{$per}}",
+          "legendFormat": "exception - {{$per}}",
           "refId": "C"
         },
         {
-          "expr": "histogram_quantile(0.50, sum(rate(parser_latency_nano_bucket{component='indexer', app='$app',table=~'${table:pipe}'}[$duration])) by (le, $per))",
+          "expr": "sum(rate(dashbase_filebeat_message_parser_misconfigured{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per, host)",
           "format": "time_series",
-          "hide": false,
+          "hide": true,
           "intervalFactor": 1,
-          "legendFormat": "user time - p50 - {{$per}}",
+          "legendFormat": "message parser misconfigured - {{$per}} - {{host}}",
           "refId": "D"
+        },
+        {
+          "expr": "sum(rate(dashbase_filebeat_message_parser_failure{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per, host)",
+          "format": "time_series",
+          "hide": true,
+          "intervalFactor": 1,
+          "legendFormat": "message parser failure - {{$per}} - {{host}}",
+          "refId": "E"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Parser Performance",
+      "title": "Error",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1104,7 +1109,7 @@
       },
       "yaxes": [
         {
-          "format": "ns",
+          "format": "ops",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1224,17 +1229,17 @@
         "x": 12,
         "y": 56
       },
-      "id": 72,
+      "id": 76,
       "legend": {
         "alignAsTable": true,
         "avg": false,
-        "current": false,
+        "current": true,
         "max": false,
         "min": false,
         "rightSide": true,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -1244,54 +1249,44 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "/%/",
+          "stack": true,
+          "yaxis": 2
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_index_event_parse_error{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "floor(sum(rate(dashbase_index_event_size_sum{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)\n    / sum(rate(dashbase_index_event_size_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per))",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "parse error - {{$per}}",
+          "legendFormat": "avg - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(dashbase_overflow_message{component='table', table=~'${table:pipe}',app='$app',component='table'}[$duration])) by ($per)",
+          "expr": "1 - avg(rate(dashbase_index_event_size_bucket{component='table', table=~'${table:pipe}',app='$app',le=\"102400.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_size_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "overflow - {{$per}}",
+          "legendFormat": "% > 100KB - {{$per}}",
           "refId": "B"
         },
         {
-          "expr": "sum(rate(dashbase_index_bulk_exception{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "1 - avg(rate(dashbase_index_event_size_bucket{component='table', table=~'${table:pipe}',app='$app',le=\"512000.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_size_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "exception - {{$per}}",
+          "legendFormat": "% > 500KB - {{$per}}",
           "refId": "C"
-        },
-        {
-          "expr": "sum(rate(dashbase_filebeat_message_parser_misconfigured{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per, host)",
-          "format": "time_series",
-          "hide": true,
-          "intervalFactor": 1,
-          "legendFormat": "message parser misconfigured - {{$per}} - {{host}}",
-          "refId": "D"
-        },
-        {
-          "expr": "sum(rate(dashbase_filebeat_message_parser_failure{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per, host)",
-          "format": "time_series",
-          "hide": true,
-          "intervalFactor": 1,
-          "legendFormat": "message parser failure - {{$per}} - {{host}}",
-          "refId": "E"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Error",
+      "title": "Event Size",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1307,7 +1302,7 @@
       },
       "yaxes": [
         {
-          "format": "ops",
+          "format": "bytes",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1315,7 +1310,7 @@
           "show": true
         },
         {
-          "format": "short",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1446,112 +1441,6 @@
         "x": 12,
         "y": 65
       },
-      "id": 76,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "/%/",
-          "stack": true,
-          "yaxis": 2
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "floor(sum(rate(dashbase_index_event_size_sum{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)\n    / sum(rate(dashbase_index_event_size_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per))",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "avg - {{$per}}",
-          "refId": "A"
-        },
-        {
-          "expr": "1 - avg(rate(dashbase_index_event_size_bucket{component='table', table=~'${table:pipe}',app='$app',le=\"102400.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_size_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "% > 100KB - {{$per}}",
-          "refId": "B"
-        },
-        {
-          "expr": "1 - avg(rate(dashbase_index_event_size_bucket{component='table', table=~'${table:pipe}',app='$app',le=\"512000.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_size_count{component='table', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "% > 500KB - {{$per}}",
-          "refId": "C"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Event Size",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "bytes",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "percentunit",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 74
-      },
       "id": 111,
       "legend": {
         "alignAsTable": true,
@@ -1632,7 +1521,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 83
+        "y": 74
       },
       "id": 16,
       "panels": [
@@ -1836,7 +1725,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 84
+        "y": 75
       },
       "id": 66,
       "panels": [],
@@ -1853,7 +1742,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 85
+        "y": 76
       },
       "id": 68,
       "legend": {
@@ -1946,7 +1835,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 85
+        "y": 76
       },
       "id": 70,
       "legend": {
@@ -2032,7 +1921,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 94
+        "y": 85
       },
       "id": 86,
       "legend": {
@@ -2118,7 +2007,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 94
+        "y": 85
       },
       "id": 88,
       "legend": {
@@ -2200,7 +2089,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 103
+        "y": 94
       },
       "id": 12,
       "panels": [],
@@ -2218,7 +2107,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 104
+        "y": 95
       },
       "id": 10,
       "legend": {
@@ -2319,7 +2208,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 104
+        "y": 95
       },
       "id": 18,
       "legend": {
@@ -2414,7 +2303,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 113
+        "y": 104
       },
       "id": 106,
       "legend": {
@@ -2496,7 +2385,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 122
+        "y": 113
       },
       "id": 29,
       "panels": [],
@@ -2514,7 +2403,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 123
+        "y": 114
       },
       "id": 26,
       "legend": {
@@ -2603,7 +2492,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 123
+        "y": 114
       },
       "id": 27,
       "legend": {
@@ -2699,7 +2588,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 132
+        "y": 123
       },
       "id": 85,
       "legend": {
@@ -2795,7 +2684,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 132
+        "y": 123
       },
       "id": 33,
       "legend": {
@@ -2884,7 +2773,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 141
+        "y": 132
       },
       "id": 35,
       "panels": [],
@@ -2902,7 +2791,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 142
+        "y": 133
       },
       "id": 31,
       "legend": {
@@ -2997,7 +2886,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 142
+        "y": 133
       },
       "id": 53,
       "legend": {
@@ -3084,7 +2973,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 150
+        "y": 141
       },
       "id": 103,
       "legend": {
@@ -3181,7 +3070,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 150
+        "y": 141
       },
       "id": 51,
       "legend": {
@@ -3279,7 +3168,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 159
+        "y": 150
       },
       "id": 49,
       "legend": {
@@ -3378,7 +3267,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 159
+        "y": 150
       },
       "id": 104,
       "legend": {
@@ -3476,7 +3365,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 168
+        "y": 159
       },
       "id": 52,
       "legend": {
@@ -3565,7 +3454,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 168
+        "y": 159
       },
       "id": 101,
       "legend": {
@@ -3654,7 +3543,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 177
+        "y": 168
       },
       "id": 102,
       "legend": {
@@ -3744,7 +3633,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 177
+        "y": 168
       },
       "id": 105,
       "legend": {
@@ -3828,7 +3717,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 186
+        "y": 177
       },
       "id": 39,
       "panels": [
@@ -4458,7 +4347,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 187
+        "y": 178
       },
       "id": 14,
       "panels": [],
@@ -4476,7 +4365,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 188
+        "y": 179
       },
       "id": 37,
       "legend": {
@@ -4565,7 +4454,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 188
+        "y": 179
       },
       "id": 2,
       "legend": {
@@ -4654,7 +4543,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 197
+        "y": 188
       },
       "id": 4,
       "legend": {
@@ -4755,7 +4644,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 197
+        "y": 188
       },
       "id": 55,
       "legend": {
@@ -4850,7 +4739,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 206
+        "y": 197
       },
       "id": 6,
       "legend": {
@@ -4958,7 +4847,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 206
+        "y": 197
       },
       "id": 36,
       "legend": {
@@ -5238,5 +5127,5 @@
   "timezone": "",
   "title": "Dashbase Table",
   "uid": "YhMqAJtmk",
-  "version": 9
+  "version": 7
 }
