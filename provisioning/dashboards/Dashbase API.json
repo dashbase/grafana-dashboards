@@ -531,7 +531,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Remove Service Connection Error",
+      "title": "Remote Service Connection Error",
       "tooltip": {
         "shared": true,
         "sort": 0,
