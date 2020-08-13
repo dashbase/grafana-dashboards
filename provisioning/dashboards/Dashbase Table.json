@@ -299,19 +299,19 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(dashbase_filebeat_parser_harvest_delay_sum{component='table', table=~'${table:pipe}',app='$app'}[$duration]) /rate(dashbase_filebeat_parser_harvest_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "avg(rate(dashbase_filebeat_parser_harvest_delay_sum{component='table', table=~'${table:pipe}',app='$app'}[$duration]) /rate(dashbase_filebeat_parser_harvest_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, host)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "harvest - {{$per}}",
+          "legendFormat": "harvest - {{$per}} - {{host}}",
           "refId": "A"
         },
         {
-          "expr": "avg(rate(dashbase_filebeat_parser_message_delay_sum{component='table', table=~'${table:pipe}',app='$app'}[$duration]) /rate(dashbase_filebeat_parser_message_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "avg(rate(dashbase_filebeat_parser_message_delay_sum{component='table', table=~'${table:pipe}',app='$app'}[$duration]) /rate(dashbase_filebeat_parser_message_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, host)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "message - {{$per}}",
+          "legendFormat": "message - {{$per}} - {{host}}",
           "refId": "B"
         }
       ],
