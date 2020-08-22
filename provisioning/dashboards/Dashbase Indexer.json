@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1595573615437,
+  "iteration": 1598086806756,
   "links": [],
   "panels": [
     {
@@ -341,24 +341,24 @@
         "x": 12,
         "y": 10
       },
-      "id": 72,
+      "id": 119,
       "legend": {
         "alignAsTable": true,
         "avg": false,
-        "current": false,
+        "current": true,
         "max": false,
         "min": false,
         "rightSide": true,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pointradius": 5,
+      "pointradius": 2,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [],
@@ -367,48 +367,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_index_event_parse_error{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "sum(rate(dashbase_index_rejected_requests[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "parse error - {{$per}}",
+          "legendFormat": "rejected requests - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(dashbase_overflow_message{component='indexer', table=~'${table:pipe}',app='$app',component='table'}[$duration])) by ($per)",
+          "expr": "sum(rate(dashbase_index_rejected_events[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "overflow - {{$per}}",
+          "legendFormat": "rejected events - {{$per}}",
           "refId": "B"
-        },
-        {
-          "expr": "sum(rate(dashbase_index_bulk_exception{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "exception - {{$per}}",
-          "refId": "C"
-        },
-        {
-          "expr": "sum(rate(dashbase_filebeat_message_parser_misconfigured{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])) by ($per,host)",
-          "format": "time_series",
-          "hide": true,
-          "intervalFactor": 1,
-          "legendFormat": "message parser misconfigured  - {{$per}} - {{host}}",
-          "refId": "D"
-        },
-        {
-          "expr": "sum(rate(dashbase_filebeat_message_parser_failure{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])) by ($per,host)",
-          "format": "time_series",
-          "hide": true,
-          "intervalFactor": 1,
-          "legendFormat": "message parser failure - {{$per}} - {{host}}",
-          "refId": "E"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Error",
+      "title": "Rate Limiter",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -424,7 +401,7 @@
       },
       "yaxes": [
         {
-          "format": "ops",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -552,17 +529,17 @@
         "x": 12,
         "y": 19
       },
-      "id": 76,
+      "id": 72,
       "legend": {
         "alignAsTable": true,
         "avg": false,
-        "current": true,
+        "current": false,
         "max": false,
         "min": false,
         "rightSide": true,
         "show": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
       "linewidth": 1,
@@ -572,44 +549,54 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "/%/",
-          "stack": true,
-          "yaxis": 2
-        }
-      ],
+      "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "floor(avg(rate(dashbase_index_event_size_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])/rate(dashbase_index_event_size_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, index))",
+          "expr": "sum(rate(dashbase_index_event_parse_error{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "avg - {{$per}} - {{index}}",
+          "legendFormat": "parse error - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "1 - avg(rate(dashbase_index_event_size_bucket{component='indexer', table=~'${table:pipe}',app='$app',le=\"102400.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_size_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "sum(rate(dashbase_overflow_message{component='indexer', table=~'${table:pipe}',app='$app',component='table'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "% > 100KB - {{$per}}",
+          "legendFormat": "overflow - {{$per}}",
           "refId": "B"
         },
         {
-          "expr": "1 - avg(rate(dashbase_index_event_size_bucket{component='indexer', table=~'${table:pipe}',app='$app',le=\"512000.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_size_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "sum(rate(dashbase_index_bulk_exception{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "% > 500KB - {{$per}}",
+          "legendFormat": "exception - {{$per}}",
           "refId": "C"
+        },
+        {
+          "expr": "sum(rate(dashbase_filebeat_message_parser_misconfigured{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])) by ($per,host)",
+          "format": "time_series",
+          "hide": true,
+          "intervalFactor": 1,
+          "legendFormat": "message parser misconfigured  - {{$per}} - {{host}}",
+          "refId": "D"
+        },
+        {
+          "expr": "sum(rate(dashbase_filebeat_message_parser_failure{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])) by ($per,host)",
+          "format": "time_series",
+          "hide": true,
+          "intervalFactor": 1,
+          "legendFormat": "message parser failure - {{$per}} - {{host}}",
+          "refId": "E"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Event Size",
+      "title": "Error",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -625,7 +612,7 @@
       },
       "yaxes": [
         {
-          "format": "bytes",
+          "format": "ops",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -633,7 +620,7 @@
           "show": true
         },
         {
-          "format": "percentunit",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -745,7 +732,7 @@
         "x": 12,
         "y": 28
       },
-      "id": 74,
+      "id": 76,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -777,24 +764,24 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(dashbase_index_event_delay_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])/rate(dashbase_index_event_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, index)",
+          "expr": "floor(avg(rate(dashbase_index_event_size_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])/rate(dashbase_index_event_size_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, index))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "avg - {{$per}} - {{index}}",
           "refId": "A"
         },
         {
-          "expr": "1 - avg(rate(dashbase_index_event_delay_bucket{component='indexer', table=~'${table:pipe}',app='$app',le=\"60.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "1 - avg(rate(dashbase_index_event_size_bucket{component='indexer', table=~'${table:pipe}',app='$app',le=\"102400.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_size_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "% > 1m - {{$per}}",
+          "legendFormat": "% > 100KB - {{$per}}",
           "refId": "B"
         },
         {
-          "expr": "1 - avg(rate(dashbase_index_event_delay_bucket{component='indexer', table=~'${table:pipe}',app='$app',le=\"3600.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "expr": "1 - avg(rate(dashbase_index_event_size_bucket{component='indexer', table=~'${table:pipe}',app='$app',le=\"512000.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_size_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "% > 1h - {{$per}}",
+          "legendFormat": "% > 500KB - {{$per}}",
           "refId": "C"
         }
       ],
@@ -802,7 +789,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Delay",
+      "title": "Event Size",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -818,7 +805,7 @@
       },
       "yaxes": [
         {
-          "format": "s",
+          "format": "bytes",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -913,6 +900,112 @@
         },
         {
           "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 37
+      },
+      "id": 74,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/%/",
+          "stack": true,
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(rate(dashbase_index_event_delay_sum{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])/rate(dashbase_index_event_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per, index)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "avg - {{$per}} - {{index}}",
+          "refId": "A"
+        },
+        {
+          "expr": "1 - avg(rate(dashbase_index_event_delay_bucket{component='indexer', table=~'${table:pipe}',app='$app',le=\"60.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "% > 1m - {{$per}}",
+          "refId": "B"
+        },
+        {
+          "expr": "1 - avg(rate(dashbase_index_event_delay_bucket{component='indexer', table=~'${table:pipe}',app='$app',le=\"3600.0\"}[$duration])/ignoring(le) rate(dashbase_index_event_delay_count{table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "% > 1h - {{$per}}",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Delay",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -2926,5 +3019,5 @@
   "timezone": "",
   "title": "Dashbase Indexer",
   "uid": "2kC2zlsZz",
-  "version": 9
+  "version": 13
 }
