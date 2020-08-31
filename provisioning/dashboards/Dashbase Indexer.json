@@ -367,14 +367,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_index_rejected_requests[$duration])) by ($per)",
+          "expr": "sum(rate(dashbase_index_rejected_requests{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "rejected requests - {{$per}}",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(dashbase_index_rejected_events[$duration])) by ($per)",
+          "expr": "sum(rate(dashbase_index_rejected_events{component='indexer', table=~'${table:pipe}',app='$app'}[$duration])) by ($per)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "rejected events - {{$per}}",
