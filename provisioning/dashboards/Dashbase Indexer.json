@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1598086806756,
+  "iteration": 1601068957631,
   "links": [],
   "panels": [
     {
@@ -1019,12 +1019,99 @@
       }
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "description": "# of events (per second) that had a field whose type is different from other events in the same segment.",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 46
+      },
+      "id": 121,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(rate(dashbase_lucene_doc_builder_type_mismatch[$duration])) by (table, field)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{field}} in {{table}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Field Type Flapping",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ops",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 46
+        "y": 55
       },
       "id": 66,
       "panels": [],
@@ -1041,7 +1128,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 47
+        "y": 56
       },
       "id": 68,
       "legend": {
@@ -1136,7 +1223,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 47
+        "y": 56
       },
       "id": 70,
       "legend": {
@@ -1222,7 +1309,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 56
+        "y": 65
       },
       "id": 86,
       "legend": {
@@ -1308,7 +1395,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 56
+        "y": 65
       },
       "id": 88,
       "legend": {
@@ -1390,7 +1477,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 65
+        "y": 74
       },
       "id": 35,
       "panels": [],
@@ -1407,7 +1494,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 66
+        "y": 75
       },
       "id": 94,
       "legend": {
@@ -1523,7 +1610,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 66
+        "y": 75
       },
       "id": 18,
       "legend": {
@@ -1616,7 +1703,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 75
+        "y": 84
       },
       "id": 111,
       "legend": {
@@ -1704,7 +1791,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 75
+        "y": 84
       },
       "id": 112,
       "legend": {
@@ -1791,7 +1878,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 84
+        "y": 93
       },
       "id": 31,
       "legend": {
@@ -1879,7 +1966,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 84
+        "y": 93
       },
       "id": 109,
       "legend": {
@@ -1979,7 +2066,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 93
+        "y": 102
       },
       "id": 102,
       "legend": {
@@ -2076,7 +2163,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 93
+        "y": 102
       },
       "id": 103,
       "legend": {
@@ -2183,7 +2270,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 102
+        "y": 111
       },
       "id": 49,
       "legend": {
@@ -2289,7 +2376,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 102
+        "y": 111
       },
       "id": 107,
       "legend": {
@@ -2372,7 +2459,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 111
+        "y": 120
       },
       "id": 14,
       "panels": [],
@@ -2390,7 +2477,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 112
+        "y": 121
       },
       "id": 37,
       "legend": {
@@ -2479,7 +2566,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 112
+        "y": 121
       },
       "id": 2,
       "legend": {
@@ -2568,7 +2655,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 121
+        "y": 130
       },
       "id": 4,
       "legend": {
@@ -2669,7 +2756,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 121
+        "y": 130
       },
       "id": 55,
       "legend": {
@@ -2764,7 +2851,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 130
+        "y": 139
       },
       "id": 6,
       "legend": {
@@ -3019,5 +3106,5 @@
   "timezone": "",
   "title": "Dashbase Indexer",
   "uid": "2kC2zlsZz",
-  "version": 13
+  "version": 15
 }
