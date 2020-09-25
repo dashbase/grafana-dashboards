@@ -15,7 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1595573959965,
+  "id": 4,
+  "iteration": 1601069633083,
   "links": [],
   "panels": [
     {
@@ -1516,12 +1517,99 @@
       }
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "description": "# of events (per second) that had a field whose type is different from other events in the same segment.",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 74
+      },
+      "id": 113,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(rate(dashbase_lucene_doc_builder_type_mismatch{app=\"$app\",component='table'}[$duration])) by (table, field)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{field}} in {{table}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Field Type Flapping",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ops",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 74
+        "y": 83
       },
       "id": 16,
       "panels": [
@@ -1725,7 +1813,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 75
+        "y": 84
       },
       "id": 66,
       "panels": [],
@@ -1742,7 +1830,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 76
+        "y": 85
       },
       "id": 68,
       "legend": {
@@ -1835,7 +1923,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 76
+        "y": 85
       },
       "id": 70,
       "legend": {
@@ -1921,7 +2009,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 85
+        "y": 94
       },
       "id": 86,
       "legend": {
@@ -2007,7 +2095,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 85
+        "y": 94
       },
       "id": 88,
       "legend": {
@@ -2089,7 +2177,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 94
+        "y": 103
       },
       "id": 12,
       "panels": [],
@@ -2107,7 +2195,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 95
+        "y": 104
       },
       "id": 10,
       "legend": {
@@ -2208,7 +2296,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 95
+        "y": 104
       },
       "id": 18,
       "legend": {
@@ -2303,7 +2391,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 104
+        "y": 113
       },
       "id": 106,
       "legend": {
@@ -2385,7 +2473,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 113
+        "y": 122
       },
       "id": 29,
       "panels": [],
@@ -2403,7 +2491,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 114
+        "y": 123
       },
       "id": 26,
       "legend": {
@@ -2492,7 +2580,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 114
+        "y": 123
       },
       "id": 27,
       "legend": {
@@ -2588,7 +2676,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 123
+        "y": 132
       },
       "id": 85,
       "legend": {
@@ -2684,7 +2772,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 123
+        "y": 132
       },
       "id": 33,
       "legend": {
@@ -2773,7 +2861,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 132
+        "y": 141
       },
       "id": 35,
       "panels": [],
@@ -2791,7 +2879,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 133
+        "y": 142
       },
       "id": 31,
       "legend": {
@@ -2886,7 +2974,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 133
+        "y": 142
       },
       "id": 53,
       "legend": {
@@ -2973,7 +3061,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 141
+        "y": 150
       },
       "id": 103,
       "legend": {
@@ -3070,7 +3158,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 141
+        "y": 150
       },
       "id": 51,
       "legend": {
@@ -3168,7 +3256,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 150
+        "y": 159
       },
       "id": 49,
       "legend": {
@@ -3267,7 +3355,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 150
+        "y": 159
       },
       "id": 104,
       "legend": {
@@ -3365,7 +3453,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 159
+        "y": 168
       },
       "id": 52,
       "legend": {
@@ -3454,7 +3542,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 159
+        "y": 168
       },
       "id": 101,
       "legend": {
@@ -3543,7 +3631,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 168
+        "y": 177
       },
       "id": 102,
       "legend": {
@@ -3633,7 +3721,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 168
+        "y": 177
       },
       "id": 105,
       "legend": {
@@ -3717,7 +3805,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 177
+        "y": 186
       },
       "id": 39,
       "panels": [
@@ -4347,7 +4435,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 178
+        "y": 187
       },
       "id": 14,
       "panels": [],
@@ -4365,7 +4453,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 179
+        "y": 188
       },
       "id": 37,
       "legend": {
@@ -4454,7 +4542,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 179
+        "y": 188
       },
       "id": 2,
       "legend": {
@@ -4543,7 +4631,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 188
+        "y": 197
       },
       "id": 4,
       "legend": {
@@ -4644,7 +4732,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 188
+        "y": 197
       },
       "id": 55,
       "legend": {
@@ -4739,7 +4827,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 197
+        "y": 206
       },
       "id": 6,
       "legend": {
@@ -4847,7 +4935,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 197
+        "y": 206
       },
       "id": 36,
       "legend": {
@@ -5127,5 +5215,5 @@
   "timezone": "",
   "title": "Dashbase Table",
   "uid": "YhMqAJtmk",
-  "version": 7
+  "version": 11
 }

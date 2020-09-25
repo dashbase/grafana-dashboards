@@ -1057,7 +1057,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(dashbase_lucene_doc_builder_type_mismatch[$duration])) by (table, field)",
+          "expr": "sum(rate(dashbase_lucene_doc_builder_type_mismatch{app=\"$app\",component='indexer'}[$duration])) by (table, field)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{field}} in {{table}}",
