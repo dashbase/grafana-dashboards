@@ -1,4 +1,4 @@
-# Grafana 5 dashboards for Dashbase
+# Grafana 6 dashboards for Dashbase
 
 Just add the contents within `provisioning` to `/etc/grafana/provisioning/` and restart your Grafana.
 
@@ -7,6 +7,6 @@ Or you can set up a Prometheus datasource manually and import these [dashboards]
 
 How to update dashboards:
 
-If you want to update the dashboards under provisioning/dashboards, please use Grafana 5 deployed on Kubernetes.
+If you want to update the dashboards under provisioning/dashboards, please use Grafana 6 deployed on Kubernetes.
 
-If you want to update the dashboards under dashboards_swarm/, then please use Grafana 5 deployed onto Swarm.
+If you want to update the dashboards under dashboards_swarm/, then please use Grafana 6 deployed onto Swarm.
