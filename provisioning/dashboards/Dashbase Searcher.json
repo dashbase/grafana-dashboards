@@ -1639,6 +1639,7 @@
         {
           "expr": "irate(jvm_gc_G1_Young_Generation_time{app='$app',component='searcher'}[$duration])",
           "format": "time_series",
+          "hide": true,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "young gen - {{instance}}",
