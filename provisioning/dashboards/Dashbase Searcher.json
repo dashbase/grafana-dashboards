@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1603918598625,
+  "iteration": 1603918598639,
   "links": [],
   "panels": [
     {
@@ -484,7 +484,7 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
         "x": 0,
         "y": 19
@@ -587,14 +587,118 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
+      "description": "the number of payload readers loaded into in-memory cache",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 19
+      },
+      "hiddenSeries": false,
+      "id": 32,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "dashbase_searcher_payload_cache_size{component=\"searcher\",app=\"$app\"}",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{instance}}",
+          "refId": "C"
+        },
+        {
+          "expr": "sum(dashbase_searcher_payload_cache_size{component=\"indexer\",app=\"$app\"}) by ($per)",
+          "format": "time_series",
+          "hide": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "realtime - {{$per}}",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Payload Reader Cached",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
       "description": "the number of segment readers loaded into in-memory cache",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
-        "x": 12,
-        "y": 19
+        "x": 0,
+        "y": 28
       },
       "hiddenSeries": false,
       "id": 11,
@@ -690,17 +794,16 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "description": "the number of payload readers loaded into in-memory cache",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
-        "x": 0,
-        "y": 27
+        "x": 12,
+        "y": 28
       },
       "hiddenSeries": false,
-      "id": 32,
+      "id": 41,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -714,7 +817,6 @@
       },
       "lines": true,
       "linewidth": 1,
-      "links": [],
       "nullPointMode": "null",
       "options": {
         "dataLinks": []
@@ -729,29 +831,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "dashbase_searcher_payload_cache_size{component=\"searcher\",app=\"$app\"}",
-          "format": "time_series",
-          "hide": false,
+          "expr": "avg(dashbase_searcher_reader_cache_oldest_timestamp{table=~'${table:pipe}',app='$app',component='searcher'} * 1000) by ($per)",
           "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "{{instance}}",
-          "refId": "C"
-        },
-        {
-          "expr": "sum(dashbase_searcher_payload_cache_size{component=\"indexer\",app=\"$app\"}) by ($per)",
-          "format": "time_series",
-          "hide": true,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "realtime - {{$per}}",
-          "refId": "B"
+          "legendFormat": "{{$per}}",
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Payload Reader",
+      "title": "Oldest Segment Reader Cached",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -767,7 +857,8 @@
       },
       "yaxes": [
         {
-          "format": "none",
+          "$$hashKey": "object:721",
+          "format": "dateTimeFromNow",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -775,6 +866,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:722",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -795,7 +887,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 35
+        "y": 37
       },
       "id": 35,
       "panels": [],
@@ -812,10 +904,10 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
         "x": 0,
-        "y": 36
+        "y": 38
       },
       "hiddenSeries": false,
       "id": 31,
@@ -827,6 +919,8 @@
         "min": false,
         "rightSide": true,
         "show": true,
+        "sort": "current",
+        "sortDesc": true,
         "total": false,
         "values": true
       },
@@ -909,10 +1003,10 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
         "x": 12,
-        "y": 36
+        "y": 38
       },
       "hiddenSeries": false,
       "id": 39,
@@ -1009,10 +1103,10 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
         "x": 0,
-        "y": 44
+        "y": 47
       },
       "hiddenSeries": false,
       "id": 37,
@@ -1102,10 +1196,10 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
         "x": 12,
-        "y": 44
+        "y": 47
       },
       "hiddenSeries": false,
       "id": 33,
@@ -1196,7 +1290,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 52
+        "y": 56
       },
       "id": 23,
       "panels": [],
@@ -1215,7 +1309,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 53
+        "y": 57
       },
       "hiddenSeries": false,
       "id": 15,
@@ -1309,7 +1403,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 53
+        "y": 57
       },
       "hiddenSeries": false,
       "id": 17,
@@ -1404,7 +1498,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 62
+        "y": 66
       },
       "hiddenSeries": false,
       "id": 19,
@@ -1511,7 +1605,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 62
+        "y": 66
       },
       "hiddenSeries": false,
       "id": 21,
@@ -1701,10 +1795,11 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
+          "$$hashKey": "object:319",
+          "selected": false,
           "tags": [],
-          "text": "table",
-          "value": "table"
+          "text": "instance",
+          "value": "instance"
         },
         "hide": 0,
         "includeAll": false,
@@ -1714,13 +1809,13 @@
         "options": [
           {
             "$$hashKey": "object:318",
-            "selected": true,
+            "selected": false,
             "text": "table",
             "value": "table"
           },
           {
             "$$hashKey": "object:319",
-            "selected": false,
+            "selected": true,
             "text": "instance",
             "value": "instance"
           }
