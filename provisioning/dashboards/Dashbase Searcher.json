@@ -2,6 +2,7 @@
   "annotations": {
     "list": [
       {
+        "$$hashKey": "object:69",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -15,10 +16,11 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1590084041870,
+  "iteration": 1603918598639,
   "links": [],
   "panels": [
     {
+      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -34,13 +36,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
         "y": 1
       },
+      "hiddenSeries": false,
       "id": 2,
       "interval": "",
       "legend": {
@@ -58,6 +63,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -70,13 +78,15 @@
         {
           "expr": "avg(rate(dashbase_searcher_query_latency_count{table=~'${table:pipe}',app='$app',type='filter'}[$duration])) by ($per)",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "filter - {{$per}}",
+          "legendFormat": "{{$per}}",
           "refId": "A"
         },
         {
           "expr": "avg(rate(dashbase_realtime_searcher_query_latency_count{table=~'${table:pipe}',app='$app',type='filter'}[$duration])) by ($per)",
           "format": "time_series",
+          "hide": true,
           "intervalFactor": 1,
           "legendFormat": "realtime - {{$per}}",
           "refId": "B"
@@ -128,13 +138,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
         "y": 1
       },
+      "hiddenSeries": false,
       "id": 3,
       "interval": "",
       "legend": {
@@ -152,6 +165,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -165,22 +181,24 @@
           "expr": "histogram_quantile(0.99, sum(rate(dashbase_searcher_query_latency_bucket{table=~'${table:pipe}',app='$app',type='filter'}[$duration])) by (le, $per))",
           "format": "time_series",
           "hide": false,
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "full - {{$per}} - p99",
+          "legendFormat": "{{$per}} - p99",
           "refId": "C"
         },
         {
           "expr": "histogram_quantile(0.50, sum(rate(dashbase_searcher_query_latency_bucket{table=~'${table:pipe}',app='$app',type='filter'}[$duration])) by (le, $per))",
           "format": "time_series",
           "hide": false,
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "full - {{$per}} - p50",
+          "legendFormat": "{{$per}} - p50",
           "refId": "D"
         },
         {
           "expr": "histogram_quantile(0.99, sum(rate(dashbase_realtime_searcher_query_latency_bucket{table=~'${table:pipe}',app='$app',type='filter'}[$duration])) by (le, $per))",
           "format": "time_series",
-          "hide": false,
+          "hide": true,
           "intervalFactor": 1,
           "legendFormat": "realtime - {{$per}} - p99",
           "refId": "E"
@@ -188,7 +206,7 @@
         {
           "expr": "histogram_quantile(0.50, sum(rate(dashbase_realtime_searcher_query_latency_bucket{table=~'${table:pipe}',app='$app',type='filter'}[$duration])) by (le, $per))",
           "format": "time_series",
-          "hide": false,
+          "hide": true,
           "intervalFactor": 1,
           "legendFormat": "realtime - {{$per}} - p50",
           "refId": "F"
@@ -240,13 +258,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
         "y": 10
       },
+      "hiddenSeries": false,
       "id": 27,
       "interval": "",
       "legend": {
@@ -264,6 +285,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -276,13 +300,15 @@
         {
           "expr": "avg(rate(dashbase_searcher_query_latency_count{table=~'${table:pipe}',app='$app',type='aggregation'}[$duration])) by ($per)",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "filter - {{$per}}",
+          "legendFormat": "{{$per}}",
           "refId": "A"
         },
         {
           "expr": "avg(rate(dashbase_realtime_searcher_query_latency_count{table=~'${table:pipe}',app='$app',type='aggregation'}[$duration])) by ($per)",
           "format": "time_series",
+          "hide": true,
           "intervalFactor": 1,
           "legendFormat": "realtime - {{$per}}",
           "refId": "B"
@@ -334,13 +360,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
         "y": 10
       },
+      "hiddenSeries": false,
       "id": 29,
       "interval": "",
       "legend": {
@@ -358,6 +387,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -371,22 +403,24 @@
           "expr": "histogram_quantile(0.99, sum(rate(dashbase_searcher_query_latency_bucket{table=~'${table:pipe}',app='$app',type='aggregation'}[$duration])) by (le, $per))",
           "format": "time_series",
           "hide": false,
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "full - {{$per}} - p99",
+          "legendFormat": "{{$per}} - p99",
           "refId": "C"
         },
         {
           "expr": "histogram_quantile(0.50, sum(rate(dashbase_searcher_query_latency_bucket{table=~'${table:pipe}',app='$app',type='aggregation'}[$duration])) by (le, $per))",
           "format": "time_series",
           "hide": false,
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "full - {{$per}} - p50",
+          "legendFormat": "{{$per}} - p50",
           "refId": "D"
         },
         {
           "expr": "histogram_quantile(0.99, sum(rate(dashbase_realtime_searcher_query_latency_bucket{table=~'${table:pipe}',app='$app',type='aggregation'}[$duration])) by (le, $per))",
           "format": "time_series",
-          "hide": false,
+          "hide": true,
           "intervalFactor": 1,
           "legendFormat": "realtime - {{$per}} - p99",
           "refId": "E"
@@ -394,7 +428,7 @@
         {
           "expr": "histogram_quantile(0.50, sum(rate(dashbase_realtime_searcher_query_latency_bucket{table=~'${table:pipe}',app='$app',type='aggregation'}[$duration])) by (le, $per))",
           "format": "time_series",
-          "hide": false,
+          "hide": true,
           "intervalFactor": 1,
           "legendFormat": "realtime - {{$per}} - p50",
           "refId": "F"
@@ -446,13 +480,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
         "x": 0,
         "y": 19
       },
+      "hiddenSeries": false,
       "id": 25,
       "legend": {
         "alignAsTable": true,
@@ -469,6 +506,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -486,30 +526,18 @@
         {
           "expr": "sum(delta(dashbase_searcher_num_segments_searched{component='searcher',table=~'${table:pipe}',app='$app'}[1m])) by ($per)",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "full - {{$per}}",
+          "legendFormat": "{{$per}}",
           "refId": "C"
         },
         {
           "expr": "sum(delta(dashbase_searcher_num_segments_searched{component='indexer',table=~'${table:pipe}',app='$app'}[1m])) by ($per)",
           "format": "time_series",
+          "hide": true,
           "intervalFactor": 1,
           "legendFormat": "realtime - {{$per}}",
           "refId": "D"
-        },
-        {
-          "expr": "avg(delta(dashbase_searcher_num_segments_bloom_filter_checked{table=~'${table:pipe}',app='$app'}[1m]) / delta(dashbase_searcher_num_segments_searched{table=~'${table:pipe}',app='$app'}[1m])) by ($per)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "% bloom filter checked - {{$per}}",
-          "refId": "A"
-        },
-        {
-          "expr": "avg(delta(dashbase_searcher_num_segments_bloom_filtered{table=~'${table:pipe}',app='$app'}[1m]) / delta(dashbase_searcher_num_segments_searched{table=~'${table:pipe}',app='$app'}[1m])) by ($per)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "% filtered by bloom filter - {{$per}}",
-          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -558,14 +586,18 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
+      "description": "the number of payload readers loaded into in-memory cache",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
         "x": 12,
         "y": 19
       },
-      "id": 11,
+      "hiddenSeries": false,
+      "id": 32,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -581,6 +613,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -591,49 +626,29 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(dashbase_searcher_reader_cache_count{app=\"$app\",table=~'${table:pipe}',component='searcher'}) by ($per)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "segment - full - {{$per}}",
-          "refId": "A"
-        },
-        {
-          "expr": "sum(dashbase_searcher_reader_cache_count{app=\"$app\",table=~'${table:pipe}',component='indexer'}) by ($per)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "segment - realtime - {{$per}}",
-          "refId": "E"
-        },
-        {
-          "expr": "sum(dashbase_searcher_payload_cache_size{component=\"searcher\",app=\"$app\"})",
+          "expr": "dashbase_searcher_payload_cache_size{component=\"searcher\",app=\"$app\"}",
           "format": "time_series",
           "hide": false,
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "payload - full",
+          "legendFormat": "{{instance}}",
           "refId": "C"
         },
         {
           "expr": "sum(dashbase_searcher_payload_cache_size{component=\"indexer\",app=\"$app\"}) by ($per)",
           "format": "time_series",
-          "hide": false,
+          "hide": true,
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "payload - realtime - {{$per}}",
+          "legendFormat": "realtime - {{$per}}",
           "refId": "B"
-        },
-        {
-          "expr": "sum(dashbase_searcher_num_bloom_filters_loaded{app=\"$app\",table=~'${table:pipe}'}) by ($per)",
-          "format": "time_series",
-          "hide": false,
-          "intervalFactor": 1,
-          "legendFormat": "bloom filter - {{$per}}",
-          "refId": "D"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Cache",
+      "title": "Payload Reader Cached",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -671,12 +686,611 @@
       }
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "the number of segment readers loaded into in-memory cache",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 28
+      },
+      "hiddenSeries": false,
+      "id": 11,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(dashbase_searcher_reader_cache_count{app=\"$app\",table=~'${table:pipe}',component='searcher'}) by ($per)",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{$per}}",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(dashbase_searcher_reader_cache_count{app=\"$app\",table=~'${table:pipe}',component='indexer'}) by ($per)",
+          "format": "time_series",
+          "hide": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "realtime - {{$per}}",
+          "refId": "E"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Segment Reader Cached",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 28
+      },
+      "hiddenSeries": false,
+      "id": 41,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(dashbase_searcher_reader_cache_oldest_timestamp{table=~'${table:pipe}',app='$app',component='searcher'} * 1000) by ($per)",
+          "interval": "",
+          "legendFormat": "{{$per}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Oldest Segment Reader Cached",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:721",
+          "format": "dateTimeFromNow",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:722",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "collapsed": false,
+      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 27
+        "y": 37
+      },
+      "id": 35,
+      "panels": [],
+      "title": "Bloom Filter",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "the number of segments whose bloom filters were loaded",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 38
+      },
+      "hiddenSeries": false,
+      "id": 31,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(dashbase_searcher_num_bloom_filters_loaded{app=\"$app\",table=~'${table:pipe}'}) by ($per)",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{$per}}",
+          "refId": "D"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Loaded",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:287",
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:288",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "the number of segments checked against / filtered by bloom filter",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 38
+      },
+      "hiddenSeries": false,
+      "id": 39,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(rate(dashbase_searcher_num_segments_bloom_filter_checked{app=\"$app\",table=~'${table:pipe}',component='searcher'}[$duration])) by ($per)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "checked - {{$per}}",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(rate(dashbase_searcher_num_segments_bloom_filtered{app=\"$app\",table=~'${table:pipe}',component='searcher'}[$duration])) by ($per)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "filtered - {{$per}}",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Checked / Filtered",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:583",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:584",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 47
+      },
+      "hiddenSeries": false,
+      "id": 37,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "dashbase_searcher_bloom_filter_disk_available{app=\"$app\"} / dashbase_searcher_bloom_filter_disk_total{app=\"$app\"}",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Available Disk Space",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:481",
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:482",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "total number of bloom filter files deleted to free disk space",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 47
+      },
+      "hiddenSeries": false,
+      "id": 33,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(dashbase_searcher_bloom_filter_files_deleted{app=\"$app\",table=~'${table:pipe}'}) by ($per)",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{$per}}",
+          "refId": "D"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Deleted",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:382",
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:383",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 56
       },
       "id": 23,
       "panels": [],
@@ -690,12 +1304,14 @@
       "dashes": false,
       "datasource": "Prometheus",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 28
+        "y": 57
       },
+      "hiddenSeries": false,
       "id": 15,
       "legend": {
         "alignAsTable": true,
@@ -714,6 +1330,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -779,12 +1398,14 @@
       "dashes": false,
       "datasource": "Prometheus",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 28
+        "y": 57
       },
+      "hiddenSeries": false,
       "id": 17,
       "legend": {
         "alignAsTable": true,
@@ -803,6 +1424,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -813,8 +1437,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "max(jvm_cpu_usage_percent{component='searcher',app='$app'})",
+          "expr": "jvm_cpu_usage_percent{component='searcher',app='$app'}",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -868,12 +1493,14 @@
       "dashes": false,
       "datasource": "Prometheus",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 37
+        "y": 66
       },
+      "hiddenSeries": false,
       "id": 19,
       "legend": {
         "alignAsTable": true,
@@ -892,6 +1519,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -968,13 +1598,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 37
+        "y": 66
       },
+      "hiddenSeries": false,
       "id": 21,
       "legend": {
         "alignAsTable": true,
@@ -991,6 +1624,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -1003,6 +1639,7 @@
         {
           "expr": "irate(jvm_gc_G1_Young_Generation_time{app='$app',component='searcher'}[$duration])",
           "format": "time_series",
+          "hide": true,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "young gen - {{instance}}",
@@ -1059,7 +1696,7 @@
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 18,
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1074,6 +1711,7 @@
         "definition": "label_values(jvm_attribute_uptime, app)",
         "hide": 0,
         "includeAll": false,
+        "index": -1,
         "label": null,
         "multi": false,
         "name": "app",
@@ -1092,6 +1730,7 @@
       {
         "allValue": ".*",
         "current": {
+          "selected": false,
           "text": "All",
           "value": "$__all"
         },
@@ -1099,6 +1738,7 @@
         "definition": "label_values(jvm_attribute_uptime{app='$app'}, table)",
         "hide": 0,
         "includeAll": true,
+        "index": -1,
         "label": null,
         "multi": true,
         "name": "table",
@@ -1119,6 +1759,7 @@
         "auto_count": 30,
         "auto_min": "1m",
         "current": {
+          "selected": false,
           "text": "auto",
           "value": "$__auto_interval_duration"
         },
@@ -1155,10 +1796,11 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
+          "$$hashKey": "object:319",
+          "selected": false,
           "tags": [],
-          "text": "table",
-          "value": "table"
+          "text": "instance",
+          "value": "instance"
         },
         "hide": 0,
         "includeAll": false,
@@ -1167,12 +1809,14 @@
         "name": "per",
         "options": [
           {
-            "selected": true,
+            "$$hashKey": "object:318",
+            "selected": false,
             "text": "table",
             "value": "table"
           },
           {
-            "selected": false,
+            "$$hashKey": "object:319",
+            "selected": true,
             "text": "instance",
             "value": "instance"
           }
@@ -1215,5 +1859,8 @@
   "timezone": "",
   "title": "Dashbase Searcher",
   "uid": "cAKMbk8Wz",
-  "version": 3
+  "variables": {
+    "list": []
+  },
+  "version": 5
 }
