@@ -1390,12 +1390,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(dashbase_table_manager_total_index_size_kb{component='table-manager',table=~'${table:pipe}',app='$app'}) by ($per)",
+          "expr": "max(dashbase_table_manager_total_index_size_kb{component='table-manager',table=~'${table:pipe}',app='$app'}) by ($per)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{$per}}",
           "refId": "A"
+        },
+        {
+          "expr": "sum(max(dashbase_table_manager_total_index_size_kb{component='table-manager',table=~'${table:pipe}',app='$app'}) by (table))",
+          "interval": "",
+          "legendFormat": "total",
+          "refId": "B"
         }
       ],
       "thresholds": [],
