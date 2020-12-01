@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1604531936297,
+  "iteration": 1606783828131,
   "links": [],
   "panels": [
     {
@@ -1604,7 +1604,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "Prometheus",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1612,6 +1612,110 @@
         "w": 12,
         "x": 12,
         "y": 66
+      },
+      "hiddenSeries": false,
+      "id": 42,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:1812",
+          "alias": "/max/",
+          "dashes": true,
+          "fill": 0
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "jvm_threads_count{component='searcher',app='$app'}",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "threads - {{instance}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Thread Count",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1827",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1828",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 75
       },
       "hiddenSeries": false,
       "id": 21,
@@ -1834,7 +1938,7 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -1868,5 +1972,5 @@
   "variables": {
     "list": []
   },
-  "version": 6
+  "version": 7
 }

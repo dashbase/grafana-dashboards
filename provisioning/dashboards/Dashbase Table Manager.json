@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1604087784865,
+  "iteration": 1606783936217,
   "links": [],
   "panels": [
     {
@@ -1243,7 +1243,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "Prometheus",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1253,7 +1253,7 @@
         "y": 47
       },
       "hiddenSeries": false,
-      "id": 21,
+      "id": 30,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1262,6 +1262,8 @@
         "min": false,
         "rightSide": true,
         "show": true,
+        "sort": "current",
+        "sortDesc": true,
         "total": false,
         "values": true
       },
@@ -1276,35 +1278,34 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "/max/",
+          "dashes": true,
+          "fill": 0
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(jvm_gc_G1_Young_Generation_time{app='$app',component='table-manager',table=~'${table:pipe}'}[$duration])) by ($per)",
+          "expr": "sum(jvm_threads_count{component='table-manager',table=~'${table:pipe}',app='$app'}) by ($per)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "young gen - {{$per}}",
+          "legendFormat": "threads - {{$per}}",
           "refId": "A"
-        },
-        {
-          "expr": "sum(irate(jvm_gc_G1_Old_Generation_time{app='$app',component='table-manager',table=~'${table:pipe}'}[$duration])) by ($per)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "old gen - {{$per}}",
-          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "GC time spent",
+      "title": "Thread Count",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
@@ -1317,7 +1318,7 @@
       },
       "yaxes": [
         {
-          "format": "ms",
+          "format": "bytes",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1444,6 +1445,106 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 56
+      },
+      "hiddenSeries": false,
+      "id": 21,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(irate(jvm_gc_G1_Young_Generation_time{app='$app',component='table-manager',table=~'${table:pipe}'}[$duration])) by ($per)",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "young gen - {{$per}}",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(irate(jvm_gc_G1_Old_Generation_time{app='$app',component='table-manager',table=~'${table:pipe}'}[$duration])) by ($per)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "old gen - {{$per}}",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "GC time spent",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
   "refresh": "10s",
@@ -1481,7 +1582,6 @@
       {
         "allValue": ".*",
         "current": {
-          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -1576,7 +1676,7 @@
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -1610,5 +1710,5 @@
   "variables": {
     "list": []
   },
-  "version": 6
+  "version": 8
 }
