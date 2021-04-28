@@ -612,6 +612,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
+      "decimals": 2,
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -675,6 +676,7 @@
       },
       "yaxes": [
         {
+          "decimals": 2,
           "format": "m",
           "label": null,
           "logBase": 1,
@@ -702,6 +704,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
+      "decimals": 2,
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -765,6 +768,7 @@
       },
       "yaxes": [
         {
+          "decimals": 2,
           "format": "m",
           "label": null,
           "logBase": 1,
