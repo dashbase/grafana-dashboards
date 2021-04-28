@@ -652,7 +652,7 @@
         {
           "expr": "avg(rate(dashbase_api_request_start_time_from_now_mins_sum{app=\"$app\", component=\"api\",table=~'${table:pipe}'}[$duration])/rate(dashbase_api_request_start_time_from_now_mins_count{app=\"$app\", component=\"api\",table=~'${table:pipe}'}[$duration])) by (table)",
           "interval": "",
-          "legendFormat": "Average - $table",
+          "legendFormat": "Average - {{table}}",
           "refId": "A"
         }
       ],
@@ -744,7 +744,7 @@
         {
           "expr": "avg(rate(dashbase_api_request_time_range_mins_sum{app=\"$app\", component=\"api\",table=~'${table:pipe}'}[$duration])/rate(dashbase_api_request_time_range_mins_count{app=\"$app\", component=\"api\",table=~'${table:pipe}'}[$duration])) by (table)",
           "interval": "",
-          "legendFormat": "Average - $table",
+          "legendFormat": "Average - {{table}}",
           "refId": "A"
         }
       ],
